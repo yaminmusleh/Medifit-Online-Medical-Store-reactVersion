@@ -6,6 +6,7 @@ import Login from "./pages/auth/login/Login";
 import About from "./pages/about/About";
 import Contact from "./pages/Contact/Contact";
 import Shop from "./pages/shop/Shop";
+import Register from "./pages/auth/register/Register";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/register",
-        element: <Home2 />,
+        element: <Register />,
       },
       {
         path: "/about",
@@ -43,3 +44,4 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+export default router;
