@@ -3,7 +3,27 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { Button, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
+import { useForm } from "react-hook-form"
+import axios from "axios";
+
 export default function Register() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({});
+
+  const registerForm = async (value) => {
+    try {
+      const response = await axios.post(
+        `https://knowledgeshop.runasp.net/api/auth/Account/Register`,
+        value,
+      );
+    } catch (error) {
+      alert("Oops... and Error got caught, try again later.");
+    }
+  };
+
   return (
     <Box
       component={"section"}
@@ -36,6 +56,7 @@ export default function Register() {
 
         <Box
           component={"form"}
+          onSubmit={handleSubmit(registerForm)} // i always call registerForm inside handleSubmit
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -43,17 +64,35 @@ export default function Register() {
             width: { xs: "90%", sm: "450px", md: "600px" },
           }}
         >
-          <TextField id="outlined-basic" label="Email" variant="outlined" />
-          <TextField id="outlined-basic" label="Password" variant="outlined" />
-          <TextField id="outlined-basic" label="User Name" variant="outlined" />
-          <TextField id="outlined-basic" label="Full Name" variant="outlined" />
           <TextField
-            id="outlined-basic"
+            {...register("email")}
+            label="Email"
+            variant="outlined"
+          />
+          {errors.email && <Typography component='span' sx={{color:'red', p:0,m:0, display:'flex', alignItems:'start',fontFamily:'poppins'}}>This field is required!</Typography>}
+          <TextField
+            {...register("password")}
+            label="Password"
+            variant="outlined"
+          />
+          <TextField
+            {...register("userName")}
+            label="User Name"
+            variant="outlined"
+          />
+          <TextField
+            {...register("fullName")}
+            label="Full Name"
+            variant="outlined"
+          />
+          <TextField
+            {...register("phoneNumber")}
             label="Phone number"
             variant="outlined"
           />
           <Button
             variant="contained"
+            type="submit"
             sx={{
               width: "40%",
               alignSelf: "center",
@@ -62,7 +101,7 @@ export default function Register() {
               marginTop: "20px",
               backgroundColor: "#503217",
               borderRadius: "5px",
-              fontSize:"15px"
+              fontSize: "15px",
             }}
           >
             Sign Up!
