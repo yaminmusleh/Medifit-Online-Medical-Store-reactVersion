@@ -3,15 +3,51 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { Button, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
 import axios from "axios";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 export default function Register() {
+  let RegisterSchema = yup.object({
+    email: yup
+      .string()
+      .email("Email must be a valid email.")
+      .required("Email is required.")
+      .matches(
+        /^[A-Za-z0-9._%+-]+@(gmail\.com|yahoo\.com|icloud\.com)$/,
+        "Please enter a valid Gmail, Yahoo, or iCloud email address.",
+      ),
+
+    password: yup
+      .string()
+      .required("Password is required.")
+      .min(6, "Password must be at least 6 characters")
+      .matches(
+        /^[A-Z][A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/,
+        "Password must begin with a capital letter and may include letters, numbers, and special characters.",
+      ),
+
+    userName: yup
+      .string()
+      .required("Username is required.")
+      .matches(
+        /^[A-Za-z][A-Za-z0-9_]{3,15}$/,
+        "Use 4–16 characters. Start with a letter. Letters, numbers, and underscores only.",
+      ),
+
+    fullName: yup.string().required("Full name is required."),
+
+    phoneNumber: yup.string().required("Phone number is required."),
+  });
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({});
+  } = useForm({
+    resolver: yupResolver(RegisterSchema),
+  });
 
   const registerForm = async (value) => {
     try {
@@ -68,28 +104,42 @@ export default function Register() {
             {...register("email")}
             label="Email"
             variant="outlined"
+            error={errors.email}
+            helperText={errors.email?.message}
           />
-          {errors.email && <Typography component='span' sx={{color:'red', p:0,m:0, display:'flex', alignItems:'start',fontFamily:'poppins'}}>This field is required!</Typography>}
+
           <TextField
             {...register("password")}
             label="Password"
             variant="outlined"
+            error={errors.password}
+            helperText = {errors.password?.message}
           />
+          
           <TextField
             {...register("userName")}
             label="User Name"
             variant="outlined"
+            error={errors.userName}
+            helperText = {errors.userName?.message}
           />
+          
           <TextField
             {...register("fullName")}
             label="Full Name"
             variant="outlined"
+            error={errors.fullName}
+            helperText = {errors.fullName?.message}
           />
+          
           <TextField
             {...register("phoneNumber")}
             label="Phone number"
             variant="outlined"
+            error={errors.phoneNumber}
+            helperText = {errors.phoneNumber?.message}
           />
+          
           <Button
             variant="contained"
             type="submit"

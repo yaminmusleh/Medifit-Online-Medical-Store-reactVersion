@@ -5,14 +5,36 @@ import { Button, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import Register from "../register/Register";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 export default function Login() {
+  let LoginSchema = yup.object({
+    email: yup
+      .string()
+      .email("Email must be a valid email.")
+      .required("Email is required.")
+      .matches(
+        /^[A-Za-z0-9._%+-]+@(gmail\.com|yahoo\.com|icloud\.com)$/,
+        "Please enter a valid Gmail, Yahoo, or iCloud email address.",
+      ),
+    password: yup
+      .string()
+      .required("Password is required.")
+      .min(6, "Password must be at least 6 characters")
+      .matches(
+        /^[A-Z][A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/,
+        "Password must begin with a capital letter and may include letters, numbers, and special characters.",
+      ),
+  });
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({});
+  } = useForm({
+    resolver: yupResolver(LoginSchema),
+  });
 
   const LoginForm = async (value) => {
     try {
@@ -76,26 +98,20 @@ export default function Login() {
             width: { xs: "90%", sm: "450px", md: "500px" },
           }}
         >
-          <TextField {...register("email")} label="Email" variant="outlined" />
-          {errors.email && (
-            <Typography
-              component="span"
-              sx={{
-                color: "red",
-                p: 0,
-                m: 0,
-                display: "flex",
-                alignItems: "start",
-                fontFamily: "poppins",
-              }}
-            >
-              This field is required!
-            </Typography>
-          )}
+          <TextField
+            {...register("email")}
+            label="Email"
+            variant="outlined"
+            error={errors.email}
+            helperText = {errors.email?.message}
+          />
+
           <TextField
             {...register("password")}
             label="Password"
             variant="outlined"
+            error={errors.password}
+            helperText = {errors.password?.message}
           />
           
           <Button
