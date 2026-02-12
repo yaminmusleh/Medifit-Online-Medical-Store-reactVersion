@@ -12,28 +12,27 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import Medifit_image from "../navbar/assets/Group 189.svg";
-import Medifit_image_2 from "../navbar/assets/company-logo.svg"
+import Medifit_image_2 from "../navbar/assets/company-logo.svg";
 import { Link as RouterLink } from "react-router-dom";
 import Link from "@mui/material/Link";
+import SearchIcon from "@mui/icons-material/Search";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 const pages = ["Home", "Shop", "About", "Contact", "Login", "Register"];
-
-
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 export default function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
-  const [scrolled, setScrolling]= useState(false);
+  const [scrolled, setScrolling] = useState(false);
 
-  useEffect(()=>{
-    const handleScroll = ()=>{
-      setScrolling(window.scrollY>10)
-    }
-    window.addEventListener("scroll",handleScroll);
-    return ()=>window.removeEventListener("scroll",handleScroll)
-
-  },[])
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolling(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -48,7 +47,7 @@ export default function Navbar() {
       position="fixed"
       sx={{
         bgcolor: scrolled ? "rgba(255, 255, 255, 0.7)" : "#EEEDE7",
-        boxShadow: scrolled? 5: "none",
+        boxShadow: scrolled ? 5 : "none",
         paddingY: "20px",
         paddingX: "120px",
         backdropFilter: scrolled ? "blur(2px)" : "none",
@@ -57,40 +56,55 @@ export default function Navbar() {
       }}
     >
       <Container maxWidth="xl">
-        <Toolbar disableGutters sx={{display: {xs:'flex'},justifyContent:'center'}}>
+        <Toolbar
+          disableGutters
+          sx={{
+            display: { xs: "flex" },
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           {/* Logo */}
           <Box
-            component="img"
-            src={Medifit_image}
-            alt="Logo"
+            component={RouterLink}
+            to="/"
             sx={{
-              height: "auto",
-              mr: 2,
-              maxWidth: "100%",
               display: { xs: "none", md: "block" },
-            }}
-          />
-          <Box
-            component="img"
-            src={Medifit_image_2}
-            alt="Logo"
-            sx={{
-              height: "auto",
               mr: 2,
-              maxWidth: "100%",
-              display: { xs: "block", md: "none" },
+              cursor: "pointer",
             }}
-          />
+          >
+            <Box
+              component="img"
+              src={Medifit_image}
+              alt="Logo"
+              sx={{ height: "auto", maxWidth: "100%" }}
+            />
+          </Box>
+
+          <Box
+            component={RouterLink}
+            to="/"
+            sx={{
+              display: { xs: "block", md: "none" },
+              mr: 2,
+              cursor: "pointer",
+            }}
+          >
+            <Box
+              component="img"
+              src={Medifit_image_2}
+              alt="Logo"
+              sx={{ height: "44px", width: "auto" }}
+            />
+          </Box>
 
           {/* Mobile Menu */}
           <Box
             sx={{
-              
               display: { xs: "flex", md: "none" },
               justifyContent: "center",
-              color:'black',
-   
-             
+              color: "black",
             }}
           >
             <IconButton
@@ -100,11 +114,15 @@ export default function Navbar() {
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
-            
-              
-              
             >
-              <MenuIcon sx={{ fontSize: "50px",border: "2px solid #a09184", borderRadius:'8px', paddingX:'5px' }} />
+              <MenuIcon
+                sx={{
+                  fontSize: "50px",
+                  border: "2px solid #a09184",
+                  borderRadius: "8px",
+                  paddingX: "5px",
+                }}
+              />
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -116,10 +134,23 @@ export default function Navbar() {
               onClose={handleCloseNavMenu}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem
+                  key={page}
+                  component={RouterLink}
+                  to={`/${page.toLowerCase()}`}
+                  onClick={handleCloseNavMenu}
+                >
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
+              <MenuItem
+                component={RouterLink}
+                to="/cart"
+                onClick={handleCloseNavMenu}
+              >
+                <ShoppingCartOutlinedIcon sx={{ mr: 1 }} />
+                <Typography>Cart</Typography>
+              </MenuItem>
             </Menu>
           </Box>
 
@@ -141,19 +172,33 @@ export default function Navbar() {
                 underline="none"
                 sx={{
                   my: 2,
-                  color: "#503217",
+                  color: "#8F7D6A",
                   fontFamily: "sans-serif",
-                  fontSize: "18px",
+                  fontSize: { md: "15px", lg: "17px", xl: "18px" },
                   textTransform: "none",
                   p: 0,
                   cursor: "pointer",
                   display: "flex",
+                  "&:hover": {
+                    color: "#503217",
+                    transition: "0.4s all",
+                  },
                 }}
               >
                 {page}
               </Link>
             ))}
           </Box>
+          <IconButton sx={{ color: "#503217" }}>
+            <SearchIcon />
+          </IconButton>
+          <IconButton
+            component={RouterLink}
+            sx={{ color: "#503217", display: { xs: "none", sm: "flex" } }}
+            to="/cart"
+          >
+            <ShoppingCartOutlinedIcon />
+          </IconButton>
         </Toolbar>
       </Container>
     </AppBar>
