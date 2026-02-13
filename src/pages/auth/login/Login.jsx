@@ -6,28 +6,9 @@ import TextField from "@mui/material/TextField";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { LoginSchema } from "../../../validation/LoginSchema";
 
 export default function Login() {
-  let LoginSchema = yup.object({
-    email: yup
-      .string()
-      .email("Email must be a valid email.")
-      .required("Email is required.")
-      .matches(
-        /^[A-Za-z0-9._%+-]+@(gmail\.com|yahoo\.com|icloud\.com)$/,
-        "Please enter a valid Gmail, Yahoo, or iCloud email address.",
-      ),
-    password: yup
-      .string()
-      .required("Password is required.")
-      .min(6, "Password must be at least 6 characters")
-      .matches(
-        /^[A-Z][A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/,
-        "Password must begin with a capital letter and may include letters, numbers, and special characters.",
-      ),
-  });
-
   const {
     register,
     handleSubmit,
@@ -103,7 +84,7 @@ export default function Login() {
             label="Email"
             variant="outlined"
             error={errors.email}
-            helperText = {errors.email?.message}
+            helperText={errors.email?.message}
           />
 
           <TextField
@@ -111,9 +92,9 @@ export default function Login() {
             label="Password"
             variant="outlined"
             error={errors.password}
-            helperText = {errors.password?.message}
+            helperText={errors.password?.message}
           />
-          
+
           <Button
             variant="contained"
             type="submit"
