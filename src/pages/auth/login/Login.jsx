@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import { Button, Typography } from "@mui/material";
+import { Button, CircularProgress, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -9,12 +9,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginSchema } from "../../../validation/LoginSchema";
 
 export default function Login() {
+  const [serverError, setServerError] = useState([]);
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(LoginSchema),
+    mode: "onBlur",
   });
 
   const LoginForm = async (value) => {
@@ -25,6 +27,7 @@ export default function Login() {
       );
     } catch (error) {
       alert("Oops... and Error got caught, try again later.");
+      setServerError(error.response?.data?.errors || ["something went wrong"]);
     }
   };
   return (
@@ -69,6 +72,13 @@ export default function Login() {
           Enter your Credentials to access your account
         </Typography>
 
+        {serverError.length > 0 && (
+          <Box>
+            {serverError.map((err) => (
+              <Typography>{err}</Typography>
+            ))}
+          </Box>
+        )}
         <Box
           component={"form"}
           onSubmit={handleSubmit(LoginForm)} // i always call registerForm inside handleSubmit
@@ -95,22 +105,34 @@ export default function Login() {
             helperText={errors.password?.message}
           />
 
-          <Button
-            variant="contained"
-            type="submit"
-            sx={{
-              width: "40%",
-              alignSelf: "center",
-              fontFamily: "poppins",
-              textTransform: "none",
-              marginTop: "20px",
-              backgroundColor: "#503217",
-              borderRadius: "5px",
-              fontSize: "15px",
-            }}
-          >
-            Log in!
-          </Button>
+          {isSubmitting ? (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <CircularProgress />
+            </Box>
+          ) : (
+            <Button
+              variant="contained"
+              type="submit"
+              sx={{
+                width: "40%",
+                alignSelf: "center",
+                fontFamily: "poppins",
+                textTransform: "none",
+                marginTop: "20px",
+                backgroundColor: "#503217",
+                borderRadius: "5px",
+                fontSize: "15px",
+              }}
+            >
+              Log in!
+            </Button>
+          )}
         </Box>
       </Container>
     </Box>

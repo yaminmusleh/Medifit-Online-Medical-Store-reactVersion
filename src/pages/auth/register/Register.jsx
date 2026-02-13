@@ -1,21 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import { Button, Typography } from "@mui/material";
+import { Button, CircularProgress, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RegisterSchema } from "../../../validation/RegisterSchema";
 export default function Register() {
+  const [serverErrors, setServerErrors] = useState([]);
+
   //i moved the logic into a js file
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(RegisterSchema),
+    mode: "onBlur",
   });
 
   const registerForm = async (value) => {
@@ -25,7 +28,7 @@ export default function Register() {
         value,
       );
     } catch (error) {
-      alert("Oops... and Error got caught, try again later.");
+      setServerErrors(error.response?.data?.errors || ["something went wrong"]);
     }
   };
 
@@ -59,6 +62,13 @@ export default function Register() {
           Welcome to Medifit — Your Partner in Smarter Health
         </Typography>
 
+        {serverErrors.length > 0 && (
+          <Box>
+            {serverErrors.map((error) => (
+              <Typography>{error}</Typography>
+            ))}
+          </Box>
+        )}
         <Box
           component={"form"}
           onSubmit={handleSubmit(registerForm)} // i always call registerForm inside handleSubmit
@@ -108,23 +118,34 @@ export default function Register() {
             error={errors.phoneNumber}
             helperText={errors.phoneNumber?.message}
           />
-
-          <Button
-            variant="contained"
-            type="submit"
-            sx={{
-              width: "40%",
-              alignSelf: "center",
-              fontFamily: "poppins",
-              textTransform: "none",
-              marginTop: "20px",
-              backgroundColor: "#503217",
-              borderRadius: "5px",
-              fontSize: "15px",
-            }}
-          >
-            Sign Up!
-          </Button>
+          {isSubmitting ? (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <CircularProgress />
+            </Box>
+          ) : (
+            <Button
+              variant="contained"
+              type="submit"
+              sx={{
+                width: "40%",
+                alignSelf: "center",
+                fontFamily: "poppins",
+                textTransform: "none",
+                marginTop: "20px",
+                backgroundColor: "#503217",
+                borderRadius: "5px",
+                fontSize: "15px",
+              }}
+            >
+              Sign Up!
+            </Button>
+          )}
         </Box>
       </Container>
     </Box>
