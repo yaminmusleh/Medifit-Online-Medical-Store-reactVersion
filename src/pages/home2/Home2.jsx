@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function Home2() {
   return (
-    <div>Home2</div>
+    <div>this is home2, to access home1 click the logo</div>
   )
 }

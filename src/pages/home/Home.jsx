@@ -1,9 +1,7 @@
-import { Typography } from '@mui/material'
-import React from 'react'
+import { Typography } from "@mui/material";
+import React from "react";
+import Categories from '../../categories/Categories'
 
 export default function Home() {
-  return (
-    <div>home</div>
-    
-  )
+  return <Categories />;
 }

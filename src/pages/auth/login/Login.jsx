@@ -81,7 +81,7 @@ export default function Login() {
         )}
         <Box
           component={"form"}
-          onSubmit={handleSubmit(LoginForm)} // i always call registerForm inside handleSubmit
+          onSubmit={handleSubmit(LoginForm)} // i always call LoginForm inside handleSubmit
           sx={{
             display: "flex",
             flexDirection: "column",
