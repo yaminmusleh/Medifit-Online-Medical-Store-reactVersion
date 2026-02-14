@@ -1,26 +1,13 @@
 import { Box, CircularProgress } from "@mui/material";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import CardActionArea from "@mui/material/CardActionArea";
-import { useQuery } from "@tanstack/react-query";
+import useCategs from "../hooks/useCategs";
 
 export default function Categories() {
-  const getCats = async () => {
-    const response = await axios.get(
-      `https://knowledgeshop.runasp.net/api/Categories`,
-    );
-
-    return response.data.response;
-  };
-  const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["categories"],
-    queryFn: getCats,
-    staleTime: 1000 * 60 * 2,
-  });
+  const { data, isLoading, isError, error } = useCategs();
+  //data, isLoading, isError, error takes the values from the query that we returned in useCategs
 
   if (isLoading)
     return (
