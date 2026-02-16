@@ -25,6 +25,9 @@ export default function Login() {
         `https://knowledgeshop.runasp.net/api/auth/Account/Login`,
         value,
       );
+      if (response.status == 200)
+        localStorage.setItem("accessToken", response.data.accessToken);
+      //stores accessToken inside the Local Storage
     } catch (error) {
       alert("Oops... and Error got caught, try again later.");
       setServerError(error.response?.data?.errors || ["something went wrong"]);
