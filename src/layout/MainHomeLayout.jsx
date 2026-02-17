@@ -9,7 +9,7 @@ export default function MainHomeLayout() {
   return (
     <>
           <Navbar />
-          
+        
           <Container sx={{display:"flex", flexDirection:'column', justifyContent:'center', alignItems:'center',textAlign:{xs:'center',md:'start'}}}>
             
             <Outlet/>

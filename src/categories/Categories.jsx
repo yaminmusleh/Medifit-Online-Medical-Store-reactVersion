@@ -133,7 +133,10 @@ export default function Categories() {
                 </Box>
                 <Typography
                   sx={{
-                    fontSize: "16px",
+                    fontSize: {
+                      md: "16px",
+                      xs: "14px",
+                    },
                     fontFamily: "poppins",
                     color: "#503217",
                     mt: "auto",
@@ -148,7 +151,10 @@ export default function Categories() {
                   sx={{
                     color: "#8F7D6A",
                     fontFamily: "poppins",
-                    fontSize: "13.5px",
+                    fontSize: {
+                      md: "13.5px",
+                      xs: "11px",
+                    },
                   }}
                 >
                   {number[index % number.length]} Items

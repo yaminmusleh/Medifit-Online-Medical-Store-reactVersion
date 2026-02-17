@@ -7,7 +7,7 @@ export default function Hero() {
     <Box sx={{ paddingBottom: "60px" }}>
       <Grid
         container
-        spacing={4}
+        spacing={2}
         alignItems={"center"}
         justifyContent={"space-between"}
       >
@@ -50,7 +50,13 @@ export default function Hero() {
             For the best results, align your health needs with your medication
             plan.
           </Typography>
-          <Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: { xs: "center", md: "start" },
+              alignItems: "center",
+            }}
+          >
             <Button
               variant="contained"
               sx={{
