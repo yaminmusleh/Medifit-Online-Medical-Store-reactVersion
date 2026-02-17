@@ -52,6 +52,7 @@ export default function Categories() {
         alignItems: "center",
         flexWrap: "wrap",
         gap: 2,
+        paddingBottom:'110px',
         flexDirection: "column",
       }}
     >
