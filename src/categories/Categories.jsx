@@ -58,10 +58,15 @@ export default function Categories() {
       <Typography
         sx={{
           color: "#503217",
-          fontSize: "48px",
+          fontSize: {
+            xs: "25px",
+            md: "35px",
+            lg: "48px",
+          },
           fontFamily: "poppins",
           mb: "60px",
           mt: "130px",
+          fontWeight: 700,
         }}
       >
         Shop By Category

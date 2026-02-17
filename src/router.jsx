@@ -8,16 +8,12 @@ import Contact from "./pages/Contact/Contact";
 import Shop from "./pages/shop/Shop";
 import Register from "./pages/auth/register/Register";
 import Cart from "./pages/cart/Cart";
+import MainHomeLayout from "./layout/MainHomeLayout";
 
 const router = createBrowserRouter([
   {
-    path: "/",
     element: <MainLayout />,
     children: [
-      {
-        index: true,
-        element: <Home />,
-      },
       {
         path: "/home",
         element: <Home2 />,
@@ -45,6 +41,16 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: <MainHomeLayout />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
       },
     ],
   },
