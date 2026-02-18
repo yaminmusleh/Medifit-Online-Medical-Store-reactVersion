@@ -3,12 +3,21 @@ import image1 from "./footer-imgs/Group 189.svg";
 import pin_image from "./footer-imgs/pin-for-address.svg";
 import email_icon from "./footer-imgs/email-icon.svg";
 import phone_icon from "./footer-imgs/phone-icon.svg";
-
+import icon1 from "./footer-imgs/insta-icon.svg";
+import icon2 from "./footer-imgs/facebook-icon.svg";
+import icon3 from "./footer-imgs/twitter-icon.svg";
+import icon4 from "./footer-imgs/youtube-icon.svg";
 import Grid from "@mui/material/Grid";
 
 import { Link, Link as RouterLink } from "react-router-dom";
 
 export default function Footer() {
+  const icons = [
+    { img: icon1, link: "https://www.instagram.com/yamin_musleh/" },
+    { img: icon2, link: "https://www.facebook.com/yamin.musleh.75" },
+    { img: icon3, link: "#" },
+    { img: icon4, link: "https://www.youtube.com/@my.miserable_coding.life1" },
+  ];
   const Pages = ["Home", "Shop", "About", "Contact"];
   const Utilities = [
     "Style guide",
@@ -202,6 +211,7 @@ export default function Footer() {
               </Box>
             </Box>
           </Grid>
+
           <Grid
             item
             xs={12}
@@ -243,15 +253,40 @@ export default function Footer() {
                 We provide the ultimate solution for your online store and all
                 the healthcare needs.
               </Typography>
+              <Box sx={{ display: "flex", columnGap: 2, width: "60%" }}>
+                {icons.map((icon, index) => (
+                  <Box
+                    key={index}
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      width: "100%",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => window.open(icon.link, "_blank")}
+                  >
+                    <img
+                      style={{
+                        display: "block",
+                        width: "80%",
+                      }}
+                      src={icon.img}
+                      alt="icon"
+                    />
+                  </Box>
+                ))}
+              </Box>
             </Box>
           </Grid>
+
           <Grid item xs={12} sm={6} md={3}>
             {/* Address section */}
             <Box
               display="flex"
               flexDirection="column"
               alignItems={{ xs: "center", sm: "flex-start" }}
-              textAlign={{xs: 'center', sm:'flex-start'}}
+              textAlign={{ xs: "center", sm: "flex-start" }}
               gap={2}
               sx={{
                 width: {
