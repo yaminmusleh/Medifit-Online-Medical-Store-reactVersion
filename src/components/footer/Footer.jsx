@@ -2,6 +2,7 @@ import { Box, Container, List, MenuItem, Typography } from "@mui/material";
 import image1 from "./footer-imgs/Group 189.svg";
 import pin_image from "./footer-imgs/pin-for-address.svg";
 import email_icon from "./footer-imgs/email-icon.svg";
+import phone_icon from "./footer-imgs/phone-icon.svg";
 
 import Grid from "@mui/material/Grid";
 
@@ -250,6 +251,7 @@ export default function Footer() {
               display="flex"
               flexDirection="column"
               alignItems={{ xs: "center", sm: "flex-start" }}
+              textAlign={{xs: 'center', sm:'flex-start'}}
               gap={2}
               sx={{
                 width: {
@@ -271,7 +273,7 @@ export default function Footer() {
                 sx={{
                   fontFamily: "poppins",
                   color: "#8F7D6A",
-                  fontSize: { md: "18px", xs: "15px" },
+                  fontSize: { md: "18px", xs: "13px" },
                 }}
               >
                 <img src={pin_image} alt="" /> 1640 Parker Rd. Allentown, New
@@ -307,7 +309,7 @@ export default function Footer() {
                 href="mailto:medifit_support@gmail.com"
                 sx={{
                   fontFamily: "poppins",
-                  fontSize: { md: "18px", xs: "15px" },
+                  fontSize: { md: "18px", xs: "13px" },
                   display: "flex",
                   alignItems: "center",
                   gap: "8px",
@@ -320,6 +322,25 @@ export default function Footer() {
               >
                 <img src={email_icon} alt="" />
                 medifit_support@gmail.com
+              </Typography>
+              <Typography
+                component="a"
+                href="tel:(209) 555-0104"
+                sx={{
+                  fontFamily: "poppins",
+                  fontSize: { md: "18px", xs: "13px" },
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  color: "#8F7D6A",
+                  textDecoration: "none",
+                  "&:hover": {
+                    color: "#503217",
+                  },
+                }}
+              >
+                <img src={phone_icon} alt="" />
+                (209) 555-0104
               </Typography>
             </Box>
           </Grid>
