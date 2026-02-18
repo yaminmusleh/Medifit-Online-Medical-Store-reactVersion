@@ -74,15 +74,16 @@ export default function NewsLetter() {
           >
             {/* Top text */}
             <Box>
-              <Typography sx={{ mb: 1, fontFamily: "poppins" }}>
+              <Typography sx={{ mb: 1, fontFamily: "poppins", color:"#6C543E", fontWeight:500 }}>
                 Join our newsletter
               </Typography>
               <Typography
                 sx={{
                   fontSize: 40,
-                  fontWeight: 500,
+                  fontWeight: 700,
                   mb: 4,
                   fontFamily: "poppins",
+                   color: "#503217",
                 }}
               >
                 Sign Up for an Instant 15% Discount
