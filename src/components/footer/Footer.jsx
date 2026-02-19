@@ -309,6 +309,7 @@ export default function Footer() {
                   fontFamily: "poppins",
                   color: "#8F7D6A",
                   fontSize: { md: "18px", xs: "13px" },
+                  textAlign: { xs: "center", sm: "left" },
                 }}
               >
                 <img src={pin_image} alt="" /> 1640 Parker Rd. Allentown, New
