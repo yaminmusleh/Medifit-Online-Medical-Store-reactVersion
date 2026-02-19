@@ -9,13 +9,19 @@ import {
 import React from "react";
 import image from "./newsletter-imgs/newslatter1.webp";
 import email_icon from "./newsletter-imgs/email-icon-for-letter.svg";
-import link_image from'./newsletter-imgs/link-external.svg'
+import link_image from "./newsletter-imgs/link-external.svg";
 import { useNavigate } from "react-router-dom";
 export default function NewsLetter() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <Box sx={{ py: "60px" }}>
-      <Grid container spacing={0} justifyContent="center" alignItems="stretch">
+      <Grid
+        container
+        columnSpacing={0}
+        rowSpacing={2}
+        justifyContent="center"
+        alignItems="stretch"
+      >
         {/* Image side */}
         <Grid
           item
@@ -74,7 +80,14 @@ export default function NewsLetter() {
           >
             {/* Top text */}
             <Box>
-              <Typography sx={{ mb: 1, fontFamily: "poppins", color:"#6C543E", fontWeight:500 }}>
+              <Typography
+                sx={{
+                  mb: 1,
+                  fontFamily: "poppins",
+                  color: "#6C543E",
+                  fontWeight: 500,
+                }}
+              >
                 Join our newsletter
               </Typography>
               <Typography
@@ -83,7 +96,7 @@ export default function NewsLetter() {
                   fontWeight: 700,
                   mb: 4,
                   fontFamily: "poppins",
-                   color: "#503217",
+                  color: "#503217",
                 }}
               >
                 Sign Up for an Instant 15% Discount
@@ -102,7 +115,21 @@ export default function NewsLetter() {
               <TextField
                 placeholder="Enter Email"
                 size="small"
-                sx={{ width: "70%", fontSize: "16px" }}
+                sx={{
+                  width: "70%",
+                  fontSize: "16px",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "#503217",
+                  },
+
+                  "& .MuiOutlinedInput-root": {
+                    backgroundColor: "#EBE9E0",
+                  },
+                  
+                  "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "#784d27",
+                  },
+                }}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
@@ -123,10 +150,15 @@ export default function NewsLetter() {
                   fontFamily: "poppins",
                   fontSize: "13px",
                 }}
-                onClick={()=>navigate('/register')}
+                onClick={() => navigate("/register")}
               >
-                
-               <img src={link_image} alt="linkimage"  width={'25%'} style={{marginRight:"5px"}}/> Sign up
+                <img
+                  src={link_image}
+                  alt="linkimage"
+                  width={"25%"}
+                  style={{ marginRight: "5px" }}
+                />{" "}
+                Sign up
               </Button>
             </Box>
           </Box>
