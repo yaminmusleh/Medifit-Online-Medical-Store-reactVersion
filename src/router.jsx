@@ -9,6 +9,7 @@ import Shop from "./pages/shop/Shop";
 import Register from "./pages/auth/register/Register";
 import Cart from "./pages/cart/Cart";
 import MainHomeLayout from "./layout/MainHomeLayout";
+import UserContextProvider from "./context/UserContext";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +41,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <Cart />,
+        element: (
+          <UserContextProvider>
+            <Cart />
+          </UserContextProvider>
+          //here when i open the cart it will open the usercontextprovder
+        ),
       },
     ],
   },

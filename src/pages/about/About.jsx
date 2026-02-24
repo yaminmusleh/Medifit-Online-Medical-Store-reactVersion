@@ -3,11 +3,13 @@ import Invitation from "../../components/about_invitation/Invitation";
 import { Box, Grid, Typography } from "@mui/material";
 import video from "./assets_about/IMG_5209.MP4";
 import poster from "./assets_about/ChatGPT Image Oct 25, 2025, 02_10_06 PM.webp";
+import AboutTop from "../../components/about_top/AboutTop";
 
 export default function About() {
   const color1 = "#503217";
   return (
     <>
+    <AboutTop MainColor={color1}/>
       <Grid container justifyContent="center" alignItems="center" gap={3}>
         <Typography
           sx={{

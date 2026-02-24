@@ -6,8 +6,9 @@ import instance from "../api/axiosInstance";
 export default function useCategs() {
   const getCats = async () => {
     const response = await instance.get(`/Categories`);
+    return response.data.response.data
 
-    return response.data.response;
+    
   };
   const query = useQuery({
     queryKey: ["categories", "en"],
