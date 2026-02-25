@@ -5,6 +5,7 @@ import video from "./assets_about/IMG_5209.MP4";
 import poster from "./assets_about/ChatGPT Image Oct 25, 2025, 02_10_06 PM.webp";
 import AboutTop from "../../components/about_top/AboutTop";
 import AboutUs from "../../components/about_us/AboutUs";
+import HighlightsRow from "../../components/highlights_row/HighlightsRow";
 
 export default function About() {
   const color1 = "#503217";
@@ -13,6 +14,7 @@ export default function About() {
     <>
     <AboutTop MainColor={color1}/>
     <AboutUs MainColor={color1} MainFont={font}/>
+    <HighlightsRow MainColor={color1} MainFont={font}/>
       <Grid container justifyContent="center" alignItems="center" gap={3}>
         <Typography
           sx={{

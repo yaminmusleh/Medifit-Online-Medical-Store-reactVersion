@@ -23,7 +23,7 @@ export default function AboutUs({ MainColor, MainFont }) {
             }}
           >
             About us
-          </Typography>
+          </Typography> 
         </Grid>
         <Grid item xs={12} md={6} sx={{ width: "70%" }}>
           <Typography
