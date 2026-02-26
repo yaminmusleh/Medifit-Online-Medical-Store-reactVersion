@@ -10,6 +10,7 @@ import image3 from "./shop-by-categ-imgs/frame3.svg";
 import image4 from "./shop-by-categ-imgs/frame4.svg";
 import image5 from "./shop-by-categ-imgs/frame5.svg";
 import image6 from "./shop-by-categ-imgs/frame6.svg";
+import Loader from "../ui/Loader";
 
 export default function Categories() {
   const number = [32, 20, 30, 35, 25, 35, 30];
@@ -18,14 +19,7 @@ export default function Categories() {
   const { data, isLoading, isError, error } = useCategs();
   //data, isLoading, isError, error takes the values from the query that we returned in useCategs
 
-  if (isLoading)
-    return (
-      <Box
-        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-      >
-        <CircularProgress />
-      </Box>
-    );
+  if (isLoading) return <Loader />;
   if (isError)
     return (
       <Box
@@ -52,7 +46,7 @@ export default function Categories() {
         alignItems: "center",
         flexWrap: "wrap",
         gap: 2,
-        paddingBottom:'110px',
+        paddingBottom: "110px",
         flexDirection: "column",
       }}
     >
