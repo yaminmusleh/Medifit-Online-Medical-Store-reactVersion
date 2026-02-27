@@ -9,6 +9,7 @@ import Shop from "./pages/shop/Shop";
 import Register from "./pages/auth/register/Register";
 import Cart from "./pages/cart/Cart";
 import MainHomeLayout from "./layout/MainHomeLayout";
+import ShopDetails from "./pages/productdetails/ShopDetails";
 
 
 const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/product/:id",
+        element: <ShopDetails />,
       },
       {
         path: "/shop",

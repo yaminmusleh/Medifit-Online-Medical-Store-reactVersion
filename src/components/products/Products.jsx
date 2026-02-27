@@ -5,11 +5,11 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-
-import CircularProgress from "@mui/material/CircularProgress";
+import Button from "@mui/material/Button";
 import Loader from "../../ui/Loader";
+import { Link } from "react-router-dom";
 
-export default function Products({ MainColor, MainFont }) {
+export default function Products({ MainColor, MainFont, Product }) {
   const { data, isError, isLoading, error } = useProducts();
   if (isLoading) return <Loader />;
   if (isError)
@@ -27,13 +27,25 @@ export default function Products({ MainColor, MainFont }) {
         </Typography>
       </Box>
     );
+    
 
   return (
-    <Box py={"70px"} sx={{textAlign:'center'}}>
-      <Typography sx={{fontFamily:MainFont, color:MainColor, fontSize:{
-        md:'48px'
-        , xs:'27px', sm:'35px'
-      }, fontWeight:600}} marginBottom={"60px"}>Latest Products</Typography>
+    <Box py={"70px"} sx={{ textAlign: "center" }}>
+      <Typography
+        sx={{
+          fontFamily: MainFont,
+          color: MainColor,
+          fontSize: {
+            md: "48px",
+            xs: "27px",
+            sm: "35px",
+          },
+          fontWeight: 600,
+        }}
+        marginBottom={"60px"}
+      >
+        Latest Products
+      </Typography>
       <Grid
         container
         spacing={4}
@@ -56,39 +68,82 @@ export default function Products({ MainColor, MainFont }) {
           >
             <Card
               sx={{
+                position: "relative",
                 width: "100%",
                 display: "flex",
-                justifyContent: "center",
                 flexDirection: "column",
                 backgroundColor: "transparent",
                 boxShadow: 0,
+                borderRadius: "20px",
                 textAlign: {
                   xs: "center",
                   lg: "start",
                 },
+                "&:hover .hoverButton": {
+                  opacity: 1,
+                  transform: "translateY(-50%, 0)",
+                },
+                "&:hover img": {
+                  transform: "scale(1.08)",
+                },
               }}
             >
-              <CardMedia
-                component="img"
-                image={cardInfo.image}
-                alt="productImage"
+              <Box
                 sx={{
-                  borderRadius:'20px',
-                  display: "block",
-                  mx: "auto",
-                  width: {
-                    xs: "70%",
-                    sm: "80%",
-                    md: "100%",
-                  },
-                  height: {
-                    md: 330,
-                  },
-                  justifyContent: "center",
-                  alignItems: "center",
-                  objectFit: "cover",
+                  position: "relative",
+                  overflow: "hidden",
+                  borderRadius: "20px",
                 }}
-              />
+              >
+                <CardMedia
+                  component="img"
+                  image={cardInfo.image}
+                  alt="productImage"
+                  sx={{
+                    display: "block",
+                    mx: "auto",
+                    borderRadius: "20px",
+                    width: {
+                     
+                      md: "100%",
+                    },
+                    transition: "transform 0.5s ease",
+                    height: {
+                      md: 330,
+                    },
+                    objectFit: "cover",
+                  }}
+                />
+
+                <Button
+                component={Link}
+                to={`/product/${cardInfo.id}`}
+                  variant="contained"
+                  className="hoverButton"
+                  sx={{
+                    position: "absolute",
+                    bottom: 50,
+                    left: "50%",
+                    transform: "translate(-50%, 20px)",
+                    opacity: 0,
+                    transition: "all 0.3s ease",
+                    borderRadius: "8px",
+                    textTransform: "none",
+                    boxShadow: "none",
+                    px: {
+                      xs: 3,
+                      sm: 5,
+                      md: 7,
+                    },
+                    backgroundColor: "#EEEDE7",
+                    color: MainColor,
+                    fontFamily: MainFont,
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  Shop now
+                </Button>
+              </Box>
               <CardContent sx={{ flexGrow: 1, p: 0, marginTop: "20px" }}>
                 <Typography
                   sx={{
