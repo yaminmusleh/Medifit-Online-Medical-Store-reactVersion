@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import useShop from "../../hooks/useShop";
 import Loader from "../../ui/Loader";
 import { Box, Typography } from "@mui/material";
+import HighlightsRow from "../../components/highlights_row/HighlightsRow";
+import Invitation from "../../components/about_invitation/Invitation";
 
 
 export default function ShopDetails() {
@@ -25,5 +27,12 @@ export default function ShopDetails() {
       </Box>
     );
     console.log(data);
-  return <div>ShopDetails</div>;
+    const color1 = "#503217";
+  const font = 'poppins';
+  return (
+    <>
+    <HighlightsRow MainColor={color1} MainFont={font}/>
+    <Invitation />
+    </>
+  )
 }
