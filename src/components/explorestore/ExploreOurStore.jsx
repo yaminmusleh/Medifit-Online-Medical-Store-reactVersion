@@ -1,5 +1,5 @@
 import React from "react";
-import useProducts from "./useProducts";
+import useProducts from "../products/useProducts";
 import { Box, Grid } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -10,8 +10,8 @@ import Loader from "../../ui/Loader";
 import { Link } from "react-router-dom";
 import ProductUi from "../UI/ProductUi";
 
-export default function Products({ MainColor, MainFont, Product, title }) {
-   const limit = Product?.limit || 4;
+export default function ExplpreOurStore({ MainColor, MainFont, Product }) {
+   const limit = Product?.limit || 6;
   const { isLoading, isError, error } = useProducts(limit);
   
 
@@ -48,7 +48,7 @@ export default function Products({ MainColor, MainFont, Product, title }) {
         }}
         marginBottom={"60px"}
       >
-        {title || "Latest Products"}
+        Explore Our store Collection
       </Typography>
       <ProductUi MainColor={MainColor} MainFont={MainFont} Product={Product} limit={limit}/>
     </Box>

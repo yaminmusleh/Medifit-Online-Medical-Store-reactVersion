@@ -1,9 +1,9 @@
 import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
-import photo1 from "./highlights_imgs/services/credit-card.svg";
+import photo4 from "./highlights_imgs/services/credit-card.svg";
 import photo2 from "./highlights_imgs/services/exchange-dollar.svg";
 import photo3 from "./highlights_imgs/services/headphone-mic.svg";
-import photo4 from "./highlights_imgs/services/truck-fast.svg";
+import photo1 from "./highlights_imgs/services/truck-fast.svg";
 
 export default function HighlightsRow({ MainColor, MainFont }) {
   const data = [
@@ -25,7 +25,7 @@ export default function HighlightsRow({ MainColor, MainFont }) {
     },
   ];
   return (
-    <Box paddingBottom={"130px"}>
+    <Box paddingBottom={"90px"}>
       <Grid
         container
         sx={{

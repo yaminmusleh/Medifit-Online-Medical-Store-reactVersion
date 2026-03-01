@@ -3,8 +3,8 @@ import { Grid, Card, CardMedia, CardContent, Typography, Box, Button } from "@mu
 import { Link } from "react-router-dom";
 import useProducts from '../products/useProducts';
 
-export default function ProductUi({MainColor, MainFont, Product}) {
-      const { data } = useProducts();
+export default function ProductUi({MainColor, MainFont, Product, limit}) {
+      const { data } = useProducts(limit);
   return (
     <Grid
         container
@@ -99,6 +99,7 @@ export default function ProductUi({MainColor, MainFont, Product}) {
                     color: MainColor,
                     fontFamily: MainFont,
                     whiteSpace: "nowrap",
+                    fontWeight:600,
                   }}
                 >
                   Shop now

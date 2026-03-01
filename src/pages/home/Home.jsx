@@ -7,6 +7,7 @@ import FollowUs from "../../components/FollowUs/FollowUs";
 import CTA from "../../components/cta_section/CTA";
 import MainCards from "../../components/cards_for_main/MainCards";
 import Products from "../../components/products/Products";
+import ExplpreOurStore from "../../components/explorestore/ExploreOurStore";
 
 export default function Home() {
   const color1 = "#503217";
@@ -17,6 +18,7 @@ export default function Home() {
       <MainCards />
       <Products MainColor={color1} MainFont={font}/>
       <CTA />
+      <ExplpreOurStore MainColor={color1} MainFont={font}/>
       <NewsLetter />
       <FollowUs />
     </>
