@@ -16,7 +16,7 @@ export default function Categories() {
   const number = [32, 20, 30, 35, 25, 35, 30];
   const images = [image1, image2, image3, image4, image5, image6];
 
-  const { data, isLoading, isError, error } = useCategs();
+  const { data, isLoading, isError, error } = useCategs(6);
   //data, isLoading, isError, error takes the values from the query that we returned in useCategs
 
   if (isLoading) return <Loader />;

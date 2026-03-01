@@ -7,8 +7,12 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginSchema } from "../../../validation/LoginSchema";
+import useAuthStore from "../../../store/useAuthStore";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const setToken = useAuthStore((state) => state.setToken);
+  const navigate = useNavigate();
   const [serverError, setServerError] = useState([]);
   const {
     register,
@@ -25,9 +29,10 @@ export default function Login() {
         `https://knowledgeshop.runasp.net/api/auth/Account/Login`,
         value,
       );
-      if (response.status == 200)
-        localStorage.setItem("accessToken", response.data.accessToken);
-      //stores accessToken inside the Local Storage
+      if (response.status == 200) {
+        setToken(response.data.accessToken);
+        navigate("/");
+      }
     } catch (error) {
       alert("Oops... and Error got caught, try again later.");
       setServerError(error.response?.data?.errors || ["something went wrong"]);

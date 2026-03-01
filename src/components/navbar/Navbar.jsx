@@ -7,9 +7,6 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import Medifit_image from "../navbar/assets/Group 189.svg";
 import Medifit_image_2 from "../navbar/assets/company-logo.svg";
@@ -17,14 +14,23 @@ import { Link as RouterLink } from "react-router-dom";
 import Link from "@mui/material/Link";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import useAuthStore from "../../store/useAuthStore";
+import { useNavigate } from "react-router-dom";
 
-const pages = ["Home", "Shop", "About", "Contact", "Login", "Register"];
 
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+
 export default function Navbar() {
+  const token = useAuthStore((state) => state.token);
+  const logout = useAuthStore((state) => state.logout);
+  const pages = token
+    ? ["Home", "Shop", "About", "Contact", "Logout"]
+    : ["Home", "Shop", "About", "Contact", "Login", "Register"];
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const [scrolled, setScrolling] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -133,24 +139,48 @@ export default function Navbar() {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
             >
-              {pages.map((page) => (
+              {pages.map((page) => {
+                if (page === "Logout") {
+                  return (
+                    <MenuItem
+                      key="Logout"
+                      onClick={() => {
+                        logout();
+                        handleCloseNavMenu();
+                        navigate('/login');
+                      }}
+                    >
+                      <Typography
+                        textAlign="center"
+                        sx={{ color: "#FF2400", fontWeight: 600 }}
+                      >
+                        Logout
+                      </Typography>
+                    </MenuItem>
+                  );
+                }
+
+                return (
+                  <MenuItem
+                    key={page}
+                    component={RouterLink}
+                    to={`/${page.toLowerCase()}`}
+                    onClick={handleCloseNavMenu}
+                  >
+                    <Typography textAlign="center">{page}</Typography>
+                  </MenuItem>
+                );
+              })}
+              {token && (
                 <MenuItem
-                  key={page}
                   component={RouterLink}
-                  to={`/${page.toLowerCase()}`}
+                  to="/cart"
                   onClick={handleCloseNavMenu}
                 >
-                  <Typography textAlign="center">{page}</Typography>
+                  <ShoppingCartOutlinedIcon sx={{ mr: 1 }} />
+                  <Typography>Cart</Typography>
                 </MenuItem>
-              ))}
-              <MenuItem
-                component={RouterLink}
-                to="/cart"
-                onClick={handleCloseNavMenu}
-              >
-                <ShoppingCartOutlinedIcon sx={{ mr: 1 }} />
-                <Typography>Cart</Typography>
-              </MenuItem>
+              )}
             </Menu>
           </Box>
 
@@ -163,42 +193,60 @@ export default function Navbar() {
               gap: "30px",
             }}
           >
-            {pages.map((page) => (
-              <Link
-                key={page}
-                component={RouterLink}
-                to={`/${page.toLowerCase()}`}
-                onClick={handleCloseNavMenu}
-                underline="none"
-                sx={{
-                  my: 2,
-                  color: "#8F7D6A",
-                  fontFamily: "sans-serif",
-                  fontSize: { md: "15px", lg: "17px", xl: "18px" },
-                  textTransform: "none",
-                  p: 0,
-                  cursor: "pointer",
-                  display: "flex",
-                  "&:hover": {
-                    color: "#503217",
-                    transition: "0.4s all",
-                  },
-                }}
-              >
-                {page}
-              </Link>
-            ))}
+            {pages.map((page) => {
+              if (page === "Logout") {
+                return (
+                  <Link
+                    key="Logout"
+                    component="button"
+                    onClick={() => {
+                      logout();
+                      navigate('/login');
+                    }}
+                    underline="none"
+                    sx={{
+                      my: 2,
+                      color: "#FF2400",
+                      cursor: "pointer",
+                      background: "none",
+                      border: "none",
+                      font: "inherit",
+                      fontWeight: 600,
+                    }}
+                  >
+                    Logout
+                  </Link>
+                );
+              }
+
+              return (
+                <Link
+                  key={page}
+                  component={RouterLink}
+                  to={`/${page.toLowerCase()}`}
+                  underline="none"
+                  sx={{
+                    my: 2,
+                    color: "#8F7D6A",
+                  }}
+                >
+                  {page}
+                </Link>
+              );
+            })}
           </Box>
           <IconButton sx={{ color: "#503217" }}>
             <SearchIcon />
           </IconButton>
-          <IconButton
-            component={RouterLink}
-            sx={{ color: "#503217", display: { xs: "none", sm: "flex" } }}
-            to="/cart"
-          >
-            <ShoppingCartOutlinedIcon />
-          </IconButton>
+          {token && (
+            <IconButton
+              component={RouterLink}
+              sx={{ color: "#503217", display: { xs: "none", sm: "flex" } }}
+              to="/cart"
+            >
+              <ShoppingCartOutlinedIcon />
+            </IconButton>
+          )}
         </Toolbar>
       </Container>
     </AppBar>

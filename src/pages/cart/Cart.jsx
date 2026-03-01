@@ -3,7 +3,6 @@ import useCard from "../../hooks/useCard";
 import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useCounterStore } from "../../store/useCounterStore";
 export default function Cart() {
   const { data, isError, isLoading, error } = useCard();
 
