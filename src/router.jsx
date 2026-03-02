@@ -11,6 +11,7 @@ import Cart from "./pages/cart/Cart";
 import MainHomeLayout from "./layout/MainHomeLayout";
 import ShopDetails from "./pages/productdetails/ShopDetails";
 import AboutLayout from "./layout/AboutLayout";
+import ProtectedRouter from "./ProtectedRouter";
 
 
 const router = createBrowserRouter([
@@ -48,7 +49,9 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: (
+          <ProtectedRouter>
             <Cart />
+            </ProtectedRouter>
 
         ),
       },
