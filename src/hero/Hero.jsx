@@ -1,8 +1,10 @@
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import hero_image from "./hero-index-html/Hero.webp";
 import button_image from "./hero-index-html/bag.svg";
+import { useNavigate } from "react-router-dom";
 
 export default function Hero() {
+  const navigate = useNavigate();
   return (
     <Box sx={{ bgcolor: "#E8E6DE" }}>
       <Container sx={{ paddingTop: "40px" }}>
@@ -62,6 +64,7 @@ export default function Hero() {
                 }}
               >
                 <Button
+                  onClick={() => navigate("/shop")}
                   variant="contained"
                   sx={{
                     fontFamily: "sans-serif",

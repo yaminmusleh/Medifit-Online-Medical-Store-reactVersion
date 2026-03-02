@@ -5,8 +5,9 @@ import Loader from "../../ui/Loader";
 import { Box, Typography } from "@mui/material";
 import HighlightsRow from "../../components/highlights_row/HighlightsRow";
 import Invitation from "../../components/about_invitation/Invitation";
-import ProductUi from "../../components/UI/ProductUi";
+
 import Products from "../../components/products/Products";
+import CustomerReview from "../../components/customers_reviews/CustomerReview";
 
 export default function ShopDetails() {
   const { id } = useParams();
@@ -32,6 +33,7 @@ export default function ShopDetails() {
   return (
     <>
       <HighlightsRow MainColor={color1} MainFont={font} />
+      <CustomerReview MainColor={color1} MainFont={font}/>
       <Products MainColor={color1} MainFont={font} title={'Recent Products'} />
       <Invitation />
     </>
