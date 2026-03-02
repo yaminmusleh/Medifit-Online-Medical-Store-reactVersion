@@ -10,6 +10,7 @@ import Register from "./pages/auth/register/Register";
 import Cart from "./pages/cart/Cart";
 import MainHomeLayout from "./layout/MainHomeLayout";
 import ShopDetails from "./pages/productdetails/ShopDetails";
+import AboutLayout from "./layout/AboutLayout";
 
 
 const router = createBrowserRouter([
@@ -50,6 +51,16 @@ const router = createBrowserRouter([
             <Cart />
 
         ),
+      },
+    ],
+  },
+  {
+    path: "/about",
+    element: <AboutLayout />,
+    children: [
+      {
+        index: true,
+        element: <About />,
       },
     ],
   },
