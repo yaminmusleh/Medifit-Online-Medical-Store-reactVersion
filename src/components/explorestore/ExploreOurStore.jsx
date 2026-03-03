@@ -1,6 +1,6 @@
 import React from "react";
 import useProducts from "../products/useProducts";
-import { Box, Grid } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -24,6 +24,7 @@ export default function ExplpreOurStore({ MainColor, MainFont, Product }) {
           justifyContent: "center",
           alignItems: "center",
           color: "red",
+         
         }}
       >
         <Typography component={"h1"} variant="h1">
@@ -34,7 +35,8 @@ export default function ExplpreOurStore({ MainColor, MainFont, Product }) {
     
 
   return (
-    <Box py={"70px"} sx={{ textAlign: "center" }}>
+    <Box py={"70px"} sx={{ textAlign: "center",   backgroundColor:"#E8E6DE" }}>
+      <Container>
       <Typography
         sx={{
           fontFamily: MainFont,
@@ -42,15 +44,17 @@ export default function ExplpreOurStore({ MainColor, MainFont, Product }) {
           fontSize: {
             md: "48px",
             xs: "27px",
-            sm: "35px",
+            sm: "35px", 
           },
           fontWeight: 600,
+        
         }}
         marginBottom={"60px"}
       >
         Explore Our store Collection
       </Typography>
       <ProductUi MainColor={MainColor} MainFont={MainFont} Product={Product} limit={limit}/>
+      </Container>
     </Box>
   );
 }

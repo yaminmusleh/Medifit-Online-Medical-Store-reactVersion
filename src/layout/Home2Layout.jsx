@@ -4,8 +4,12 @@ import Footer from '../components/footer/Footer'
 import Home2Hero from '../pages/home2/Home2Hero'
 import { Container } from '@mui/material'
 import { Outlet } from 'react-router-dom'
+import Save from '../components/idk_what_to_name_it/Save'
+import CustomerReview from '../components/customers_reviews/CustomerReview'
 
 export default function Home2Layout({MainColor,MainFont}) {
+  const color1 = "#503217";
+  const font = 'poppins';
   return (
     <>
     <Navbar/>
@@ -13,6 +17,10 @@ export default function Home2Layout({MainColor,MainFont}) {
     <Container>
         <Outlet/>
     </Container>
+    <Save />
+      <Container>
+        <CustomerReview MainColor={color1} MainFont={font}/>
+      </Container>
     <Footer/>
     </>
   )

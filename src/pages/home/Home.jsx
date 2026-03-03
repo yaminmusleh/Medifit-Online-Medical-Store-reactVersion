@@ -18,9 +18,8 @@ export default function Home() {
       <MainCards />
       <Products MainColor={color1} MainFont={font}/>
       <CTA />
-      <ExplpreOurStore MainColor={color1} MainFont={font}/>
-      <NewsLetter />
-      <FollowUs />
+      
+      
     </>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import image from "./middle-cta/CTA.svg";
 import image2 from './middle-cta/chevron-right.svg';
 
@@ -13,7 +13,8 @@ export default function Save() {
   const color2 = "#8F7D6A";
   const hover_color = "#794c24";
   return (
-    <Box py="80px" sx={{ textAlign: { xs: "center", lg: "start" } }}>
+    <Box py="80px" sx={{ textAlign: { xs: "center", lg: "start", backgroundColor:'#E8E6DE' } }}>
+      <Container>
       <Grid
         container
         spacing={8.75}
@@ -96,6 +97,7 @@ export default function Save() {
         </Grid>
         
       </Grid>
+      </Container>
     </Box>
   )
 }

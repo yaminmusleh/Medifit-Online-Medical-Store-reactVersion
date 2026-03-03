@@ -11,8 +11,7 @@ export default function Home2() {
     <>
       <TrustHealth />
       <HighLightsForHome2 MainColor={color1} MainFont={font}/>
-      <Save />
-      <CustomerReview MainColor={color1} MainFont={font}/>
+      
     </>
   );
 }

@@ -5,6 +5,7 @@ import {
   TextField,
   Button,
   InputAdornment,
+  Container,
 } from "@mui/material";
 import React from "react";
 import image from "./newsletter-imgs/newslatter1.webp";
@@ -14,7 +15,8 @@ import { useNavigate } from "react-router-dom";
 export default function NewsLetter() {
   const navigate = useNavigate();
   return (
-    <Box sx={{ py: "60px" }}>
+    <Box sx={{ py: "60px", backgroundColor:"#E8E6DE" }}>
+      <Container>
       <Grid
         container
         columnSpacing={0}
@@ -164,6 +166,7 @@ export default function NewsLetter() {
           </Box>
         </Grid>
       </Grid>
+      </Container>
     </Box>
   );
 }
