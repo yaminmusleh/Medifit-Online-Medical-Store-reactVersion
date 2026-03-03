@@ -15,7 +15,7 @@ export default function TrustHealth() {
         spacing={2}
         alignItems={"center"}
         sx={{
-          justifyContent: "space-between",
+          justifyContent: "center",
         }}
       >
         <Grid

@@ -12,16 +12,18 @@ import MainHomeLayout from "./layout/MainHomeLayout";
 import ShopDetails from "./pages/productdetails/ShopDetails";
 import AboutLayout from "./layout/AboutLayout";
 import ProtectedRouter from "./ProtectedRouter";
+import Home2Layout from "./layout/Home2Layout";
 
+
+const color1 = "#503217";
+  const font = 'poppins';
 
 const router = createBrowserRouter([
+  
   {
     element: <MainLayout />,
     children: [
-      {
-        path: "/home",
-        element: <Home2 />,
-      },
+      
       {
         path: "/login",
         element: <Login />,
@@ -54,6 +56,16 @@ const router = createBrowserRouter([
             </ProtectedRouter>
 
         ),
+      },
+    ],
+  },
+  {
+    path: "/home",
+    element: <Home2Layout MainColor={color1} MainFont = {font} />,
+    children: [
+      {
+        index: true,
+        element: <Home2 />,
       },
     ],
   },

@@ -28,6 +28,7 @@ export default function ShopDetails() {
         </Typography>
       </Box>
     );
+    console.log(data);
   const color1 = "#503217";
   const font = "poppins";
   return (
