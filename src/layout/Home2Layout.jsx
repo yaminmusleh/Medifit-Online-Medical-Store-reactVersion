@@ -6,6 +6,7 @@ import { Container } from '@mui/material'
 import { Outlet } from 'react-router-dom'
 import Save from '../components/idk_what_to_name_it/Save'
 import CustomerReview from '../components/customers_reviews/CustomerReview'
+import Slider from '../components/slider/Slider'
 
 export default function Home2Layout({MainColor,MainFont}) {
   const color1 = "#503217";
@@ -14,6 +15,7 @@ export default function Home2Layout({MainColor,MainFont}) {
     <>
     <Navbar/>
     <Home2Hero MainColor={MainColor} MainFont={MainFont}/>
+    <Slider/>
     <Container>
         <Outlet/>
     </Container>

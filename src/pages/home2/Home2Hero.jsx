@@ -100,7 +100,7 @@ export default function Hom2Hero({ MainColor, MainFont }) {
               >
                 <Typography
                   sx={{
-                    fontSize: "14px",
+                    fontSize: "18px",
                     color: MainColor,
                     fontFamily: "sans-serif",
                   }}
