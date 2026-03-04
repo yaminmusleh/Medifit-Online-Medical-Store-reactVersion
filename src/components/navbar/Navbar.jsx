@@ -18,7 +18,6 @@ import useAuthStore from "../../store/useAuthStore";
 import { useNavigate } from "react-router-dom";
 
 
-
 export default function Navbar() {
   const token = useAuthStore((state) => state.token);
   const logout = useAuthStore((state) => state.logout);
