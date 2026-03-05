@@ -3,9 +3,10 @@ import React from "react";
 import photo1 from "./assets/person1.svg";
 import photo2 from "./assets/person2.svg";
 import photo3 from "./assets/person3.svg";
+import { Avatar } from "@mui/material";
 
-export default function CustomerReview({ MainColor, MainFont }) {
-  const persons = [
+export default function CustomerReview({ MainColor, MainFont, reviews }) {
+  const defaultPersons = [
     {
       review:
         "B12 Medicine keeps me energized and focused all day. A true lifesaver for vitality and wellness!",
@@ -25,6 +26,8 @@ export default function CustomerReview({ MainColor, MainFont }) {
       name: "Ethan Harris",
     },
   ];
+
+  const persons = reviews?.length ? reviews : defaultPersons;
   return (
     <Box py={"60px"}>
       <Typography
@@ -56,6 +59,7 @@ export default function CustomerReview({ MainColor, MainFont }) {
                 md: "70%",
                 lg: "31%",
               },
+              mt:'auto',
             }}
           >
             <Box
@@ -73,7 +77,7 @@ export default function CustomerReview({ MainColor, MainFont }) {
                   fontFamily: "sans-serif",
                 }}
               >
-                {person.review}
+                {person.comment || person.review}
               </Typography>
             </Box>
             <Box
@@ -83,7 +87,13 @@ export default function CustomerReview({ MainColor, MainFont }) {
               gap={2}
               justifyContent={"start"}
             >
-              <img src={person.person} alt={person.name} />
+              <Avatar
+  src={person.image || person.person}
+  alt={person.userName || person.name}
+  sx={{ width: 48, height: 48 }}
+>
+  {(person.userName || person.name)?.[0]}
+</Avatar>
               <Typography
                 sx={{
                   fontSize: "18px",
@@ -91,7 +101,7 @@ export default function CustomerReview({ MainColor, MainFont }) {
                   fontFamily: MainFont,
                 }}
               >
-                {person.name}
+                {person.userName || person.name}
               </Typography>
             </Box>
           </Grid>

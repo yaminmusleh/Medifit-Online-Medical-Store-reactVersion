@@ -257,7 +257,7 @@ export default function ShopDetails() {
         </Grid>
       </Box>
       <HighlightsRow MainColor={color1} MainFont={font} />
-      <CustomerReview MainColor={color1} MainFont={font} />
+      <CustomerReview MainColor={color1} MainFont={font} reviews={data?.reviews} />
       <Products MainColor={color1} MainFont={font} title={"Recent Products"} />
       <Invitation />
     </>
