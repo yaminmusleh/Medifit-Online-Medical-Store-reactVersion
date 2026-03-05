@@ -89,7 +89,13 @@ export default function Hom2Hero({ MainColor, MainFont }) {
                 textAlign: { xs: "center", md: "left" },
               }}
             >
-              <Box component={"img"} src={photo} />
+              <Box component={"img"} src={photo} sx={{width:{
+                xs:'80%',
+                sm:'50%',
+                md:'100%',
+                lg:'100%'
+                
+              }}}/>
               <Box
                 className="typo_button_box"
                 sx={{
