@@ -49,7 +49,7 @@ export default function FollowUs() {
                 },
               }}
               onClick={() =>
-                window.open("https://www.instagram.com/yamin_musleh/", "_blank")
+                window.open("https://www.instagram.com/yamin_.m0/", "_blank")
               }
             >
               <Box
