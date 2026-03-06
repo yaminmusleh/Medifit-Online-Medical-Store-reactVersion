@@ -52,7 +52,7 @@ const router = createBrowserRouter([
         path: "/cart",
         element: (
           <ProtectedRouter>
-            <Cart />
+            <Cart MainColor={color1} MainFont = {font} />
             </ProtectedRouter>
 
         ),

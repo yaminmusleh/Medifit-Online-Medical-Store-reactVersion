@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const token = localStorage.getItem("accessToken");
-console.log(token);
 const authinstance = axios.create({
   baseURL: "https://knowledgeshop.runasp.net/api",
   headers: {
