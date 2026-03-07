@@ -84,10 +84,9 @@ export default function FrequentQuestions({ MainColor, MainFont }) {
               md: "50%",
             },
             cursor: "pointer",
-            display:'flex', 
-            flexDirection:'column',
-            gap:'25px'
-            
+            display: "flex",
+            flexDirection: "column",
+            gap: "25px",
           }}
         >
           {FAQ.map((item, i) => (
