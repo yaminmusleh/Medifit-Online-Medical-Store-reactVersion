@@ -16,7 +16,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import useAuthStore from "../../store/useAuthStore";
 import { useNavigate } from "react-router-dom";
-
+import useCard from "../../hooks/useCard";
+import { Badge } from "@mui/material";
 
 export default function Navbar() {
   const token = useAuthStore((state) => state.token);
@@ -30,6 +31,9 @@ export default function Navbar() {
   const [scrolled, setScrolling] = useState(false);
 
   const navigate = useNavigate();
+
+  const { data } = useCard();
+  const cartCountNumber = data?.items?.length || 0;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -146,7 +150,7 @@ export default function Navbar() {
                       onClick={() => {
                         logout();
                         handleCloseNavMenu();
-                        navigate('/login');
+                        navigate("/login");
                       }}
                     >
                       <Typography
@@ -176,7 +180,23 @@ export default function Navbar() {
                   to="/cart"
                   onClick={handleCloseNavMenu}
                 >
-                  <ShoppingCartOutlinedIcon sx={{ mr: 1 }} />
+                  <Badge
+                    badgeContent={cartCountNumber}
+                    sx={{
+                      "& .MuiBadge-badge": {
+                        minWidth: "14px",
+                        height: "17px",
+                        fontSize: "0.7rem",
+                        backgroundColor: "#503217",
+                        color: "white",
+                      },
+                    }}
+                    overlap="circular"
+                    anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                  >
+                    <ShoppingCartOutlinedIcon sx={{ mr: 1 }} />
+                  </Badge>
+
                   <Typography>Cart</Typography>
                 </MenuItem>
               )}
@@ -200,7 +220,7 @@ export default function Navbar() {
                     component="button"
                     onClick={() => {
                       logout();
-                      navigate('/login');
+                      navigate("/login");
                     }}
                     underline="none"
                     sx={{
@@ -238,13 +258,30 @@ export default function Navbar() {
             <SearchIcon />
           </IconButton>
           {token && (
-            <IconButton
-              component={RouterLink}
-              sx={{ color: "#503217", display: { xs: "none", sm: "flex" } }}
-              to="/cart"
-            >
-              <ShoppingCartOutlinedIcon />
-            </IconButton>
+            <Box sx={{ display: { xs: "none", sm: "flex" } }}>
+              <Badge
+                badgeContent={cartCountNumber}
+                sx={{
+                  "& .MuiBadge-badge": {
+                    minWidth: "14px",
+                    height: "17px",
+                    fontSize: "0.7rem",
+                    backgroundColor: "#503217",
+                    color: "white",
+                  },
+                }}
+                overlap="circular"
+                anchorOrigin={{ vertical: "top", horizontal: "right" }}
+              >
+                <IconButton
+                  component={RouterLink}
+                  sx={{ color: "#503217" }}
+                  to="/cart"
+                >
+                  <ShoppingCartOutlinedIcon />
+                </IconButton>
+              </Badge>
+            </Box>
           )}
         </Toolbar>
       </Container>
