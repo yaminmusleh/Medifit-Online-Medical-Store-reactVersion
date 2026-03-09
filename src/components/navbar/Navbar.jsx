@@ -18,13 +18,28 @@ import useAuthStore from "../../store/useAuthStore";
 import { useNavigate } from "react-router-dom";
 import useCard from "../../hooks/useCard";
 import { Badge } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 export default function Navbar() {
+  const { t } = useTranslation();
   const token = useAuthStore((state) => state.token);
   const logout = useAuthStore((state) => state.logout);
   const pages = token
-    ? ["Home", "Shop", "About", "Contact", "Logout"]
-    : ["Home", "Shop", "About", "Contact", "Login", "Register"];
+    ? [
+        { label: t("Home"), path: "/home" },
+        { label: t("Shop"), path: "/shop" },
+        { label: t("About"), path: "/about" },
+        { label: t("Contact"), path: "/contact" },
+        { label: t("Logout"), path: "logout" },
+      ]
+    : [
+        { label: t("Home"), path: "/home" },
+        { label: t("Shop"), path: "/shop" },
+        { label: t("About"), path: "/about" },
+        { label: t("Contact"), path: "/contact" },
+        { label: t("Login"), path: "/login" },
+        { label: t("Register"), path: "/register" },
+      ];
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -141,36 +156,55 @@ export default function Navbar() {
               transformOrigin={{ vertical: "top", horizontal: "right" }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
+              PaperProps={{
+                sx: {
+                  minWidth: 180, // wider minimum width
+                  maxWidth: 250, // optional max width
+                  paddingX: 1, // optional horizontal padding
+                },
+              }}
             >
               {pages.map((page) => {
-                if (page === "Logout") {
+                if (page.path === "logout") {
                   return (
                     <MenuItem
                       key="Logout"
+                      component="button"
                       onClick={() => {
                         logout();
-                        handleCloseNavMenu();
                         navigate("/login");
                       }}
+                      underline="none"
+                      sx={{
+                        my: 2,
+                        color: "#FF2400",
+                        cursor: "pointer",
+                        background: "none",
+                        border: "none",
+                        font: "inherit",
+                        fontWeight: 600,
+                        justifyContent:'center', textAlign:'center'
+                      
+                        
+                      }}
                     >
-                      <Typography
-                        textAlign="center"
-                        sx={{ color: "#FF2400", fontWeight: 600 }}
-                      >
-                        Logout
-                      </Typography>
+                      {page.label}
                     </MenuItem>
                   );
                 }
 
                 return (
                   <MenuItem
-                    key={page}
+                    key={page.path}
                     component={RouterLink}
-                    to={`/${page.toLowerCase()}`}
+                    to={page.path}
                     onClick={handleCloseNavMenu}
+                    sx={{
+                      justifyContent: "center",
+                      textAlign: "center",
+                    }}
                   >
-                    <Typography textAlign="center">{page}</Typography>
+                    <Typography textAlign="center">{page.label}</Typography>
                   </MenuItem>
                 );
               })}
@@ -179,6 +213,10 @@ export default function Navbar() {
                   component={RouterLink}
                   to="/cart"
                   onClick={handleCloseNavMenu}
+                  sx={{
+                    justifyContent: "center",
+                    textAlign: "center",
+                  }}
                 >
                   <Badge
                     badgeContent={cartCountNumber}
@@ -213,10 +251,10 @@ export default function Navbar() {
             }}
           >
             {pages.map((page) => {
-              if (page === "Logout") {
+              if (page.path === "logout") {
                 return (
                   <Link
-                    key="Logout"
+                    key="logout"
                     component="button"
                     onClick={() => {
                       logout();
@@ -233,23 +271,23 @@ export default function Navbar() {
                       fontWeight: 600,
                     }}
                   >
-                    Logout
+                    {page.label}
                   </Link>
                 );
               }
 
               return (
                 <Link
-                  key={page}
+                  key={page.path}
                   component={RouterLink}
-                  to={`/${page.toLowerCase()}`}
+                  to={page.path}
                   underline="none"
                   sx={{
                     my: 2,
                     color: "#8F7D6A",
                   }}
                 >
-                  {page}
+                  {page.label}
                 </Link>
               );
             })}

@@ -10,33 +10,33 @@ import {
   TableFooter,
   TableHead,
   TableRow,
+  IconButton,
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Loader from "../../ui/Loader";
 import useRemoveFromCart from "../../hooks/useRemoveFromCart";
-import { ToastContainer, toast } from "react-toastify";
-import { Bounce } from "react-toastify";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 import useUpdateQty from "../../hooks/useUpdateQty";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import IconButton from "@mui/material/IconButton";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Cart({ MainColor, MainFont }) {
+  const { t } = useTranslation();
   const { data, isError, isLoading, error } = useCard();
   const { mutate, isPending } = useRemoveFromCart();
   const { mutate: UpdateQty, isPending: isPendingUpdate } = useUpdateQty();
-
   const navigate = useNavigate();
 
   const handleUpdate = (productId, sign) => {
-    const item = data.items.find((i) => {
-      return i.productId === productId;
-    });
-    if (sign == "-") {
+    const item = data.items.find((i) => i.productId === productId);
+    if (sign === "-") {
       UpdateQty({ productId, count: item.count - 1 });
+      toast.success(t("cart.itemsUpdated"));
     } else {
       UpdateQty({ productId, count: item.count + 1 });
+      toast.success(t("cart.itemsUpdated"));
     }
   };
 
@@ -72,19 +72,17 @@ export default function Cart({ MainColor, MainFont }) {
         theme="light"
         transition={Bounce}
       />
+
       <Typography
         sx={{
           color: MainColor,
           fontFamily: "cursive",
-          fontSize: {
-            xs: 20,
-            lg: 45,
-          },
+          fontSize: { xs: 20, lg: 45 },
           fontWeight: 600,
           mb: 7,
         }}
       >
-        My Cart
+        {t("cart.myCart")}
       </Typography>
 
       <TableContainer>
@@ -95,25 +93,25 @@ export default function Cart({ MainColor, MainFont }) {
                 align="center"
                 sx={{ color: MainColor, fontFamily: "cursive" }}
               >
-                Product
+                {t("cart.product")}
               </TableCell>
               <TableCell
                 align="center"
                 sx={{ color: MainColor, fontFamily: "cursive" }}
               >
-                Qty
+                {t("cart.qty")}
               </TableCell>
               <TableCell
                 align="center"
                 sx={{ color: MainColor, fontFamily: "cursive" }}
               >
-                Total Price $
+                {t("cart.totalPrice")}
               </TableCell>
               <TableCell
                 align="center"
                 sx={{ color: MainColor, fontFamily: "cursive" }}
               >
-                Changed your mind?
+                {t("cart.changedMind")}
               </TableCell>
             </TableRow>
           </TableHead>
@@ -142,21 +140,16 @@ export default function Cart({ MainColor, MainFont }) {
                   >
                     <IconButton
                       disabled={isPendingUpdate}
-                      onClick={() => {
-                        handleUpdate(item.productId, "-");
-                        toast.success("Items updated, refresh :)");
-                      }}
+                      onClick={() => handleUpdate(item.productId, "-")}
                     >
                       <RemoveIcon />
                     </IconButton>
 
                     {item.count}
+
                     <IconButton
                       disabled={isPendingUpdate}
-                      onClick={() => {
-                        handleUpdate(item.productId, "+");
-                        toast.success("Items updated, refresh :)");
-                      }}
+                      onClick={() => handleUpdate(item.productId, "+")}
                     >
                       <AddIcon />
                     </IconButton>
@@ -169,18 +162,19 @@ export default function Cart({ MainColor, MainFont }) {
                 >
                   {item.count * item.price}$
                 </TableCell>
+
                 <TableCell align="center">
                   <Button
                     disabled={isPending}
                     onClick={() => {
                       mutate(item.productId);
-                      toast.success("Items Removed Successfully");
+                      toast.success(t("cart.itemRemoved"));
                     }}
                     variant="outlined"
                     sx={{ textTransform: "none" }}
                     color="error"
                   >
-                    Remove
+                    {t("cart.remove")}
                   </Button>
                 </TableCell>
               </TableRow>
@@ -194,7 +188,7 @@ export default function Cart({ MainColor, MainFont }) {
                 colSpan={5}
                 sx={{ fontFamily: "math", fontSize: "15px", color: "black" }}
               >
-                Total Items Price: {data.cartTotal}$
+                {t("cart.totalItemsPrice")} {data.cartTotal}$
               </TableCell>
             </TableRow>
           </TableFooter>
@@ -204,28 +198,31 @@ export default function Cart({ MainColor, MainFont }) {
       <Box
         sx={{
           display: "flex",
-          justifyContent: {
-            xs:'center', sm:"space-between"
-          },
-          flexWrap:'wrap',
+          justifyContent: { xs: "center", sm: "space-between" },
+          flexWrap: "wrap",
           marginTop: "30px",
           gap: "20px",
         }}
       >
-        <Box sx={{ display: "flex", gap: "10px",flexDirection: { xs: "column", sm: "row" } }}>
+        <Box
+          sx={{
+            display: "flex",
+            gap: "10px",
+            flexDirection: { xs: "column", sm: "row" },
+          }}
+        >
           <Button
             variant="contained"
             sx={{
               textTransform: "none",
               backgroundColor: MainColor,
               fontFamily: MainFont,
-              
-              
             }}
-             onClick={() => navigate("/checkout")}
+            onClick={() => navigate("/checkout")}
           >
-            Cash Me Out
+            {t("cart.cashMeOut")}
           </Button>
+
           <Button
             variant="contained"
             sx={{
@@ -235,9 +232,10 @@ export default function Cart({ MainColor, MainFont }) {
             }}
             onClick={() => navigate("/shop")}
           >
-            Back to Treasure Hunting
+            {t("cart.backToShop")}
           </Button>
         </Box>
+
         <Button
           variant="contained"
           sx={{
@@ -246,7 +244,7 @@ export default function Cart({ MainColor, MainFont }) {
             fontFamily: MainFont,
           }}
         >
-          Start Fresh
+          {t("cart.startFresh")}
         </Button>
       </Box>
     </Box>

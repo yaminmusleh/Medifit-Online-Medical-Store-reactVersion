@@ -18,8 +18,11 @@ import {
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import useCheckout from "../../hooks/useCheckout";
+import { useTranslation } from "react-i18next";
 
 export default function Checkout({ MainColor, MainFont }) {
+  const { t } = useTranslation();
+
   const { data, isError, isLoading, error } = useCard();
   const { mutate: checkout, isPending: checkoutPending } = useCheckout();
 
@@ -44,42 +47,32 @@ export default function Checkout({ MainColor, MainFont }) {
 
   return (
     <Box sx={{ textAlign: "center", py: 7 }}>
+      {/* Page Title */}
       <Typography
         sx={{
           color: MainColor,
           fontFamily: "cursive",
-          fontSize: {
-            xs: 20,
-            lg: 45,
-          },
+          fontSize: { xs: 20, lg: 45 },
           fontWeight: 600,
           mb: 7,
         }}
       >
-        Ready to Make It Official?
+        {t("checkout.title")}
       </Typography>
 
+      {/* Table */}
       <TableContainer>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell
-                align="center"
-                sx={{ color: MainColor, fontFamily: "cursive" }}
-              >
-                Product
+              <TableCell align="center" sx={{ color: MainColor, fontFamily: "cursive" }}>
+                {t("checkout.product")}
               </TableCell>
-              <TableCell
-                align="center"
-                sx={{ color: MainColor, fontFamily: "cursive" }}
-              >
-                Qty
+              <TableCell align="center" sx={{ color: MainColor, fontFamily: "cursive" }}>
+                {t("checkout.qty")}
               </TableCell>
-              <TableCell
-                align="center"
-                sx={{ color: MainColor, fontFamily: "cursive" }}
-              >
-                Total Price $
+              <TableCell align="center" sx={{ color: MainColor, fontFamily: "cursive" }}>
+                {t("checkout.totalPrice")}
               </TableCell>
             </TableRow>
           </TableHead>
@@ -87,27 +80,18 @@ export default function Checkout({ MainColor, MainFont }) {
           <TableBody>
             {data.items.map((item, i) => (
               <TableRow key={i}>
-                <TableCell
-                  align="center"
-                  sx={{ color: MainColor, fontFamily: MainFont }}
-                >
+                <TableCell align="center" sx={{ color: MainColor, fontFamily: MainFont }}>
                   {item.productName}
                 </TableCell>
 
-                <TableCell
-                  align="center"
-                  sx={{ color: MainColor, fontFamily: MainFont }}
-                >
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexWrap: "nowrap",
-                    }}
-                  >
+                <TableCell align="center" sx={{ color: MainColor, fontFamily: MainFont }}>
+                  <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                     {item.count}
                   </Box>
+                </TableCell>
+
+                <TableCell align="center" sx={{ color: MainColor, fontFamily: MainFont }}>
+                  {item.price * item.count}$
                 </TableCell>
               </TableRow>
             ))}
@@ -115,64 +99,39 @@ export default function Checkout({ MainColor, MainFont }) {
 
           <TableFooter>
             <TableRow>
-              <TableCell
-                align="center"
-                colSpan={5}
-                sx={{ fontFamily: "math", fontSize: "15px", color: "black" }}
-              >
-                Total Items Price: {data.cartTotal}$
+              <TableCell align="center" colSpan={5} sx={{ fontFamily: "math", fontSize: "15px", color: "black" }}>
+                {t("checkout.totalItemsPrice")} {data.cartTotal}$
               </TableCell>
             </TableRow>
           </TableFooter>
         </Table>
       </TableContainer>
-      <Box
-        className="payment"
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          gap: "20px",
-        }}
-      >
-        <FormControl
-          sx={{
-            width: {
-              xs: "100%",
-              sm: "40%",
-            },
-            marginTop: "20px",
-          }}
-        >
+
+      {/* Payment Section */}
+      <Box className="payment" sx={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", gap: "20px" }}>
+        <FormControl sx={{ width: { xs: "100%", sm: "40%" }, marginTop: "20px" }}>
           <InputLabel sx={{ fontFamily: MainFont }} id="checkout-payment-label">
-            Payment
+            {t("checkout.payment")}
           </InputLabel>
           <Select
             sx={{ textAlign: "start" }}
             labelId="checkout-payment-label"
             id="checkout-payment"
             value={paymentMethod}
-            label="Payment"
+            label={t("checkout.payment")}
             onChange={(e) => setPaymentMethod(e.target.value)}
           >
-            <MenuItem value={"Cash"}>Cash</MenuItem>
-            <MenuItem value={"Visa"}>Visa</MenuItem>
+            <MenuItem value={"Cash"}>{t("checkout.cash")}</MenuItem>
+            <MenuItem value={"Visa"}>{t("checkout.visa")}</MenuItem>
           </Select>
         </FormControl>
 
         <Button
-          onClick={() => {
-            checkout(paymentMethod);
-          }}
+          onClick={() => checkout(paymentMethod)}
           variant="contained"
-          sx={{
-            backgroundColor: MainColor,
-            textTransform: "none",
-            fontFamily: MainFont,
-          }}
+          sx={{ backgroundColor: MainColor, textTransform: "none", fontFamily: MainFont }}
         >
-          Pay Now!
+          {t("checkout.payNow")}
         </Button>
       </Box>
     </Box>

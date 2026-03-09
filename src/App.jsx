@@ -12,6 +12,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import '../i18next'
 
 export default function App() {
   const queryClient = new QueryClient();
