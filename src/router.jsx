@@ -13,6 +13,7 @@ import ShopDetails from "./pages/productdetails/ShopDetails";
 import AboutLayout from "./layout/AboutLayout";
 import ProtectedRouter from "./ProtectedRouter";
 import Home2Layout from "./layout/Home2Layout";
+import Checkout from "./pages/checkout/Checkout";
 
 
 const color1 = "#503217";
@@ -53,6 +54,15 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRouter>
             <Cart MainColor={color1} MainFont = {font} />
+            </ProtectedRouter>
+
+        ),
+      },
+      {
+        path: "/checkout",
+        element: (
+          <ProtectedRouter>
+            <Checkout MainColor={color1} MainFont = {font} />
             </ProtectedRouter>
 
         ),

@@ -20,11 +20,14 @@ import useUpdateQty from "../../hooks/useUpdateQty";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import IconButton from "@mui/material/IconButton";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart({ MainColor, MainFont }) {
   const { data, isError, isLoading, error } = useCard();
   const { mutate, isPending } = useRemoveFromCart();
   const { mutate: UpdateQty, isPending: isPendingUpdate } = useUpdateQty();
+
+  const navigate = useNavigate();
 
   const handleUpdate = (productId, sign) => {
     const item = data.items.find((i) => {
@@ -197,6 +200,55 @@ export default function Cart({ MainColor, MainFont }) {
           </TableFooter>
         </Table>
       </TableContainer>
+
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: {
+            xs:'center', sm:"space-between"
+          },
+          flexWrap:'wrap',
+          marginTop: "30px",
+          gap: "20px",
+        }}
+      >
+        <Box sx={{ display: "flex", gap: "10px",flexDirection: { xs: "column", sm: "row" } }}>
+          <Button
+            variant="contained"
+            sx={{
+              textTransform: "none",
+              backgroundColor: MainColor,
+              fontFamily: MainFont,
+              
+              
+            }}
+             onClick={() => navigate("/checkout")}
+          >
+            Cash Me Out
+          </Button>
+          <Button
+            variant="contained"
+            sx={{
+              textTransform: "none",
+              backgroundColor: MainColor,
+              fontFamily: MainFont,
+            }}
+            onClick={() => navigate("/shop")}
+          >
+            Back to Treasure Hunting
+          </Button>
+        </Box>
+        <Button
+          variant="contained"
+          sx={{
+            textTransform: "none",
+            backgroundColor: MainColor,
+            fontFamily: MainFont,
+          }}
+        >
+          Start Fresh
+        </Button>
+      </Box>
     </Box>
   );
 }
