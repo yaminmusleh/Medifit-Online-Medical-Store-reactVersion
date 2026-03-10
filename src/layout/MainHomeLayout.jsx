@@ -7,6 +7,7 @@ import Hero from "../hero/Hero";
 import FollowUs from "../components/FollowUs/FollowUs.jsx";
 import NewsLetter from "../components/newsletter/NewsLetter.jsx";
 import ExplpreOurStore from "../components/explorestore/ExploreOurStore.jsx";
+import OurHappyClients from "../components/happyclients/OurHappyClients.jsx";
 
 export default function MainHomeLayout() {
   const color1 = "#503217";
@@ -28,8 +29,9 @@ export default function MainHomeLayout() {
         <Outlet />
       </Container>
       <ExplpreOurStore MainColor={color1} MainFont={font} />
-      <NewsLetter />
+      <NewsLetter  />
       <Container>
+        <OurHappyClients MainColor={color1} MainFont={font}/>
         <FollowUs />
       </Container>
       <Footer />
