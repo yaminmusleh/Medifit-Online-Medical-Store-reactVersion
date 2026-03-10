@@ -9,11 +9,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginSchema } from "../../../validation/LoginSchema";
 import useAuthStore from "../../../store/useAuthStore";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useTranslation } from "react-i18next";
 
 export default function Login() {
   const setToken = useAuthStore((state) => state.setToken);
   const navigate = useNavigate();
   const [serverError, setServerError] = useState([]);
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -30,11 +34,12 @@ export default function Login() {
         value,
       );
       if (response.status == 200) {
+        toast.success(t("login.success"));
         setToken(response.data.accessToken);
         navigate("/");
       }
     } catch (error) {
-      alert("Oops... and Error got caught, try again later.");
+      toast.error(t("login.serverError"));
       setServerError(error.response?.data?.errors || ["something went wrong"]);
     }
   };
@@ -55,6 +60,11 @@ export default function Login() {
           rowGap: 5,
         }}
       >
+        <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        theme="colored"
+      />
         <Typography
           component={"h1"}
           variant="h3"
@@ -65,7 +75,7 @@ export default function Login() {
             fontWeight: 600,
           }}
         >
-          Welcome back!
+          {t("login.title")}
         </Typography>
         <Typography
           component={"h1"}
@@ -77,13 +87,13 @@ export default function Login() {
             marginBottom: "12px",
           }}
         >
-          Enter your Credentials to access your account
+          {t("login.subtitle")}
         </Typography>
 
         {serverError.length > 0 && (
           <Box>
-            {serverError.map((err) => (
-              <Typography>{err}</Typography>
+            {serverError.map((err,index) => (
+              <Typography key={index}>{err}</Typography>
             ))}
           </Box>
         )}
@@ -99,7 +109,7 @@ export default function Login() {
         >
           <TextField
             {...register("email")}
-            label="Email"
+            label={t("login.email")}
             variant="outlined"
             error={errors.email}
             helperText={errors.email?.message}
@@ -107,7 +117,7 @@ export default function Login() {
 
           <TextField
             {...register("password")}
-            label="Password"
+            label={t("login.password")}
             variant="outlined"
             error={errors.password}
             helperText={errors.password?.message}
@@ -138,7 +148,7 @@ export default function Login() {
                 fontSize: "15px",
               }}
             >
-              Log in!
+              {t("login.button")}
             </Button>
           )}
         </Box>

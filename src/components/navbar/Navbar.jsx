@@ -17,8 +17,9 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import useAuthStore from "../../store/useAuthStore";
 import { useNavigate } from "react-router-dom";
 import useCard from "../../hooks/useCard";
-import { Badge } from "@mui/material";
+import { Badge, FormControl, InputLabel, Select } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import i18n from "../../../i18next";
 
 export default function Navbar() {
   const { t } = useTranslation();
@@ -40,6 +41,10 @@ export default function Navbar() {
         { label: t("Login"), path: "/login" },
         { label: t("Register"), path: "/register" },
       ];
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -158,9 +163,9 @@ export default function Navbar() {
               onClose={handleCloseNavMenu}
               PaperProps={{
                 sx: {
-                  minWidth: 180, // wider minimum width
-                  maxWidth: 250, // optional max width
-                  paddingX: 1, // optional horizontal padding
+                  minWidth: 180,
+                  maxWidth: 250,
+                  paddingX: 1,
                 },
               }}
             >
@@ -183,9 +188,8 @@ export default function Navbar() {
                         border: "none",
                         font: "inherit",
                         fontWeight: 600,
-                        justifyContent:'center', textAlign:'center'
-                      
-                        
+                        justifyContent: "center",
+                        textAlign: "center",
                       }}
                     >
                       {page.label}
@@ -238,6 +242,28 @@ export default function Navbar() {
                   <Typography>Cart</Typography>
                 </MenuItem>
               )}
+              <Box
+  sx={{
+    px: 2,
+    py: 1,
+    width: "100%",
+    display: { xs: "block", md: "none" }
+  }}
+>
+  <FormControl fullWidth>
+    <InputLabel id="lang-select-label">Language</InputLabel>
+
+    <Select
+      labelId="lang-select-label"
+      label="Language"
+      value={i18n.language}
+      onChange={(e) => changeLanguage(e.target.value)}
+    >
+      <MenuItem value="en">English</MenuItem>
+      <MenuItem value="ar">العربية</MenuItem>
+    </Select>
+  </FormControl>
+</Box>
             </Menu>
           </Box>
 
@@ -321,6 +347,27 @@ export default function Navbar() {
               </Badge>
             </Box>
           )}
+          <FormControl
+            
+            sx={{
+              display: {
+                xs: "none",
+                md: "block",
+              },
+              width:'120px'
+            }}
+          >
+            <InputLabel id="demo-simple-select-label" >Language</InputLabel>
+            <Select sx={{width:'120px'}}
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              label="Age"
+              onChange={(e) => changeLanguage(e.target.value)}
+            >
+              <MenuItem value="en">English</MenuItem>
+              <MenuItem value="ar">العربية</MenuItem>
+            </Select>
+          </FormControl>
         </Toolbar>
       </Container>
     </AppBar>

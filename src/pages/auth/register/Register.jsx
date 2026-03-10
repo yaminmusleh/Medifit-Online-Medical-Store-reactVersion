@@ -7,8 +7,11 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RegisterSchema } from "../../../validation/RegisterSchema";
+import { useTranslation } from "react-i18next";
+
 export default function Register() {
   const [serverErrors, setServerErrors] = useState([]);
+  const { t } = useTranslation();
 
   //i moved the logic into a js file
 
@@ -28,7 +31,9 @@ export default function Register() {
         value,
       );
     } catch (error) {
-      setServerErrors(error.response?.data?.errors || ["something went wrong"]);
+      setServerErrors(
+        error.response?.data?.errors || [t("register.serverError")],
+      );
     }
   };
 
@@ -59,13 +64,13 @@ export default function Register() {
             fontWeight: 600,
           }}
         >
-          Welcome to Medifit — Your Partner in Smarter Health
+          {t("register.title")}
         </Typography>
 
         {serverErrors.length > 0 && (
           <Box>
-            {serverErrors.map((error) => (
-              <Typography>{error}</Typography>
+            {serverErrors.map((error, index) => (
+              <Typography key={index}>{error}</Typography>
             ))}
           </Box>
         )}
@@ -81,7 +86,7 @@ export default function Register() {
         >
           <TextField
             {...register("email")}
-            label="Email"
+            label={t("register.email")}
             variant="outlined"
             error={errors.email}
             helperText={errors.email?.message}
@@ -89,7 +94,7 @@ export default function Register() {
 
           <TextField
             {...register("password")}
-            label="Password"
+            label={t("register.password")}
             variant="outlined"
             error={errors.password}
             helperText={errors.password?.message}
@@ -97,7 +102,7 @@ export default function Register() {
 
           <TextField
             {...register("userName")}
-            label="User Name"
+            label={t("register.userName")}
             variant="outlined"
             error={errors.userName}
             helperText={errors.userName?.message}
@@ -105,7 +110,7 @@ export default function Register() {
 
           <TextField
             {...register("fullName")}
-            label="Full Name"
+            label={t("register.fullName")}
             variant="outlined"
             error={errors.fullName}
             helperText={errors.fullName?.message}
@@ -113,7 +118,7 @@ export default function Register() {
 
           <TextField
             {...register("phoneNumber")}
-            label="Phone number"
+            label={t("register.phoneNumber")}
             variant="outlined"
             error={errors.phoneNumber}
             helperText={errors.phoneNumber?.message}
@@ -143,7 +148,7 @@ export default function Register() {
                 fontSize: "15px",
               }}
             >
-              Sign Up!
+              {t("register.button")}
             </Button>
           )}
         </Box>
