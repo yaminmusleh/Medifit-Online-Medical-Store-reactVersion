@@ -20,6 +20,7 @@ import useCard from "../../hooks/useCard";
 import { Badge, FormControl, InputLabel, Select } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import i18n from "../../../i18next";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function Navbar() {
   const { t } = useTranslation();
@@ -93,6 +94,18 @@ export default function Navbar() {
             alignItems: "center",
           }}
         >
+          <ToastContainer
+            position="top-center"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnHover
+            draggable
+            theme="light"
+          />
+
           {/* Logo */}
           <Box
             component={RouterLink}
@@ -363,7 +376,17 @@ export default function Navbar() {
               id="demo-simple-select"
               label="Language"
               value={i18n.language}
-              onChange={(e) => changeLanguage(e.target.value)}
+              onChange={(e) => {
+                const lang = e.target.value;
+
+                if (lang === "en") {
+                  toast.success("Refresh for a better experience!");
+                } else {
+                  toast.success("حدث الصفحة لتجربة أمتع!");
+                }
+
+                i18n.changeLanguage(lang);
+              }}
             >
               <MenuItem value="en">English</MenuItem>
               <MenuItem value="ar">العربية</MenuItem>

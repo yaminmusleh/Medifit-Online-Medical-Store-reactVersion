@@ -4,12 +4,15 @@ import image3 from "./follow-us/fingers-taking-a-pill.svg";
 import image4 from "./follow-us/medicine.svg";
 import image_insta from "./follow-us/insta.svg";
 import { Box, Grid, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 export default function FollowUs() {
+  const {t,i18n}=useTranslation();
   const images = [image1, image2, image3, image4];
   return (
     <Box sx={{ py: "60px" }} textAlign={"center"}>
       <Typography
+      
         sx={{
           marginBottom: "60px",
           fontFamily: "poppins",
@@ -17,12 +20,15 @@ export default function FollowUs() {
             xs: "34px",
             sm: "42px",
             md: "58px",
+            
           },
+          direction: i18n.language === "ar" ? "rtl" : "ltr",
+    
           color: "#503217",
           fontWeight: 500,
         }}
       >
-        Follow us @medifit
+        {t("followUs.title")}
       </Typography>
       <Grid container spacing={4} justifyContent="center" alignItems="start">
         {images.map((img, index) => (

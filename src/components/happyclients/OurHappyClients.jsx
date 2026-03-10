@@ -5,38 +5,16 @@ import person2 from "./our-happy-clients/ethan.svg";
 import person3 from "./our-happy-clients/james.svg";
 import person4 from "./our-happy-clients/lily.svg";
 import quote from "./our-happy-clients/quote.svg";
+import { useTranslation } from "react-i18next";
 
 export default function OurHappyClients({ MainColor, MainFont }) {
+  const {t}=useTranslation();
   const persons_and_reviews = [
-    {
-      personImg: person3,
-      person: "James Wilson",
-      occupation: "Manager",
-      review:
-        "I’m so impressed with this online medical store. The product selection is extensive and the prices are great. I found everything i needed in one place. The ordering process was easy, delivery was prompt, and the items arrived in perfect condition. Plus, the customer service team was incredibly helpful.",
-    },
-    {
-      personImg: person1,
-      person: "Henry Adams",
-      occupation: "CEO",
-      review:
-        "This online medical store exceeded my expectations. The website is user-friendly, the product range is outstanding, and the delivery was extremely fast. I appreciated the attention to detail in packaging, and the support team answered all my queries promptly. I’ll definitely be returning for future purchases.",
-    },
-    {
-      personImg: person2,
-      person: "Ethan Harris",
-      occupation: "Business Manager",
-      review:
-        "I’ve tried several online medical stores, and this one stands out. The selection of products is impressive, prices are fair, and checkout was simple. My order arrived quickly and in perfect condition, and the customer service team went above and beyond to ensure everything was right. Highly recommend!",
-    },
-    {
-      personImg: person4,
-      person: "Lily Baker",
-      occupation: "Product Manager",
-      review:
-        "I had a fantastic experience shopping here. The product variety is extensive, the website is easy to navigate, and my order arrived sooner than expected. Every item was well-packaged, and the support team was friendly and knowledgeable. I’m extremely satisfied and will shop here again.",
-    },
-  ];
+  { personImg: person3, ...t('ourHappyClients.reviewers.0', { returnObjects: true }) },
+  { personImg: person1, ...t('ourHappyClients.reviewers.1', { returnObjects: true }) },
+  { personImg: person2, ...t('ourHappyClients.reviewers.2', { returnObjects: true }) },
+  { personImg: person4, ...t('ourHappyClients.reviewers.3', { returnObjects: true }) },
+];
 
   const [selectedRev, setSelectedRev] = useState(persons_and_reviews[0].review);
   return (
@@ -54,10 +32,10 @@ export default function OurHappyClients({ MainColor, MainFont }) {
         <Typography
           sx={{ color: MainColor, fontFamily: MainFont, fontSize: 48 }}
         >
-          Our happy clients
+          {t("ourHappyClients.title")}
         </Typography>
         <Typography sx={{ marginTop: "20px", fontFamily: "cursive" }}>
-          Click on them to see their opinions!
+          {t("ourHappyClients.subtitle")}
         </Typography>
       </Box>
 
