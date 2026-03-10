@@ -243,27 +243,27 @@ export default function Navbar() {
                 </MenuItem>
               )}
               <Box
-  sx={{
-    px: 2,
-    py: 1,
-    width: "100%",
-    display: { xs: "block", md: "none" }
-  }}
->
-  <FormControl fullWidth>
-    <InputLabel id="lang-select-label">Language</InputLabel>
+                sx={{
+                  px: 2,
+                  py: 1,
+                  width: "100%",
+                  display: { xs: "block", md: "none" },
+                }}
+              >
+                <FormControl fullWidth>
+                  <InputLabel id="lang-select-label">Language</InputLabel>
 
-    <Select
-      labelId="lang-select-label"
-      label="Language"
-      value={i18n.language}
-      onChange={(e) => changeLanguage(e.target.value)}
-    >
-      <MenuItem value="en">English</MenuItem>
-      <MenuItem value="ar">العربية</MenuItem>
-    </Select>
-  </FormControl>
-</Box>
+                  <Select
+                    labelId="lang-select-label"
+                    label="Language"
+                    value={i18n.language}
+                    onChange={(e) => changeLanguage(e.target.value)}
+                  >
+                    <MenuItem value="en">English</MenuItem>
+                    <MenuItem value="ar">العربية</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
             </Menu>
           </Box>
 
@@ -348,20 +348,21 @@ export default function Navbar() {
             </Box>
           )}
           <FormControl
-            
             sx={{
               display: {
                 xs: "none",
                 md: "block",
               },
-              width:'120px'
+              width: "120px",
             }}
           >
-            <InputLabel id="demo-simple-select-label" >Language</InputLabel>
-            <Select sx={{width:'120px'}}
+            <InputLabel id="demo-simple-select-label">Language</InputLabel>
+            <Select
+              sx={{ width: "120px" }}
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              label="Age"
+              label="Language"
+              value={i18n.language}
               onChange={(e) => changeLanguage(e.target.value)}
             >
               <MenuItem value="en">English</MenuItem>

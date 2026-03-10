@@ -48,7 +48,6 @@ export default function OurHappyClients({ MainColor, MainFont }) {
         justifyContent: "center",
         flexDirection: "column",
         gap: "30px",
-       
       }}
     >
       <Box className="title">
@@ -57,7 +56,7 @@ export default function OurHappyClients({ MainColor, MainFont }) {
         >
           Our happy clients
         </Typography>
-        <Typography sx={{marginTop:'20px', fontFamily:'cursive'}}>
+        <Typography sx={{ marginTop: "20px", fontFamily: "cursive" }}>
           Click on them to see their opinions!
         </Typography>
       </Box>
@@ -72,24 +71,28 @@ export default function OurHappyClients({ MainColor, MainFont }) {
           display: "flex",
           alignItems: "end",
           justifyContent: "center",
-           position: "relative"
-          
-
+          position: "relative",
         }}
       >
         <Box
-    component="img"
-    src={quote}
-    alt="quote"
-    sx={{
-      position: "absolute",
-      top: 10,    
-      left: 10,    
-      width: 80,   
-      height: 80,
-    }}
-  />
-        <Typography sx={{ fontFamily: MainFont, fontSize: 17, color:'#8F7D6A' }}>{selectedRev}</Typography>
+          component="img"
+          src={quote}
+          alt="quote"
+          sx={{
+            position: "absolute",
+            top: 10,
+            left: 10,
+            width: 80,
+            height: 80,
+          }}
+        />
+        <Typography
+          sx={{ fontFamily: MainFont, fontSize: {
+            xs:14, md:17
+          }, color: "#8F7D6A" }}
+        >
+          {selectedRev}
+        </Typography>
       </Box>
 
       <Grid
@@ -100,20 +103,18 @@ export default function OurHappyClients({ MainColor, MainFont }) {
         {persons_and_reviews.map((person, index) => (
           <Grid item xs={12} md={6} lg={3} key={index}>
             <Card
-            onClick={()=>setSelectedRev(person.review)}
+              onClick={() => setSelectedRev(person.review)}
               sx={{
                 display: "flex",
                 alignItems: "center",
                 p: 2,
                 backgroundColor: "transparent",
                 boxShadow: "none",
-                cursor:"pointer"
-                , "&:hover":{
-                  outline:`2px solid ${MainColor}`
-                }
-               
+                cursor: "pointer",
+                "&:hover": {
+                  outline: `2px solid ${MainColor}`,
+                },
               }}
-              
             >
               <Avatar
                 src={person.personImg}

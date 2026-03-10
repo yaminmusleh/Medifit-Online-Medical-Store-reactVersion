@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { RouterProvider } from "react-router-dom";
 import router from "./router";
 import { CssBaseline } from "@mui/material";
@@ -13,6 +13,7 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import '../i18next'
+
 
 export default function App() {
   const queryClient = new QueryClient();

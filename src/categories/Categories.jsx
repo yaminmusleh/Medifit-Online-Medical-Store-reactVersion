@@ -13,7 +13,7 @@ import image6 from "./shop-by-categ-imgs/frame6.svg";
 import Loader from "../ui/Loader";
 
 export default function Categories() {
-  const number = [32, 20, 30, 35, 25, 35, 30];
+  
   const images = [image1, image2, image3, image4, image5, image6];
 
   const { data, isLoading, isError, error } = useCategs(6);
@@ -135,6 +135,7 @@ export default function Categories() {
                     fontFamily: "poppins",
                     color: "#503217",
                     mt: "auto",
+                    mb:'10px'
                   }}
                   gutterBottom
                   variant="h5"
@@ -142,18 +143,7 @@ export default function Categories() {
                 >
                   {categs.name}
                 </Typography>
-                <Typography
-                  sx={{
-                    color: "#8F7D6A",
-                    fontFamily: "poppins",
-                    fontSize: {
-                      md: "13.5px",
-                      xs: "11px",
-                    },
-                  }}
-                >
-                  {number[index % number.length]} Items
-                </Typography>
+                
               </CardContent>
             </CardActionArea>
           </Card>

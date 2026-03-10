@@ -28,9 +28,10 @@ export default function Cart({ MainColor, MainFont }) {
   const { mutate, isPending } = useRemoveFromCart();
   const { mutate: UpdateQty, isPending: isPendingUpdate } = useUpdateQty();
   const navigate = useNavigate();
+  console.log(data);
 
   const handleUpdate = (productId, sign) => {
-    const item = data.items.find((i) => i.productId === productId);
+    const item = data?.items.find((i) => i.productId === productId);
     if (sign === "-") {
       UpdateQty({ productId, count: item.count - 1 });
       toast.success(t("cart.itemsUpdated"));
