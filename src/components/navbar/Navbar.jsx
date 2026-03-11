@@ -17,10 +17,11 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import useAuthStore from "../../store/useAuthStore";
 import { useNavigate } from "react-router-dom";
 import useCard from "../../hooks/useCard";
-import { Badge, FormControl, InputLabel, Select } from "@mui/material";
+import { Avatar, Badge, FormControl, InputLabel, Select } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import i18n from "../../../i18next";
 import { toast, ToastContainer } from "react-toastify";
+import BrokenImageIcon from "@mui/icons-material/BrokenImage";
 
 export default function Navbar() {
   const { t } = useTranslation();
@@ -335,30 +336,40 @@ export default function Navbar() {
             <SearchIcon />
           </IconButton>
           {token && (
-            <Box sx={{ display: { xs: "none", sm: "flex" } }}>
-              <Badge
-                badgeContent={cartCountNumber}
-                sx={{
-                  "& .MuiBadge-badge": {
-                    minWidth: "14px",
-                    height: "17px",
-                    fontSize: "0.7rem",
-                    backgroundColor: "#503217",
-                    color: "white",
-                  },
-                }}
-                overlap="circular"
-                anchorOrigin={{ vertical: "top", horizontal: "right" }}
-              >
-                <IconButton
-                  component={RouterLink}
-                  sx={{ color: "#503217" }}
-                  to="/cart"
+            <>
+              <Box sx={{ display: { xs: "none", sm: "flex" } }}>
+                <Badge
+                  badgeContent={cartCountNumber}
+                  sx={{
+                    "& .MuiBadge-badge": {
+                      minWidth: "14px",
+                      height: "17px",
+                      fontSize: "0.7rem",
+                      backgroundColor: "#503217",
+                      color: "white",
+                    },
+                  }}
+                  overlap="circular"
+                  anchorOrigin={{ vertical: "top", horizontal: "right" }}
                 >
-                  <ShoppingCartOutlinedIcon />
+                  <IconButton
+                    component={RouterLink}
+                    sx={{ color: "#503217" }}
+                    to="/cart"
+                  >
+                    <ShoppingCartOutlinedIcon />
+                  </IconButton>
+                </Badge>
+              </Box>
+
+              <Box component={RouterLink} to="/profile">
+                <IconButton sx={{ p: 0, marginRight: "7px" }}>
+                  <Avatar
+                    sx={{ width: 30, height: 30, bgcolor: "#503217" }}
+                  ></Avatar>
                 </IconButton>
-              </Badge>
-            </Box>
+              </Box>
+            </>
           )}
           <FormControl
             sx={{

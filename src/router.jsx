@@ -58,6 +58,15 @@ const router = createBrowserRouter([
 
         ),
       },
+       {
+        path: "/profile",
+        element: (
+          <ProtectedRouter>
+            <Cart MainColor={color1} MainFont = {font} />
+            </ProtectedRouter>
+
+        ),
+      },
       {
         path: "/checkout",
         element: (
