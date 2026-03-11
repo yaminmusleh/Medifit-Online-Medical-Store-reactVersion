@@ -79,6 +79,7 @@ export default function Invitation() {
                 "&:hover": {
                   backgroundColor: hover_color,
                 },
+                color:'#fff'
               }}
             >
               Get started

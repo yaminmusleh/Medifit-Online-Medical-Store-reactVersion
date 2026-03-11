@@ -35,7 +35,7 @@ export default function ExplpreOurStore({ MainColor, MainFont, Product }) {
     
 
   return (
-    <Box py={"70px"} sx={{ textAlign: "center",   backgroundColor:"#E8E6DE" }}>
+    <Box className="explore-store" py={"70px"} sx={{ textAlign: "center" }}>
       <Container>
       <Typography
         sx={{

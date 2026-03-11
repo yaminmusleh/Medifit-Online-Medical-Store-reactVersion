@@ -1,10 +1,11 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, useTheme } from "@mui/material";
 import React from "react";
 import image1 from "./cta_imgs/img1.svg";
 import image2 from "./cta_imgs/img2.svg";
 import image3 from "./cta_imgs/img3.svg";
 
 export default function CTA() {
+  const theme = useTheme();
   const items = [
     {
       img: image1,
@@ -33,12 +34,13 @@ export default function CTA() {
       alignItems={"center"}
     >
       <Grid
+      className = 'cta-grid'
         borderRadius={"10px"}
         container
         justifyContent="center"
         alignItems="center"
         spacing={2}
-        sx={{ backgroundColor: "#f2f2f2", boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)" }}
+        
         width={"100%"}
       >
         {items.map((item, index) => (
@@ -106,47 +108,4 @@ export default function CTA() {
     </Box>
   );
 }
-/*<Box>
-            <Typography sx={{ fontSize: "18px" }}>30 Days warranty</Typography>
-            <Typography sx={{ fontSize: "16px" }}>
-              Enjoy peace of mind with warranty
-            </Typography>
-          </Box>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={6}
-          md={4}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Box component="img" src={image1} />
-          <Box>
-            <Typography sx={{ fontSize: "18px" }}>30 Days warranty</Typography>
-            <Typography sx={{ fontSize: "16px" }}>
-              Enjoy peace of mind with warranty
-            </Typography>
-          </Box>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={6}
-          md={4}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Box component="img" src={image1} />
-          <Box>
-            <Typography sx={{ fontSize: "18px" }}>30 Days warranty</Typography>
-            <Typography sx={{ fontSize: "16px" }}>
-              Enjoy peace of mind with warranty
-            </Typography>
-          </Box> */
+

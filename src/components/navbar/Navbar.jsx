@@ -28,7 +28,6 @@ import {
 import { useTranslation } from "react-i18next";
 import i18n from "../../../i18next";
 import { toast, ToastContainer } from "react-toastify";
-import BrokenImageIcon from "@mui/icons-material/BrokenImage";
 import useThemeStore from "../../store/useThemeStore";
 
 export default function Navbar() {

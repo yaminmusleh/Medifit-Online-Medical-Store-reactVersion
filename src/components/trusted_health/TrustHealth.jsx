@@ -72,6 +72,7 @@ export default function TrustHealth() {
               sx={{
                 textTransform: "none",
                 fontFamily: "poppins",
+                color:"#fff",
                 fontSize: {
                   xs: "12px",
                   md: "16px",

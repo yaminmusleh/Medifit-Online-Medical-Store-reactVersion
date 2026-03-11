@@ -43,6 +43,7 @@ export default function Home2Category() {
 
   return (
     <Box
+    className="explore-store"
       component={"shop-by-category-section"}
       sx={{
         display: "flex",
@@ -53,7 +54,7 @@ export default function Home2Category() {
         gap: 2,
         paddingBottom: "110px",
         flexDirection: "column",
-        backgroundColor:'#E8E6DE'
+        
       }}
     >
       <Container>

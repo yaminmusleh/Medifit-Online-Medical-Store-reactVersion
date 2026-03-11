@@ -1,12 +1,14 @@
-import { Box, Button, Container, Grid, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Typography, useTheme } from "@mui/material";
 import hero_image from "./hero-index-html/Hero.webp";
 import button_image from "./hero-index-html/bag.svg";
 import { useNavigate } from "react-router-dom";
 
 export default function Hero() {
+  const theme = useTheme();
+  const isDark = theme.palette.mode === "dark"
   const navigate = useNavigate();
   return (
-    <Box sx={{ bgcolor: "#E8E6DE" }}>
+    <Box className="explore-store">
       <Container sx={{ paddingTop: "40px" }}>
         <Box sx={{ paddingBottom: "60px" }}>
           <Grid
@@ -69,6 +71,7 @@ export default function Hero() {
                   sx={{
                     fontFamily: "sans-serif",
                     textTransform: "none",
+                    color:isDark?"#fff":"#fff",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",

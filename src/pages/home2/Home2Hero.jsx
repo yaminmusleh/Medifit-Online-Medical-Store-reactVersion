@@ -1,4 +1,11 @@
-import { Box, Button, Container, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import hero_image from "./hero/Mask group.webp";
 import photo from "./hero/photo1.svg";
 import { useNavigate } from "react-router-dom";
@@ -6,11 +13,13 @@ import button_image from "../../hero/hero-index-html/bag.svg";
 
 export default function Hom2Hero({ MainColor, MainFont }) {
   const navigate = useNavigate();
+  const theme = useTheme();
+  const isDark = theme.palette.mode === "dark";
 
   return (
     <Box
+      className="explore-store"
       sx={{
-        bgcolor: "#E8E6DE",
         paddingTop: {
           xs: "100px",
           lg: 0,
@@ -30,13 +39,14 @@ export default function Hom2Hero({ MainColor, MainFont }) {
       >
         {/* LEFT SIDE */}
         <Grid
+          className="explore-store"
           item
           xs={12}
           md={6}
           sx={{
             display: "flex",
             alignItems: "center",
-            bgcolor: "#E8E6DE",
+
             width: {
               xs: "100%",
               md: "70%",
@@ -89,13 +99,18 @@ export default function Hom2Hero({ MainColor, MainFont }) {
                 textAlign: { xs: "center", md: "left" },
               }}
             >
-              <Box component={"img"} src={photo} sx={{width:{
-                xs:'80%',
-                sm:'50%',
-                md:'100%',
-                lg:'100%'
-                
-              }}}/>
+              <Box
+                component={"img"}
+                src={photo}
+                sx={{
+                  width: {
+                    xs: "80%",
+                    sm: "50%",
+                    md: "100%",
+                    lg: "100%",
+                  },
+                }}
+              />
               <Box
                 className="typo_button_box"
                 sx={{
@@ -107,7 +122,7 @@ export default function Hom2Hero({ MainColor, MainFont }) {
                 <Typography
                   sx={{
                     fontSize: "18px",
-                    color: MainColor,
+                    color: isDark?"##E2DFCF":MainColor,
                     fontFamily: "sans-serif",
                   }}
                 >
@@ -131,6 +146,7 @@ export default function Hom2Hero({ MainColor, MainFont }) {
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
+                      color:'#fff',
                       bgcolor: "#503217",
                       ":hover": { bgcolor: "#72451e" },
                     }}

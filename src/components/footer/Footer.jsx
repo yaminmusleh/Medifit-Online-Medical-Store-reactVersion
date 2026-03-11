@@ -1,4 +1,4 @@
-import { Box, Container, List, MenuItem, Typography } from "@mui/material";
+import { Box, Container, List, MenuItem, Typography, useTheme } from "@mui/material";
 import image1 from "./footer-imgs/Group 189.svg";
 import pin_image from "./footer-imgs/pin-for-address.svg";
 import email_icon from "./footer-imgs/email-icon.svg";
@@ -12,6 +12,8 @@ import Grid from "@mui/material/Grid";
 import { Link, Link as RouterLink } from "react-router-dom";
 
 export default function Footer() {
+  const theme = useTheme();
+  
   const icons = [
     { img: icon1, link: "https://www.instagram.com/yamin_musleh/" },
     { img: icon2, link: "https://www.facebook.com/yamin.musleh.75" },
@@ -28,7 +30,7 @@ export default function Footer() {
     "Password protection",
   ];
   return (
-    <Box py={"80px"} bgcolor={"#E8E6DE"}>
+    <Box py={"80px"} className="explore-store">
       <Container maxWidth="xl" sx={{ flexWrap: "nowrap" }}>
         <Grid
           container

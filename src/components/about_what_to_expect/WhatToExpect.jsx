@@ -35,7 +35,7 @@ export default function WhatToExpect({ MainColor, MainFont }) {
     </Box>
   );
   return (
-    <Box sx={{ backgroundColor: "#E8E6DE", py: "100px", marginBottom: "90px" }}>
+    <Box className="explore-store" sx={{ py: "100px", marginBottom: "90px" }}>
       <Container>
         <Typography
           sx={{

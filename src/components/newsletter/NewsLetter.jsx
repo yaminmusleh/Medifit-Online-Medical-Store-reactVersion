@@ -6,6 +6,7 @@ import {
   Button,
   InputAdornment,
   Container,
+  useTheme,
 } from "@mui/material";
 import React from "react";
 import image from "./newsletter-imgs/newslatter1.webp";
@@ -13,9 +14,11 @@ import email_icon from "./newsletter-imgs/email-icon-for-letter.svg";
 import link_image from "./newsletter-imgs/link-external.svg";
 import { useNavigate } from "react-router-dom";
 export default function NewsLetter() {
+  const theme = useTheme();
+  const isDark = theme.palette.mode ==="dark"
   const navigate = useNavigate();
   return (
-    <Box sx={{ py: "60px", backgroundColor:"#E8E6DE" }}>
+    <Box className="explore-store" sx={{ py: "60px" }}>
       <Container>
       <Grid
         container
@@ -120,6 +123,9 @@ export default function NewsLetter() {
                 sx={{
                   width: "70%",
                   fontSize: "16px",
+                  "& input": {
+                      color: isDark ? "#000" : "inherit",
+                    },
                   "& .MuiOutlinedInput-notchedOutline": {
                     borderColor: "#503217",
                   },
@@ -150,6 +156,7 @@ export default function NewsLetter() {
                   textTransform: "none",
                   bgcolor: "#503217",
                   fontFamily: "poppins",
+                  color: isDark ? "#fff!important" : "#fff!important",
                   fontSize: "13px",
                 }}
                 onClick={() => navigate("/register")}
