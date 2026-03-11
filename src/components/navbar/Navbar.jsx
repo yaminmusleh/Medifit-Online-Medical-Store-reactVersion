@@ -17,16 +17,26 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import useAuthStore from "../../store/useAuthStore";
 import { useNavigate } from "react-router-dom";
 import useCard from "../../hooks/useCard";
-import { Avatar, Badge, FormControl, InputLabel, Select } from "@mui/material";
+import {
+  Avatar,
+  Badge,
+  FormControl,
+  InputLabel,
+  Select,
+  Switch,
+} from "@mui/material";
 import { useTranslation } from "react-i18next";
 import i18n from "../../../i18next";
 import { toast, ToastContainer } from "react-toastify";
 import BrokenImageIcon from "@mui/icons-material/BrokenImage";
+import useThemeStore from "../../store/useThemeStore";
 
 export default function Navbar() {
   const { t } = useTranslation();
   const token = useAuthStore((state) => state.token);
   const logout = useAuthStore((state) => state.logout);
+  const mode = useThemeStore((state) => state.mode);
+  const toggleTheme = useThemeStore((state) => state.toggleTheme);
   const pages = token
     ? [
         { label: t("Home"), path: "/home" },
@@ -47,6 +57,11 @@ export default function Navbar() {
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   };
+  const [anchorElProfile, setAnchorElProfile] = React.useState(null);
+
+  const handleOpenProfileMenu = (event) =>
+    setAnchorElProfile(event.currentTarget);
+  const handleCloseProfileMenu = () => setAnchorElProfile(null);
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -76,15 +91,22 @@ export default function Navbar() {
   return (
     <AppBar
       position="fixed"
-      sx={{
-        bgcolor: scrolled ? "rgba(255, 255, 255, 0.7)" : "#EEEDE7",
+      sx={(theme) => ({
+        bgcolor: scrolled
+          ? theme.palette.mode === "dark"
+            ? "rgba(33, 37, 41, 0.7)"
+            : "rgba(238, 237, 231, 0.7)"
+          : theme.palette.mode === "dark"
+            ? "#212529"
+            : "#EEEDE7",
+        color: theme.palette.mode === "dark" ? "#f2f2f2" : "#503217",
         boxShadow: scrolled ? 5 : "none",
         paddingY: "20px",
         paddingX: "120px",
         backdropFilter: scrolled ? "blur(2px)" : "none",
         transition: "all 0.3s ease",
         zIndex: 999,
-      }}
+      })}
     >
       <Container maxWidth="xl">
         <Toolbar
@@ -362,12 +384,40 @@ export default function Navbar() {
                 </Badge>
               </Box>
 
-              <Box component={RouterLink} to="/profile">
-                <IconButton sx={{ p: 0, marginRight: "7px" }}>
+              <Box>
+                <IconButton
+                  onClick={handleOpenProfileMenu}
+                  sx={{ p: 0, marginRight: "7px" }}
+                >
                   <Avatar
                     sx={{ width: 30, height: 30, bgcolor: "#503217" }}
                   ></Avatar>
                 </IconButton>
+                <Menu
+                  anchorEl={anchorElProfile}
+                  open={Boolean(anchorElProfile)}
+                  onClose={handleCloseProfileMenu}
+                  anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                  transformOrigin={{ vertical: "top", horizontal: "right" }}
+                >
+                  <MenuItem
+                    onClick={() => {
+                      navigate("/profile");
+                      handleCloseProfileMenu();
+                    }}
+                  >
+                    Profile
+                  </MenuItem>
+
+                  <MenuItem>
+                    Dark Mode
+                    <Switch
+                      checked={mode == "dark"}
+                      onChange={toggleTheme}
+                      sx={{ marginLeft: 1 }}
+                    />
+                  </MenuItem>
+                </Menu>
               </Box>
             </>
           )}
