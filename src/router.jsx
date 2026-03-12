@@ -14,6 +14,7 @@ import AboutLayout from "./layout/AboutLayout";
 import ProtectedRouter from "./ProtectedRouter";
 import Home2Layout from "./layout/Home2Layout";
 import Checkout from "./pages/checkout/Checkout";
+import Profile from "./pages/profile/Profile";
 
 
 const color1 = "#503217";
@@ -62,7 +63,7 @@ const router = createBrowserRouter([
         path: "/profile",
         element: (
           <ProtectedRouter>
-            <Cart MainColor={color1} MainFont = {font} />
+            <Profile MainColor={color1} MainFont = {font} />
             </ProtectedRouter>
 
         ),

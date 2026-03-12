@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslation } from "react-i18next";
+import authinstance from "../../../api/authAxiosInstance";
 
 export default function Login() {
   const setToken = useAuthStore((state) => state.setToken);
@@ -29,8 +30,8 @@ export default function Login() {
 
   const LoginForm = async (value) => {
     try {
-      const response = await axios.post(
-        `https://knowledgeshop.runasp.net/api/auth/Account/Login`,
+      const response = await authinstance.post(
+        `auth/Account/Login`,
         value,
       );
       if (response.status == 200) {

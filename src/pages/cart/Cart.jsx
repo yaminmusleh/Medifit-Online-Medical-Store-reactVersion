@@ -11,6 +11,7 @@ import {
   TableHead,
   TableRow,
   IconButton,
+  useTheme,
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Loader from "../../ui/Loader";
@@ -28,7 +29,9 @@ export default function Cart({ MainColor, MainFont }) {
   const { mutate, isPending } = useRemoveFromCart();
   const { mutate: UpdateQty, isPending: isPendingUpdate } = useUpdateQty();
   const navigate = useNavigate();
-  console.log(data);
+  const theme = useTheme();
+
+  const isDark = theme.palette.mode === "dark";
 
   const handleUpdate = (productId, sign) => {
     const item = data?.items.find((i) => i.productId === productId);
@@ -92,25 +95,37 @@ export default function Cart({ MainColor, MainFont }) {
             <TableRow>
               <TableCell
                 align="center"
-                sx={{ color: MainColor, fontFamily: "cursive" }}
+                sx={{
+                  fontFamily: "cursive",
+                  color: isDark ? "#fff" : MainColor,
+                }}
               >
                 {t("cart.product")}
               </TableCell>
               <TableCell
                 align="center"
-                sx={{ color: MainColor, fontFamily: "cursive" }}
+                sx={{
+                  fontFamily: "cursive",
+                  color: isDark ? "#fff" : MainColor,
+                }}
               >
                 {t("cart.qty")}
               </TableCell>
               <TableCell
                 align="center"
-                sx={{ color: MainColor, fontFamily: "cursive" }}
+                sx={{
+                  color: isDark ? "#fff" : MainColor,
+                  fontFamily: "cursive",
+                }}
               >
                 {t("cart.totalPrice")}
               </TableCell>
               <TableCell
                 align="center"
-                sx={{ color: MainColor, fontFamily: "cursive" }}
+                sx={{
+                  color: isDark ? "#fff" : MainColor,
+                  fontFamily: "cursive",
+                }}
               >
                 {t("cart.changedMind")}
               </TableCell>
@@ -122,14 +137,20 @@ export default function Cart({ MainColor, MainFont }) {
               <TableRow key={i}>
                 <TableCell
                   align="center"
-                  sx={{ color: MainColor, fontFamily: MainFont }}
+                  sx={{
+                    color: isDark ? "#fff" : MainColor,
+                    fontFamily: MainFont,
+                  }}
                 >
                   {item.productName}
                 </TableCell>
 
                 <TableCell
                   align="center"
-                  sx={{ color: MainColor, fontFamily: MainFont }}
+                  sx={{
+                    color: isDark ? "#fff" : MainColor,
+                    fontFamily: MainFont,
+                  }}
                 >
                   <Box
                     sx={{
@@ -159,7 +180,10 @@ export default function Cart({ MainColor, MainFont }) {
 
                 <TableCell
                   align="center"
-                  sx={{ color: MainColor, fontFamily: MainFont }}
+                  sx={{
+                    color: isDark ? "#fff" : MainColor,
+                    fontFamily: MainFont,
+                  }}
                 >
                   {item.count * item.price}$
                 </TableCell>
@@ -187,7 +211,12 @@ export default function Cart({ MainColor, MainFont }) {
               <TableCell
                 align="center"
                 colSpan={5}
-                sx={{ fontFamily: "math", fontSize: "15px", color: "black" }}
+                sx={{
+                  fontFamily: "math",
+                  fontSize: "15px",
+                  color: "black",
+                  color: isDark ? "#fff" : "#000",
+                }}
               >
                 {t("cart.totalItemsPrice")} {data.cartTotal}$
               </TableCell>
@@ -218,6 +247,7 @@ export default function Cart({ MainColor, MainFont }) {
               textTransform: "none",
               backgroundColor: MainColor,
               fontFamily: MainFont,
+              color: "#fff",
             }}
             onClick={() => navigate("/checkout")}
           >
@@ -230,6 +260,7 @@ export default function Cart({ MainColor, MainFont }) {
               textTransform: "none",
               backgroundColor: MainColor,
               fontFamily: MainFont,
+              color: "#fff",
             }}
             onClick={() => navigate("/shop")}
           >
@@ -243,6 +274,7 @@ export default function Cart({ MainColor, MainFont }) {
             textTransform: "none",
             backgroundColor: MainColor,
             fontFamily: MainFont,
+            color: "#fff",
           }}
         >
           {t("cart.startFresh")}
