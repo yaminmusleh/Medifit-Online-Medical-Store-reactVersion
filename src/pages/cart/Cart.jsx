@@ -214,7 +214,6 @@ export default function Cart({ MainColor, MainFont }) {
                 sx={{
                   fontFamily: "math",
                   fontSize: "15px",
-                  color: "black",
                   color: isDark ? "#fff" : "#000",
                 }}
               >

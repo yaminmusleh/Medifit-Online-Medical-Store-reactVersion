@@ -104,7 +104,7 @@ export default function Save() {
                 }}
               >
                 View sale products
-                <img src={image2} alt="" style={{ marginLeft: "3px" }} />
+                <img src={image2} alt="chevron" style={{ marginLeft: "3px" }} />
               </Button>
             </Box>
           </Grid>
