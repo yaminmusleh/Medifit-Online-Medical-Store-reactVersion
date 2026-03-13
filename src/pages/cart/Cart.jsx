@@ -22,12 +22,14 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import useClearCartCompletely from "../../hooks/useClearCartCompletely";
 
 export default function Cart({ MainColor, MainFont }) {
   const { t } = useTranslation();
   const { data, isError, isLoading, error } = useCard();
   const { mutate, isPending } = useRemoveFromCart();
   const { mutate: UpdateQty, isPending: isPendingUpdate } = useUpdateQty();
+  const {mutate: ClearCart, isPending: isPendingClear}= useClearCartCompletely();
   const navigate = useNavigate();
   const theme = useTheme();
 
@@ -269,6 +271,8 @@ export default function Cart({ MainColor, MainFont }) {
 
         <Button
           variant="contained"
+          onClick={()=>ClearCart()}
+          disabled={isPendingClear}
           sx={{
             textTransform: "none",
             backgroundColor: MainColor,

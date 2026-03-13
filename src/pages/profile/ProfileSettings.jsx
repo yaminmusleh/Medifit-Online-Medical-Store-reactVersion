@@ -14,13 +14,15 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  TableFooter,
+  Button,
 } from "@mui/material";
 import useThemeStore from "../../store/useThemeStore";
 import { useTranslation } from "react-i18next";
 
 export default function ProfileSettings() {
-  const {t,i18n}= useTranslation();
-    const isRTL = i18n.language === "ar";
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === "ar";
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   };
@@ -64,7 +66,7 @@ export default function ProfileSettings() {
                   pb: "30px",
                 }}
               >
-               {t("profileSettings.mode")}:
+                {t("profileSettings.mode")}:
               </TableCell>
               <TableCell
                 align={isRTL ? "right" : "left"}
@@ -83,11 +85,9 @@ export default function ProfileSettings() {
                     fontFamily: "cursive",
                   }}
                 >
-                 {t("profileSettings.light")}
+                  {t("profileSettings.light")}
                 </Typography>
                 <Switch
-                
-                
                   checked={mode == "dark"}
                   onChange={toggleTheme}
                   sx={{ marginLeft: 1 }}
@@ -140,6 +140,38 @@ export default function ProfileSettings() {
               </TableCell>
             </TableRow>
           </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TableCell align={isRTL ? "right" : "left"} colSpan={3}>
+                <Button
+                  variant="contained"
+                  sx={{
+                    textTransform: "none",
+                    color: "#fff",
+                    fontFamily: "poppins",
+                    backgroundColor: "#503217",
+                  }}
+                >
+                  {t("profileSettings.updateemail")}
+                </Button>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell align={isRTL ? "right" : "left"} colSpan={3}>
+                <Button
+                  variant="contained"
+                  sx={{
+                    textTransform: "none",
+                    color: "#fff",
+                    fontFamily: "poppins",
+                    backgroundColor: "#503217",
+                  }}
+                >
+                  {t("profileSettings.updatepass")}
+                </Button>
+              </TableCell>
+            </TableRow>
+          </TableFooter>
         </Table>
       </TableContainer>
     </Box>

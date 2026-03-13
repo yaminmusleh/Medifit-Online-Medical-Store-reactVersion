@@ -25,10 +25,10 @@ export default function Profile() {
               color: "#fff",
             }}
           >
-            {data?.fullName?.[0] || "U"}
+            {data?.fullName?.[0] || ""}
           </Avatar>
           <CardContent
-            sx={{ display: "flex", flexDirection: "column", gap: 3 }}
+            sx={{ display: "flex", flexDirection: "column", gap: 2 }}
           >
             <Typography
               gutterBottom
@@ -42,7 +42,7 @@ export default function Profile() {
                 },
               }}
             >
-              {data?.fullName}
+            {data?.fullName}
             </Typography>
             <Typography sx={{ color: "text.secondary", fontFamily: "poppins", textAlign:'center' }}>
               {data?.email}
@@ -50,7 +50,8 @@ export default function Profile() {
           </CardContent>
         </CardActionArea>
       </Card>
-      <Grid container justifyContent="center" alignItems="center" gap={3} sx={{mt:'30px'}}>
+      <Grid container justifyContent="center" alignItems="center" gap={3} sx={{mt:'30px', flexDirection:'column'}}>
+       
        
         <Grid
           item

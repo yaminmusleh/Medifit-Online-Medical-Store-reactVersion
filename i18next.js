@@ -118,6 +118,8 @@ i18n
             light: "Light",
             dark: "Dark",
             language: "Language",
+            updateemail:'Update Email?',
+            updatepass:"Update Password?"
           },
         },
       },
@@ -232,7 +234,10 @@ i18n
             light: "فاتح",
             dark: "داكن",
             language: "اللغة",
+            updateemail:'تحديث البريد الالكتروني؟',
+            updatepass:"تحديث كلمة السر؟"
           },
+          
         },
       },
     },
