@@ -20,7 +20,8 @@ import { useTranslation } from "react-i18next";
 const drawerWidth = 240;
 
 export default function ResponsiveDrawer({ mobileOpen, handleDrawerToggle }) {
-  const { t } = useTranslation();
+  const { t,i18n } = useTranslation();
+  const isRTL = i18n.language === "ar";
   const menuItems = [
     { text: t("profileMenu.overview", "Overview"), path: "/profile" },
     {
@@ -76,13 +77,15 @@ export default function ResponsiveDrawer({ mobileOpen, handleDrawerToggle }) {
               component={NavLink}
               to={path}
               sx={{
+                justifyContent: isRTL ? "flex-end" : "flex-start",
+          textAlign: isRTL ? "right" : "left",
                 "&.active": {
                   backgroundColor: "transparent",
                   color: isDark ? "#fff" : "#000",
                 },
               }}
             >
-              <ListItemText primary={text} />
+              <ListItemText primary={text} sx={{ textAlign: isRTL ? "right" : "left" }} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -92,14 +95,17 @@ export default function ResponsiveDrawer({ mobileOpen, handleDrawerToggle }) {
 
   return (
     <Box
+    dir={isRTL ? "rtl" : "ltr"}
       component="nav"
       sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
     >
       {isMobile && (
         <Drawer
+        anchor={isRTL ? "right" : "left"}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
+          
           ModalProps={{ keepMounted: true }}
           sx={{
             display: { xs: "block", sm: "none" },
@@ -112,6 +118,7 @@ export default function ResponsiveDrawer({ mobileOpen, handleDrawerToggle }) {
 
       {!isMobile && (
         <Drawer
+        anchor={isRTL ? "right" : "left"}
           variant="permanent"
           open
           sx={{

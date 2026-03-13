@@ -34,6 +34,7 @@ export default function Profile() {
               gutterBottom
               sx={{
                 color: "#503217",
+                textAlign:'center',
                 fontFamily: "poppins",
                 fontSize: {
                   xs: "20px",
@@ -43,7 +44,7 @@ export default function Profile() {
             >
               {data?.fullName}
             </Typography>
-            <Typography sx={{ color: "text.secondary", fontFamily: "poppins" }}>
+            <Typography sx={{ color: "text.secondary", fontFamily: "poppins", textAlign:'center' }}>
               {data?.email}
             </Typography>
           </CardContent>

@@ -12,8 +12,11 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 export default function ProfileInfo() {
+  const {t,i18n}= useTranslation();
+  const isRTL = i18n.language === "ar";
   const theme=useTheme();
   const isDark = theme.palette.mode==="dark";
   const { data, isError, isLoading, error } = useProfile();
@@ -54,22 +57,22 @@ export default function ProfileInfo() {
                 , fontFamily:'poppins', fontWeight:600, color:isDark?"#fff":'#503217'
                 }}
               >
-                Your Personal Information
+                {t("profile.personalInfo")}
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             <TableRow >
-              <TableCell align="left" sx={{fontSize:{xs:'14px', md:23},fontFamily:'cursive',fontWeight:600,pb:"30px"}}>Full Name:</TableCell>
-              <TableCell align="left" sx={{fontSize:{xs:'14px', md:23}, fontFamily:'cursive',fontWeight:600,}}>{data.fullName}</TableCell>
+              <TableCell align={isRTL ? "right" : "left"} sx={{fontSize:{xs:'14px', md:23},fontFamily:'cursive',fontWeight:600,pb:"30px"}}> {t("profile.fullName")}:</TableCell>
+              <TableCell align={isRTL ? "right" : "left"} sx={{fontSize:{xs:'14px', md:23}, fontFamily:'cursive',fontWeight:600,}}>{data.fullName}</TableCell>
             </TableRow>
             <TableRow >
-              <TableCell align="left" sx={{fontSize:{xs:'14px', md:23},fontFamily:'cursive',fontWeight:600,pb:"30px"}}>Email:</TableCell>
-              <TableCell align="left" sx={{fontSize:{xs:'14px', md:23}, fontFamily:'cursive',fontWeight:600,pb:"30px"}}>{data.email}</TableCell>
+              <TableCell align={isRTL ? "right" : "left"} sx={{fontSize:{xs:'14px', md:23},fontFamily:'cursive',fontWeight:600,pb:"30px"}}>{t("profile.email")}:</TableCell>
+              <TableCell align={isRTL ? "right" : "left"} sx={{fontSize:{xs:'14px', md:23}, fontFamily:'cursive',fontWeight:600,pb:"30px"}}>{data.email}</TableCell>
             </TableRow>
             <TableRow >
-              <TableCell align="left" sx={{fontSize:{xs:'14px', md:23},fontFamily:'cursive',fontWeight:600,pb:"30px"}}>Phone Number:</TableCell>
-              <TableCell align="left" sx={{fontSize:{xs:'14px', md:23}, fontFamily:'cursive',fontWeight:600,pb:"30px"}}>+970{data.phoneNumber}</TableCell>
+              <TableCell align={isRTL ? "right" : "left"} sx={{fontSize:{xs:'14px', md:23},fontFamily:'cursive',fontWeight:600,pb:"30px"}}>{t("profile.phoneNumber")}:</TableCell>
+              <TableCell align={isRTL ? "right" : "left"} sx={{fontSize:{xs:'14px', md:23}, fontFamily:'cursive',fontWeight:600,pb:"30px"}}>+970{data.phoneNumber}</TableCell>
             </TableRow>
             
           </TableBody>
