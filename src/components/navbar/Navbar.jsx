@@ -405,11 +405,11 @@ export default function Navbar() {
                       handleCloseProfileMenu();
                     }}
                   >
-                    Profile
+                    {t("profileMenu.profile")}
                   </MenuItem>
 
                   <MenuItem>
-                    Dark Mode
+                    {t("profileMenu.darkMode")}
                     <Switch
                       checked={mode == "dark"}
                       onChange={toggleTheme}

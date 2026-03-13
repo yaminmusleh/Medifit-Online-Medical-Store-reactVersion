@@ -15,17 +15,17 @@ import ProtectedRouter from "./ProtectedRouter";
 import Home2Layout from "./layout/Home2Layout";
 import Checkout from "./pages/checkout/Checkout";
 import Profile from "./pages/profile/Profile";
-
+import PorfileLayout from "./layout/PorfileLayout";
+import ProfileInfo from "./pages/profile/ProfileInfo";
+import ProfileSettings from "./pages/profile/ProfileSettings";
 
 const color1 = "#503217";
-  const font = 'poppins';
+const font = "poppins";
 
 const router = createBrowserRouter([
-  
   {
     element: <MainLayout />,
     children: [
-      
       {
         path: "/login",
         element: <Login />,
@@ -40,11 +40,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/contact",
-        element: <Contact MainColor={color1} MainFont = {font} />,
+        element: <Contact MainColor={color1} MainFont={font} />,
       },
       {
         path: "/product/:id",
-        element: <ShopDetails  />,
+        element: <ShopDetails />,
       },
       {
         path: "/shop",
@@ -54,34 +54,24 @@ const router = createBrowserRouter([
         path: "/cart",
         element: (
           <ProtectedRouter>
-            <Cart MainColor={color1} MainFont = {font} />
-            </ProtectedRouter>
-
+            <Cart MainColor={color1} MainFont={font} />
+          </ProtectedRouter>
         ),
       },
-       {
-        path: "/profile",
-        element: (
-          <ProtectedRouter>
-            <Profile MainColor={color1} MainFont = {font} />
-            </ProtectedRouter>
-
-        ),
-      },
+     
       {
         path: "/checkout",
         element: (
           <ProtectedRouter>
-            <Checkout MainColor={color1} MainFont = {font} />
-            </ProtectedRouter>
-
+            <Checkout MainColor={color1} MainFont={font} />
+          </ProtectedRouter>
         ),
       },
     ],
   },
   {
     path: "/home",
-    element: <Home2Layout MainColor={color1} MainFont = {font} />,
+    element: <Home2Layout MainColor={color1} MainFont={font} />,
     children: [
       {
         index: true,
@@ -89,6 +79,28 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+  path: "/profile",
+  element: (
+    <ProtectedRouter>
+      <PorfileLayout MainColor={color1} MainFont={font} />
+    </ProtectedRouter>
+  ),
+  children: [
+      {
+        index: true,
+        element: <Profile MainColor={color1} MainFont={font} />, 
+      },
+      {
+        path: "profileinfo",
+        element: <ProfileInfo />,
+      },
+      {
+        path: "settings",
+        element: <ProfileSettings />,
+      },
+    ],
+},
   {
     path: "/about",
     element: <AboutLayout />,

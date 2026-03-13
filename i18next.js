@@ -94,6 +94,18 @@ i18n
           followUs: {
             title: "Follow us @medifit",
           },
+          profileMenu: {
+            profile: "Profile",
+            darkMode: "Dark mode",
+          },
+          profileMenu: {
+            profile: "Profile",
+            darkMode: "Dark mode",
+            overview: "Overview",
+            info: "Profile Info",
+            settings: "Settings",
+            backHome: "Back Home",
+          },
         },
       },
       ar: {
@@ -182,6 +194,18 @@ i18n
           },
           followUs: {
             title: "تابعنا على medifit@",
+          },
+          profileMenu: {
+            profile: "الملف الشخصي",
+            darkMode: "الوضع الداكن",
+          },
+          profileMenu: {
+            profile: "الملف الشخصي",
+            darkMode: "الوضع الداكن",
+            overview: "نظرة عامة",
+            info: "معلومات الملف الشخصي",
+            settings: "الإعدادات",
+            backHome: "العودة للرئيسية",
           },
         },
       },

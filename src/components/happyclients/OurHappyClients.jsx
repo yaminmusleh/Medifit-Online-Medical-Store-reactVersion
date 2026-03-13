@@ -43,7 +43,7 @@ export default function OurHappyClients({ MainColor, MainFont }) {
         className="review-box"
         sx={{
           backgroundColor: "#F2F2F2",
-          borderRadius: "15px",
+          borderRadius: "17px",
           p: 4,
           minHeight: "200px",
           display: "flex",
@@ -89,6 +89,7 @@ export default function OurHappyClients({ MainColor, MainFont }) {
                 backgroundColor: "transparent",
                 boxShadow: "none",
                 cursor: "pointer",
+                borderRadius:"12px",
                 "&:hover": {
                   outline: `2px solid ${MainColor}`,
                 },
