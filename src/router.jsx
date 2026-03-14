@@ -18,6 +18,7 @@ import Profile from "./pages/profile/Profile";
 import PorfileLayout from "./layout/PorfileLayout";
 import ProfileInfo from "./pages/profile/ProfileInfo";
 import ProfileSettings from "./pages/profile/ProfileSettings";
+import PrivacyPolicy from "./pages/privacy-policy/PrivacyPolicy";
 
 const color1 = "#503217";
 const font = "poppins";
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
         path: "settings",
         element: <ProfileSettings />,
       },
+      {
+      path: "privacypolicy",
+      element: <PrivacyPolicy />,
+    },
     ],
 },
   {

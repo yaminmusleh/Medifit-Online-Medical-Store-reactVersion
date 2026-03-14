@@ -18,9 +18,12 @@ import {
   Button,
   TextField,
 } from "@mui/material";
+import link_img from "../../components/newsletter/newsletter-imgs/link-external.svg";
 import useThemeStore from "../../store/useThemeStore";
 import { useTranslation } from "react-i18next";
 import useUpdatePassword from "../../hooks/useUpdatePassword";
+import PrivacyPolicy from "../privacy-policy/PrivacyPolicy";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfileSettings() {
   const { t, i18n } = useTranslation();
@@ -40,6 +43,8 @@ export default function ProfileSettings() {
     NewPassword: "",
     ConfirmNewPassword: "",
   });
+
+  const navigate = useNavigate();
 
   const { mutate: changePassword, isPending, isSuccess } = useUpdatePassword();
 
@@ -187,55 +192,89 @@ export default function ProfileSettings() {
             </TableRow>
             <TableRow>
               <TableCell align={isRTL ? "right" : "left"} colSpan={3}>
-                <Box sx={{display:'flex', alignItems:'center', gap:3, flexWrap:'wrap'}}>
-                  {showFields && (
-                  <>
-                    <TextField
-                      name="CurrentPassword"
-                      label="Current Password"
-                      type="password"
-                      value={passwords.CurrentPassword}
-                      onChange={handleChange}
-                    />
-
-                    <TextField
-                      name="NewPassword"
-                      label="New Password"
-                      type="password"
-                      value={passwords.NewPassword}
-                      onChange={handleChange}
-                    />
-
-                    <TextField
-                      name="ConfirmNewPassword"
-                      label="Confirm Password"
-                      type="password"
-                      value={passwords.ConfirmNewPassword}
-                      onChange={handleChange}
-                    />
-                  </>
-                )}
-
-                <Button
-                  variant="contained"
-                  onClick={handleButtonClick}
-                  disabled={isPending || isSuccess}
+                <Box
                   sx={{
-                    fontFamily:'poppins',
-                    textTransform: "none",
-                    backgroundColor: "#503217",
-                    color: "#fff",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 3,
+                    flexWrap: "wrap",
                   }}
                 >
-                  {isPending
-                    ? "Updating..."
-                    :isSuccess
-                    ? "Updated ✓"
-                    : showFields
-                      ? "All done?"
-                      : "Change your password?"}
-                </Button>
+                  {showFields && (
+                    <>
+                      <TextField
+                        name="CurrentPassword"
+                        label={t("profileSettings.currentPassword")}
+                        type="password"
+                        value={passwords.CurrentPassword}
+                        onChange={handleChange}
+                      />
+
+                      <TextField
+                        name="NewPassword"
+                        label={t("profileSettings.newPassword")}
+                        type="password"
+                        value={passwords.NewPassword}
+                        onChange={handleChange}
+                      />
+
+                      <TextField
+                        name="ConfirmNewPassword"
+                        label={t("profileSettings.confirmPassword")}
+                        type="password"
+                        value={passwords.ConfirmNewPassword}
+                        onChange={handleChange}
+                      />
+                    </>
+                  )}
+
+                  <Button
+                    variant="contained"
+                    onClick={handleButtonClick}
+                    disabled={isPending || isSuccess}
+                    sx={{
+                      fontFamily: "poppins",
+                      textTransform: "none",
+                      backgroundColor: "#503217",
+                      color: "#fff",
+                    }}
+                  >
+                    {isPending
+                      ? t("profilesettings.updating")
+                      : isSuccess
+                        ? t("profileSettings.updated")
+                        : showFields
+                          ? t("profileSettings.allDone")
+                          : t("profileSettings.updatepass")}
+                  </Button>
                 </Box>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell sx={{ paddingTop: 4 }} align={isRTL ? "right" : "left"} colSpan={3}>
+                <Button
+                  variant="contained"
+                  onClick={() => navigate(`/profile/privacypolicy`)}
+                  sx={{
+                    cursor: "pointer",
+                    textTransform: "none",
+                     backgroundColor:isDark?"#000":"#37474F",
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontFamily: "poppins",
+                      fontSize: 14,
+                      display: "flex",
+                      alignItems: "center",
+                      color:'#fff',
+                     
+                      gap: 1,
+                    }}
+                  >
+                    {t('profileSettings.privacyPolicy')} <img src={link_img} alt="external"></img>
+                  </Typography>
+                </Button>
               </TableCell>
             </TableRow>
           </TableFooter>
