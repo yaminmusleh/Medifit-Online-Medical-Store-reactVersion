@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Table,
@@ -16,9 +16,11 @@ import {
   MenuItem,
   TableFooter,
   Button,
+  TextField,
 } from "@mui/material";
 import useThemeStore from "../../store/useThemeStore";
 import { useTranslation } from "react-i18next";
+import useUpdatePassword from "../../hooks/useUpdatePassword";
 
 export default function ProfileSettings() {
   const { t, i18n } = useTranslation();
@@ -30,6 +32,33 @@ export default function ProfileSettings() {
   const theme = useTheme();
   const toggleTheme = useThemeStore((state) => state.toggleTheme);
   const isDark = theme.palette.mode === "dark";
+
+  const [showFields, setShowFields] = useState(false);
+
+  const [passwords, setPasswords] = useState({
+    CurrentPassword: "",
+    NewPassword: "",
+    ConfirmNewPassword: "",
+  });
+
+  const { mutate: changePassword, isPending, isSuccess } = useUpdatePassword();
+
+  const handleChange = (e) => {
+    setPasswords({
+      ...passwords,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleButtonClick = () => {
+    if (!showFields) {
+      setShowFields(true);
+      return;
+    }
+
+    changePassword(passwords);
+  };
+
   return (
     <Box>
       <TableContainer>
@@ -158,17 +187,55 @@ export default function ProfileSettings() {
             </TableRow>
             <TableRow>
               <TableCell align={isRTL ? "right" : "left"} colSpan={3}>
+                <Box sx={{display:'flex', alignItems:'center', gap:3, flexWrap:'wrap'}}>
+                  {showFields && (
+                  <>
+                    <TextField
+                      name="CurrentPassword"
+                      label="Current Password"
+                      type="password"
+                      value={passwords.CurrentPassword}
+                      onChange={handleChange}
+                    />
+
+                    <TextField
+                      name="NewPassword"
+                      label="New Password"
+                      type="password"
+                      value={passwords.NewPassword}
+                      onChange={handleChange}
+                    />
+
+                    <TextField
+                      name="ConfirmNewPassword"
+                      label="Confirm Password"
+                      type="password"
+                      value={passwords.ConfirmNewPassword}
+                      onChange={handleChange}
+                    />
+                  </>
+                )}
+
                 <Button
                   variant="contained"
+                  onClick={handleButtonClick}
+                  disabled={isPending || isSuccess}
                   sx={{
+                    fontFamily:'poppins',
                     textTransform: "none",
-                    color: "#fff",
-                    fontFamily: "poppins",
                     backgroundColor: "#503217",
+                    color: "#fff",
                   }}
                 >
-                  {t("profileSettings.updatepass")}
+                  {isPending
+                    ? "Updating..."
+                    :isSuccess
+                    ? "Updated ✓"
+                    : showFields
+                      ? "All done?"
+                      : "Change your password?"}
                 </Button>
+                </Box>
               </TableCell>
             </TableRow>
           </TableFooter>
