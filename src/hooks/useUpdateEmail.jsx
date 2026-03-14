@@ -2,15 +2,16 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import authinstance from "../api/authAxiosInstance";
 
-export default function useUpdatePassword() {
+export default function useUpdateEmail() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data) => authinstance.patch(`/Profile/change-password`, data),
+    mutationFn: (data) => authinstance.patch(`/Profile/change-email`, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["profile"] });
     },
     onError: (error) => {
-      console.error("Failed to update password", error);
+      console.error("Failed to update email", error);
     },
   });
 }
+

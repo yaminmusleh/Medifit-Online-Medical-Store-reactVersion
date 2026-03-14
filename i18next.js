@@ -127,6 +127,7 @@ i18n
             updating: "Updating...",
             updated: "Updated ✓",
             privacyPolicy: "Privacy Policy",
+            newEmail: "New Email"
           },
         },
       },
@@ -250,6 +251,7 @@ i18n
             updating: "جارٍ التحديث...",
             updated: "تم التحديث ✓",
             privacyPolicy: "سياسة الخصوصية",
+            newEmail: "البريد الإلكتروني الجديد"
           },
         },
       },

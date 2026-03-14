@@ -22,8 +22,8 @@ import link_img from "../../components/newsletter/newsletter-imgs/link-external.
 import useThemeStore from "../../store/useThemeStore";
 import { useTranslation } from "react-i18next";
 import useUpdatePassword from "../../hooks/useUpdatePassword";
-import PrivacyPolicy from "../privacy-policy/PrivacyPolicy";
 import { useNavigate } from "react-router-dom";
+import useUpdateEmail from "../../hooks/useUpdateEmail";
 
 export default function ProfileSettings() {
   const { t, i18n } = useTranslation();
@@ -62,6 +62,31 @@ export default function ProfileSettings() {
     }
 
     changePassword(passwords);
+  };
+  const [email, setEmail] = useState({
+    NewEmail: "",
+  });
+
+  const {
+    mutate: updateEmail,
+    isPending: emailPending,
+    isSuccess: updateSucceed,
+  } = useUpdateEmail();
+
+  const [showEmailField, setShowEmailField] = useState(false);
+
+  const handleEmailChange = (e) => {
+    setEmail({
+      ...email,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handleEmailSubmit = () => {
+    if (!showEmailField) {
+      setShowEmailField(true);
+      return;
+    }
+    updateEmail(email);
   };
 
   return (
@@ -177,17 +202,36 @@ export default function ProfileSettings() {
           <TableFooter>
             <TableRow>
               <TableCell align={isRTL ? "right" : "left"} colSpan={3}>
-                <Button
-                  variant="contained"
-                  sx={{
-                    textTransform: "none",
-                    color: "#fff",
-                    fontFamily: "poppins",
-                    backgroundColor: "#503217",
-                  }}
-                >
-                  {t("profileSettings.updateemail")}
-                </Button>
+                <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+                  {showEmailField && (
+                    <TextField
+                      name="NewEmail"
+                      label={t("profileSettings.newEmail")}
+                      value={email.NewEmail}
+                      onChange={handleEmailChange}
+                    />
+                  )}
+
+                  <Button
+                    variant="contained"
+                    onClick={handleEmailSubmit}
+                    disabled={emailPending || updateSucceed}
+                    sx={{
+                      fontFamily: "poppins",
+                      textTransform: "none",
+                      backgroundColor: "#503217",
+                      color: "#fff",
+                    }}
+                  >
+                    {emailPending
+                      ? t("profileSettings.updating")
+                      : updateSucceed
+                        ? t("profileSettings.updated")
+                        : showEmailField
+                          ? t("profileSettings.allDone")
+                          : t("profileSettings.updateemail")}
+                  </Button>
+                </Box>
               </TableCell>
             </TableRow>
             <TableRow>
@@ -251,14 +295,18 @@ export default function ProfileSettings() {
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell sx={{ paddingTop: 4 }} align={isRTL ? "right" : "left"} colSpan={3}>
+              <TableCell
+                sx={{ paddingTop: 4 }}
+                align={isRTL ? "right" : "left"}
+                colSpan={3}
+              >
                 <Button
                   variant="contained"
                   onClick={() => navigate(`/profile/privacypolicy`)}
                   sx={{
                     cursor: "pointer",
                     textTransform: "none",
-                     backgroundColor:isDark?"#000":"#37474F",
+                    backgroundColor: isDark ? "#000" : "#37474F",
                   }}
                 >
                   <Typography
@@ -267,12 +315,13 @@ export default function ProfileSettings() {
                       fontSize: 14,
                       display: "flex",
                       alignItems: "center",
-                      color:'#fff',
-                     
+                      color: "#fff",
+
                       gap: 1,
                     }}
                   >
-                    {t('profileSettings.privacyPolicy')} <img src={link_img} alt="external"></img>
+                    {t("profileSettings.privacyPolicy")}{" "}
+                    <img src={link_img} alt="external"></img>
                   </Typography>
                 </Button>
               </TableCell>
