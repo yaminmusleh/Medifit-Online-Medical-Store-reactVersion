@@ -49,6 +49,7 @@ i18n
             button: "Log in!",
             serverError: "Something went wrong. Please try again later.",
             success: "Logged in successfully",
+            typo: "Forgot your password?",
           },
           register: {
             title: "Welcome to Medifit — Your Partner in Smarter Health",
@@ -127,7 +128,7 @@ i18n
             updating: "Updating...",
             updated: "Updated ✓",
             privacyPolicy: "Privacy Policy",
-            newEmail: "New Email"
+            newEmail: "New Email",
           },
         },
       },
@@ -173,6 +174,7 @@ i18n
             button: "تسجيل الدخول",
             serverError: "حدث خطأ ما، حاول مرة أخرى لاحقاً",
             success: "تم تسجيل الدخول بنجاح",
+            typo: "هل نسيت كلمة السر؟",
           },
           register: {
             title: "مرحباً بك في ميديفيت — شريكك لصحة أذكى",
@@ -251,7 +253,7 @@ i18n
             updating: "جارٍ التحديث...",
             updated: "تم التحديث ✓",
             privacyPolicy: "سياسة الخصوصية",
-            newEmail: "البريد الإلكتروني الجديد"
+            newEmail: "البريد الإلكتروني الجديد",
           },
         },
       },

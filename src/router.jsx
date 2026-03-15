@@ -19,6 +19,8 @@ import PorfileLayout from "./layout/PorfileLayout";
 import ProfileInfo from "./pages/profile/ProfileInfo";
 import ProfileSettings from "./pages/profile/ProfileSettings";
 import PrivacyPolicy from "./pages/privacy-policy/PrivacyPolicy";
+import ForgotPassword from "./pages/forgotpassword/forgotPassword";
+import ResetPassword from "./pages/ResetPass/ResetPassword";
 
 const color1 = "#503217";
 const font = "poppins";
@@ -30,6 +32,14 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/forgot-password",
+        element: <ForgotPassword MainColor={color1} MainFont={font}/>,
+      },
+      {
+        path: "/reset-password",
+        element: <ResetPassword MainColor={color1} MainFont={font}/>,
       },
       {
         path: "/register",

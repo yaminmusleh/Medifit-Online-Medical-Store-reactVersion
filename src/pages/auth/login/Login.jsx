@@ -8,7 +8,7 @@ import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginSchema } from "../../../validation/LoginSchema";
 import useAuthStore from "../../../store/useAuthStore";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslation } from "react-i18next";
@@ -30,10 +30,7 @@ export default function Login() {
 
   const LoginForm = async (value) => {
     try {
-      const response = await authinstance.post(
-        `auth/Account/Login`,
-        value,
-      );
+      const response = await authinstance.post(`auth/Account/Login`, value);
       if (response.status == 200) {
         toast.success(t("login.success"));
         setToken(response.data.accessToken);
@@ -61,11 +58,7 @@ export default function Login() {
           rowGap: 5,
         }}
       >
-        <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        theme="colored"
-      />
+        <ToastContainer position="top-right" autoClose={3000} theme="colored" />
         <Typography
           component={"h1"}
           variant="h3"
@@ -93,7 +86,7 @@ export default function Login() {
 
         {serverError.length > 0 && (
           <Box>
-            {serverError.map((err,index) => (
+            {serverError.map((err, index) => (
               <Typography key={index}>{err}</Typography>
             ))}
           </Box>
@@ -123,6 +116,20 @@ export default function Login() {
             error={errors.password}
             helperText={errors.password?.message}
           />
+          <Typography
+          onClick={()=>navigate('/forgot-password')}
+            sx={{
+              textAlign: "start",
+              fontSize: "13px",
+              fontFamily: "poppins",
+              cursor: "pointer",
+              borderBottom: "2px solid",
+              width: "fit-content",
+              color: "violet",
+            }}
+          >
+            {t("login.typo")}
+          </Typography>
 
           {isSubmitting ? (
             <Box
@@ -147,6 +154,7 @@ export default function Login() {
                 backgroundColor: "#503217",
                 borderRadius: "5px",
                 fontSize: "15px",
+                color: "#fff",
               }}
             >
               {t("login.button")}
