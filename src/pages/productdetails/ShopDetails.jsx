@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import useShop from "../../hooks/useShop";
 import Loader from "../../ui/Loader";
-import { Box, IconButton, Grid, Typography, Button, useTheme } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  Grid,
+  Typography,
+  Button,
+  useTheme,
+} from "@mui/material";
 import HighlightsRow from "../../components/highlights_row/HighlightsRow";
 import Invitation from "../../components/about_invitation/Invitation";
 import Products from "../../components/products/Products";
@@ -12,17 +19,13 @@ import AddIcon from "@mui/icons-material/Add";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import useAddToCart from "../../hooks/useAddToCart";
 export default function ShopDetails() {
-
   const theme = useTheme();
-  const isDark = theme.palette.mode === 'dark';
+  const isDark = theme.palette.mode === "dark";
   const { id } = useParams();
   const { data, isLoading, isError, error } = useShop(id);
 
   const { mutate, isPending } = useAddToCart();
 
-  const addToCart = (id) => {
-    alert(id);
-  };
   const [quantity, setQuantity] = useState(1);
   if (isLoading) return <Loader />;
   if (isError)
@@ -40,7 +43,7 @@ export default function ShopDetails() {
         </Typography>
       </Box>
     );
-  
+
   const color1 = "#503217";
   const font = "poppins";
 
@@ -158,7 +161,7 @@ export default function ShopDetails() {
                       fontSize: "18px",
                       fontWeight: 600,
                       fontFamily: font,
-                      color: isDark?'#fff':color1,
+                      color: isDark ? "#fff" : color1,
                       minWidth: "40px",
                       textAlign: "center",
                     }}
@@ -222,7 +225,7 @@ export default function ShopDetails() {
                       ":hover": { bgcolor: "#72451e" },
                       height: 56,
                       px: 3,
-                      color:'#fff'
+                      color: "#fff",
                     }}
                     endIcon={<AddShoppingCartIcon />}
                   >
@@ -261,7 +264,13 @@ export default function ShopDetails() {
         </Grid>
       </Box>
       <HighlightsRow MainColor={color1} MainFont={font} />
-      <CustomerReview MainColor={color1} MainFont={font} reviews={data?.reviews} />
+      <CustomerReview
+        MainColor={color1}
+        MainFont={font}
+        reviews={data?.reviews}
+        allowAddReview
+        productId={data.id}
+      />
       <Products MainColor={color1} MainFont={font} title={"Recent Products"} />
       <Invitation />
     </>

@@ -1,11 +1,21 @@
-import { Box, Grid, Typography } from "@mui/material";
-import React from "react";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import React, { useState } from "react";
 import photo1 from "./assets/person1.svg";
 import photo2 from "./assets/person2.svg";
 import photo3 from "./assets/person3.svg";
 import { Avatar } from "@mui/material";
+import usePostReview from "../../hooks/usePostReview";
 
-export default function CustomerReview({ MainColor, MainFont, reviews }) {
+import { useParams } from "react-router-dom";
+import useAuthStore from "../../store/useAuthStore";
+
+export default function CustomerReview({
+  MainColor,
+  MainFont,
+  reviews,
+  allowAddReview = false,
+  productId,
+}) {
   const defaultPersons = [
     {
       review:
@@ -28,6 +38,34 @@ export default function CustomerReview({ MainColor, MainFont, reviews }) {
   ];
 
   const persons = reviews?.length ? reviews : defaultPersons;
+
+  const { mutate: AddReview, isPending } = usePostReview();
+
+  const ProdId = productId;
+
+  const [comment, setComment] = useState("");
+
+  const [rating, setRating] = useState(5);
+
+  const handleReview = () => {
+    AddReview(
+      {
+        productId: ProdId,
+        rating,
+        comment,
+      },
+      {
+        onSuccess: () => {
+          setComment("");
+          console.log("success");
+        },
+        onError: (err) => {
+          console.log("Error alert:" + err.message);
+        },
+      },
+    );
+  };
+  const token = useAuthStore((state)=>state.token);
   return (
     <Box py={"60px"}>
       <Typography
@@ -41,10 +79,53 @@ export default function CustomerReview({ MainColor, MainFont, reviews }) {
           fontWeight: 600,
         }}
         align="center"
-        mb={"81px"}
+        mb={"30px"}
       >
         Customers Review
       </Typography>
+
+      {allowAddReview && (
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems={"center"}
+          mb="40px"
+          gap={2}
+          sx={{
+            flexDirection: {
+              xs: "column",
+              md: "row",
+            },
+          }}
+        >
+          <TextField
+            placeholder="Add your own opinion!"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            sx={{
+              width: "60%",
+              "& .MuiOutlinedInput-root": {
+                height: 40,
+              },
+            }}
+          ></TextField>
+          <Button
+            onClick={handleReview}
+            disabled={isPending || !token}
+            variant="contained"
+            sx={{
+              bgcolor: MainColor,
+              textTransform: "none",
+              fontFamily: MainFont,
+              color: "#fff",
+              height: 40,
+              ":hover": { bgcolor: "#72451e" },
+            }}
+          >
+            {isPending ? "Submitting..." : "Add review"}
+          </Button>
+        </Box>
+      )}
       <Grid container spacing={4} justifyContent="center">
         {persons.map((person, index) => (
           <Grid
@@ -59,7 +140,7 @@ export default function CustomerReview({ MainColor, MainFont, reviews }) {
                 md: "70%",
                 lg: "31%",
               },
-              mt:'auto',
+              mt: "auto",
             }}
           >
             <Box
@@ -88,12 +169,12 @@ export default function CustomerReview({ MainColor, MainFont, reviews }) {
               justifyContent={"start"}
             >
               <Avatar
-  src={person.image || person.person}
-  alt={person.userName || person.name}
-  sx={{ width: 48, height: 48 }}
->
-  {(person.userName || person.name)?.[0]}
-</Avatar>
+                src={person.image || person.person}
+                alt={person.userName || person.name}
+                sx={{ width: 48, height: 48 }}
+              >
+                {(person.userName || person.name)?.[0]}
+              </Avatar>
               <Typography
                 sx={{
                   fontSize: "18px",
