@@ -21,6 +21,7 @@ import ProfileSettings from "./pages/profile/ProfileSettings";
 import PrivacyPolicy from "./pages/privacy-policy/PrivacyPolicy";
 import ForgotPassword from "./pages/forgotpassword/forgotPassword";
 import ResetPassword from "./pages/ResetPass/ResetPassword";
+import ProductsPage from "./pages/products/ProductsPage";
 
 const color1 = "#503217";
 const font = "poppins";
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         path: "/product/:id",
         element: <ShopDetails />,
+      },
+      {
+        path: "/products/:categId",
+        element: <ProductsPage />,
       },
       {
         path: "/shop",

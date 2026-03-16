@@ -11,8 +11,10 @@ import image4 from "./shop-by-categ-imgs/frame4.svg";
 import image5 from "./shop-by-categ-imgs/frame5.svg";
 import image6 from "./shop-by-categ-imgs/frame6.svg";
 import Loader from "../ui/Loader";
+import { useNavigate } from "react-router-dom";
 
 export default function Categories() {
+  const navigate = useNavigate();
   
   const images = [image1, image2, image3, image4, image5, image6];
 
@@ -93,6 +95,7 @@ export default function Categories() {
             }}
           >
             <CardActionArea
+            onClick={()=>navigate(`/products/${categs.id}`)}
               sx={{
                 height: "100%",
                 display: "flex",
