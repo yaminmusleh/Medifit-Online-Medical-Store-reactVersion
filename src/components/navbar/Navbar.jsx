@@ -36,38 +36,30 @@ export default function Navbar() {
   const logout = useAuthStore((state) => state.logout);
   const mode = useThemeStore((state) => state.mode);
   const toggleTheme = useThemeStore((state) => state.toggleTheme);
-  const pages = token
-    ? [
-        { label: t("Home"), path: "/home" },
-        { label: t("Shop"), path: "/shop" },
-        { label: t("About"), path: "/about" },
-        { label: t("Contact"), path: "/contact" },
-        { label: t("Logout"), path: "logout" },
-      ]
-    : [
-        { label: t("Home"), path: "/home" },
-        { label: t("Shop"), path: "/shop" },
-        { label: t("About"), path: "/about" },
-        { label: t("Contact"), path: "/contact" },
-        { label: t("Login"), path: "/login" },
-        { label: t("Register"), path: "/register" },
-      ];
+
+  const pages = [
+    { label: t("Home"), path: "/home" },
+    { label: t("Shop"), path: "/shop" },
+    { label: t("About"), path: "/about" },
+    { label: t("Contact"), path: "/contact" },
+  ];
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   };
-  const [anchorElProfile, setAnchorElProfile] = React.useState(null);
+
+  const [anchorElProfile, setAnchorElProfile] = useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [scrolled, setScrolling] = useState(false);
 
   const handleOpenProfileMenu = (event) =>
     setAnchorElProfile(event.currentTarget);
   const handleCloseProfileMenu = () => setAnchorElProfile(null);
 
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-
-  const [scrolled, setScrolling] = useState(false);
+  const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
+  const handleCloseNavMenu = () => setAnchorElNav(null);
 
   const navigate = useNavigate();
-
   const { data } = useCard();
   const cartCountNumber = data?.items?.length || 0;
 
@@ -79,14 +71,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
   return (
     <AppBar
       position="fixed"
@@ -96,8 +80,8 @@ export default function Navbar() {
             ? "rgba(33, 37, 41, 0.7)"
             : "rgba(238, 237, 231, 0.7)"
           : theme.palette.mode === "dark"
-            ? "#212529"
-            : "#EEEDE7",
+          ? "#212529"
+          : "#EEEDE7",
         color: theme.palette.mode === "dark" ? "#f2f2f2" : "#503217",
         boxShadow: scrolled ? 5 : "none",
         paddingY: "20px",
@@ -122,13 +106,11 @@ export default function Navbar() {
             hideProgressBar={false}
             newestOnTop
             closeOnClick
-            rtl={false}
             pauseOnHover
             draggable
             theme="light"
           />
 
-          {/* Logo */}
           <Box
             component={RouterLink}
             to="/"
@@ -163,7 +145,6 @@ export default function Navbar() {
             />
           </Box>
 
-          {/* Mobile Menu */}
           <Box
             sx={{
               display: { xs: "flex", md: "none" },
@@ -174,8 +155,6 @@ export default function Navbar() {
             <IconButton
               size="large"
               aria-label="menu"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
             >
@@ -188,14 +167,13 @@ export default function Navbar() {
                 }}
               />
             </IconButton>
+
             <Menu
-              id="menu-appbar"
               anchorEl={anchorElNav}
-              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-              keepMounted
-              transformOrigin={{ vertical: "top", horizontal: "right" }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
+              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+              transformOrigin={{ vertical: "top", horizontal: "right" }}
               PaperProps={{
                 sx: {
                   minWidth: 180,
@@ -204,92 +182,28 @@ export default function Navbar() {
                 },
               }}
             >
-              {pages.map((page) => {
-                if (page.path === "logout") {
-                  return (
-                    <MenuItem
-                      key="Logout"
-                      component="button"
-                      onClick={() => {
-                        logout();
-                        navigate("/login");
-                      }}
-                      underline="none"
-                      sx={{
-                        my: 2,
-                        color: "#FF2400",
-                        cursor: "pointer",
-                        background: "none",
-                        border: "none",
-                        font: "inherit",
-                        fontWeight: 600,
-                        justifyContent: "center",
-                        textAlign: "center",
-                      }}
-                    >
-                      {page.label}
-                    </MenuItem>
-                  );
-                }
-
-                return (
-                  <MenuItem
-                    key={page.path}
-                    component={RouterLink}
-                    to={page.path}
-                    onClick={handleCloseNavMenu}
-                    sx={{
-                      justifyContent: "center",
-                      textAlign: "center",
-                    }}
-                  >
-                    <Typography textAlign="center">{page.label}</Typography>
-                  </MenuItem>
-                );
-              })}
-              {token && (
+              {pages.map((page) => (
                 <MenuItem
+                  key={page.path}
                   component={RouterLink}
-                  to="/cart"
+                  to={page.path}
                   onClick={handleCloseNavMenu}
-                  sx={{
-                    justifyContent: "center",
-                    textAlign: "center",
-                  }}
+                  sx={{ justifyContent: "center", textAlign: "center" }}
                 >
-                  <Badge
-                    badgeContent={cartCountNumber}
-                    sx={{
-                      "& .MuiBadge-badge": {
-                        minWidth: "14px",
-                        height: "17px",
-                        fontSize: "0.7rem",
-                        backgroundColor: "#503217",
-                        color: "white",
-                      },
-                    }}
-                    overlap="circular"
-                    anchorOrigin={{ vertical: "top", horizontal: "right" }}
-                  >
-                    <ShoppingCartOutlinedIcon sx={{ mr: 1 }} />
-                  </Badge>
-
-                  <Typography>Cart</Typography>
+                  <Typography textAlign="center">{page.label}</Typography>
                 </MenuItem>
-              )}
+              ))}
+
               <Box
                 sx={{
                   px: 2,
                   py: 1,
                   width: "100%",
-                  display: { xs: "block", md: "none" },
                 }}
               >
                 <FormControl fullWidth>
-                  <InputLabel id="lang-select-label">Language</InputLabel>
-
+                  <InputLabel>Language</InputLabel>
                   <Select
-                    labelId="lang-select-label"
                     label="Language"
                     value={i18n.language}
                     onChange={(e) => changeLanguage(e.target.value)}
@@ -302,7 +216,6 @@ export default function Navbar() {
             </Menu>
           </Box>
 
-          {/* Desktop Menu */}
           <Box
             sx={{
               flexGrow: 1,
@@ -311,94 +224,70 @@ export default function Navbar() {
               gap: "30px",
             }}
           >
-            {pages.map((page) => {
-              if (page.path === "logout") {
-                return (
-                  <Link
-                    key="logout"
-                    component="button"
-                    onClick={() => {
-                      logout();
-                      navigate("/login");
-                    }}
-                    underline="none"
-                    sx={{
-                      my: 2,
-                      color: "#FF2400",
-                      cursor: "pointer",
-                      background: "none",
-                      border: "none",
-                      font: "inherit",
-                      fontWeight: 600,
-                    }}
-                  >
-                    {page.label}
-                  </Link>
-                );
-              }
-
-              return (
-                <Link
-                  key={page.path}
-                  component={RouterLink}
-                  to={page.path}
-                  underline="none"
-                  sx={{
-                    my: 2,
-                    color: "#8F7D6A",
-                  }}
-                >
-                  {page.label}
-                </Link>
-              );
-            })}
+            {pages.map((page) => (
+              <Link
+                key={page.path}
+                component={RouterLink}
+                to={page.path}
+                underline="none"
+                sx={{
+                  my: 2,
+                  color: "#8F7D6A",
+                }}
+              >
+                {page.label}
+              </Link>
+            ))}
           </Box>
+
           <IconButton sx={{ color: "#503217" }}>
             <SearchIcon />
           </IconButton>
-          {token && (
-            <>
-              <Box sx={{ display: { xs: "none", sm: "flex" } }}>
-                <Badge
-                  badgeContent={cartCountNumber}
-                  sx={{
-                    "& .MuiBadge-badge": {
-                      minWidth: "14px",
-                      height: "17px",
-                      fontSize: "0.7rem",
-                      backgroundColor: "#503217",
-                      color: "white",
-                    },
-                  }}
-                  overlap="circular"
-                  anchorOrigin={{ vertical: "top", horizontal: "right" }}
-                >
-                  <IconButton
-                    component={RouterLink}
-                    sx={{ color: "#503217" }}
-                    to="/cart"
-                  >
-                    <ShoppingCartOutlinedIcon />
-                  </IconButton>
-                </Badge>
-              </Box>
 
-              <Box>
+          {token && (
+            <Box sx={{ display: { xs: "none", sm: "flex" } }}>
+              <Badge
+                badgeContent={cartCountNumber}
+                sx={{
+                  "& .MuiBadge-badge": {
+                    minWidth: "14px",
+                    height: "17px",
+                    fontSize: "0.7rem",
+                    backgroundColor: "#503217",
+                    color: "white",
+                  },
+                }}
+                overlap="circular"
+                anchorOrigin={{ vertical: "top", horizontal: "right" }}
+              >
                 <IconButton
-                  onClick={handleOpenProfileMenu}
-                  sx={{ p: 0, marginRight: "7px" }}
+                  component={RouterLink}
+                  sx={{ color: "#503217" }}
+                  to="/cart"
                 >
-                  <Avatar
-                    sx={{ width: 30, height: 30, bgcolor: "#503217" }}
-                  ></Avatar>
+                  <ShoppingCartOutlinedIcon />
                 </IconButton>
-                <Menu
-                  anchorEl={anchorElProfile}
-                  open={Boolean(anchorElProfile)}
-                  onClose={handleCloseProfileMenu}
-                  anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-                  transformOrigin={{ vertical: "top", horizontal: "right" }}
-                >
+              </Badge>
+            </Box>
+          )}
+
+          <Box>
+            <IconButton
+              onClick={handleOpenProfileMenu}
+              sx={{ p: 0, marginRight: "7px" }}
+            >
+              <Avatar sx={{ width: 30, height: 30, bgcolor: "#503217" }} />
+            </IconButton>
+
+            <Menu
+              anchorEl={anchorElProfile}
+              open={Boolean(anchorElProfile)}
+              onClose={handleCloseProfileMenu}
+              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+              transformOrigin={{ vertical: "top", horizontal: "right" }}
+            >
+              {token ? (
+                <>
                   <MenuItem
                     onClick={() => {
                       navigate("/profile");
@@ -411,29 +300,65 @@ export default function Navbar() {
                   <MenuItem>
                     {t("profileMenu.darkMode")}
                     <Switch
-                      checked={mode == "dark"}
+                      checked={mode === "dark"}
                       onChange={toggleTheme}
                       sx={{ marginLeft: 1 }}
                     />
                   </MenuItem>
-                </Menu>
-              </Box>
-            </>
-          )}
+
+                  <MenuItem
+                    sx={{ color: "#FF2400", fontWeight: 600 }}
+                    onClick={() => {
+                      logout();
+                      navigate("/login");
+                      handleCloseProfileMenu();
+                    }}
+                  >
+                    Logout
+                  </MenuItem>
+                </>
+              ) : (
+                <>
+                  <MenuItem
+                    onClick={() => {
+                      navigate("/login");
+                      handleCloseProfileMenu();
+                    }}
+                  >
+                    Login
+                  </MenuItem>
+
+                  <MenuItem
+                    onClick={() => {
+                      navigate("/register");
+                      handleCloseProfileMenu();
+                    }}
+                  >
+                    Register
+                  </MenuItem>
+
+                  <MenuItem>
+                    {t("profileMenu.darkMode")}
+                    <Switch
+                      checked={mode === "dark"}
+                      onChange={toggleTheme}
+                      sx={{ marginLeft: 1 }}
+                    />
+                  </MenuItem>
+                </>
+              )}
+            </Menu>
+          </Box>
+
           <FormControl
             sx={{
-              display: {
-                xs: "none",
-                md: "block",
-              },
+              display: { xs: "none", md: "block" },
               width: "120px",
             }}
           >
-            <InputLabel id="demo-simple-select-label">Language</InputLabel>
+            <InputLabel>Language</InputLabel>
             <Select
               sx={{ width: "120px" }}
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
               label="Language"
               value={i18n.language}
               onChange={(e) => {
