@@ -1,4 +1,10 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  InputAdornment,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React, { useState } from "react";
 import phone from "./imgs/phone.svg";
 import user1 from "./imgs/user1.svg";
@@ -28,7 +34,6 @@ export default function ContactForm({ MainColor, MainFont }) {
     });
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -46,11 +51,10 @@ export default function ContactForm({ MainColor, MainFont }) {
     toast.success("Form got submitted to our team!");
   };
 
-
-
   return (
     <Box
       sx={{
+        py: "50px",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -82,11 +86,21 @@ export default function ContactForm({ MainColor, MainFont }) {
             fontWeight: 600,
           }}
         >
-          Contact us <img src={phone} alt="phone"></img>
+          Contact us{" "}
+          <Box
+            component={"img"}
+            src={phone}
+            alt="phone"
+            sx={{ width: { xs: 40, md: 70 } }}
+          />
         </Typography>
         <Typography
           component={"span"}
-          sx={{ color: "#8F7D6A", fontFamily: "sans-serif" }}
+          sx={{
+            color: "#8F7D6A",
+            fontFamily: "sans-serif",
+            fontSize: { xs: "14px", md: "16px" },
+          }}
         >
           Have questions or need support? Get in touch with our team – we're
           here to help!
@@ -97,8 +111,16 @@ export default function ContactForm({ MainColor, MainFont }) {
         onSubmit={handleSubmit}
         sx={{ display: "flex", flexDirection: "column", gap: "50px" }}
       >
-        <Box className="upper" sx={{ display: "flex", gap: "20px" }}>
-          <Box sx={{ width: "418px" }}>
+        <Box
+          className="upper"
+          sx={{
+            display: "flex",
+            gap: "20px",
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
+        >
+          <Box sx={{ width: { xs: "100%", sm: "418px" } }}>
             <Typography
               sx={{
                 fontFamily: "sans-serif",
@@ -119,10 +141,17 @@ export default function ContactForm({ MainColor, MainFont }) {
               }}
               variant="outlined"
               fullWidth
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Box component="img" src={user1} sx={{ width: 20 }} />
+                  </InputAdornment>
+                ),
+              }}
             />
           </Box>
 
-          <Box sx={{ width: "418px" }}>
+          <Box sx={{ width: { xs: "100%", sm: "418px" } }}>
             <Typography
               sx={{
                 fontFamily: "sans-serif",
@@ -143,11 +172,26 @@ export default function ContactForm({ MainColor, MainFont }) {
               }}
               variant="outlined"
               fullWidth
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Box component="img" src={user2} sx={{ width: 20 }} />
+                  </InputAdornment>
+                ),
+              }}
             />
           </Box>
         </Box>
-        <Box className="lower" sx={{ display: "flex", gap: "20px" }}>
-          <Box sx={{ width: "418px" }}>
+        <Box
+          className="lower"
+          sx={{
+            display: "flex",
+            gap: "20px",
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
+        >
+          <Box sx={{ width: { xs: "100%", sm: "418px" } }}>
             <Typography
               sx={{
                 fontFamily: "sans-serif",
@@ -168,10 +212,17 @@ export default function ContactForm({ MainColor, MainFont }) {
               }}
               variant="outlined"
               fullWidth
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Box component="img" src={user3} sx={{ width: 20 }} />
+                  </InputAdornment>
+                ),
+              }}
             />
           </Box>
 
-          <Box sx={{ width: "418px" }}>
+          <Box sx={{ width: { xs: "100%", sm: "418px" } }}>
             <Typography
               sx={{
                 fontFamily: "sans-serif",
@@ -182,6 +233,7 @@ export default function ContactForm({ MainColor, MainFont }) {
               Schedule to receive call
             </Typography>
             <TextField
+              type="date"
               name="schedule"
               value={formData.schedule}
               onChange={handleChange}
@@ -192,6 +244,13 @@ export default function ContactForm({ MainColor, MainFont }) {
               }}
               variant="outlined"
               fullWidth
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Box component="img" src={user4} sx={{ width: 20 }} />
+                  </InputAdornment>
+                ),
+              }}
             />
           </Box>
         </Box>
@@ -218,13 +277,19 @@ export default function ContactForm({ MainColor, MainFont }) {
                 alignItems: "flex-start",
               },
             }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Box component="img" src={user5} sx={{ width: 20 }} />
+                </InputAdornment>
+              ),
+            }}
           />
         </Box>
         <Box>
           <Button
             disabled={isFormIncomplete}
             type="submit"
-            
             sx={{
               backgroundColor: MainColor,
               fontFamily: MainFont,
