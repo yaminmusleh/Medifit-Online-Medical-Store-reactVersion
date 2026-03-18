@@ -11,8 +11,10 @@ import {
 import { Link } from "react-router-dom";
 import useProducts from "../products/useProducts";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import { useTranslation } from "react-i18next";
 
 export default function ProductUi({ MainColor, MainFont, Product, limit }) {
+  const {t}= useTranslation();
   return (
     <Grid
       container
@@ -113,7 +115,7 @@ export default function ProductUi({ MainColor, MainFont, Product, limit }) {
                   fontSize="small"
                   sx={{ marginRight: "3px" }}
                 />{" "}
-                Shop now
+                {t("products.button")}
               </Button>
             </Box>
             <CardContent sx={{ flexGrow: 1, p: 0, marginTop: "20px" }}>

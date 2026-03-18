@@ -27,6 +27,7 @@ i18n
             visa: "Visa",
             payNow: "Pay Now!",
           },
+
           cart: {
             myCart: "My Cart",
             product: "Product",
@@ -130,6 +131,20 @@ i18n
             privacyPolicy: "Privacy Policy",
             newEmail: "New Email",
           },
+          hero: {
+            title: "Your trusted care now and always",
+            subtitle:
+              "For the best results, align your health needs with your medication plan.",
+            shopNow: "Shop now",
+          },
+          category: {
+            shopByCategory: "Shop by Category",
+          },
+          products: {
+            title: "Latest Products",
+            button:"Shop now",
+          },
+         
         },
       },
       ar: {
@@ -255,6 +270,20 @@ i18n
             privacyPolicy: "سياسة الخصوصية",
             newEmail: "البريد الإلكتروني الجديد",
           },
+          hero: {
+            title: "رعايتك الموثوقة الآن ودائمًا",
+            subtitle:
+              "لأفضل النتائج، قم بمواءمة احتياجاتك الصحية مع خطة أدويتك.",
+            shopNow: "تسوق الآن",
+          },
+          category: {
+            shopByCategory: "تسوق حسب الفئة",
+          },
+          products: {
+            title: "أحدث المنتجات",
+            button:'اشتري الان'
+          },
+           
         },
       },
     },

@@ -1,14 +1,25 @@
-import { Box, Button, Container, Grid, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import hero_image from "./hero-index-html/Hero.webp";
 import button_image from "./hero-index-html/bag.svg";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Hero() {
   const theme = useTheme();
-  const isDark = theme.palette.mode === "dark"
+  const isDark = theme.palette.mode === "dark";
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === "ar";
+
   return (
-    <Box className="explore-store">
+    <Box className="explore-store" dir={isRTL ? "rtl" : "ltr"}>
       <Container sx={{ paddingTop: "40px" }}>
         <Box sx={{ paddingBottom: "60px" }}>
           <Grid
@@ -40,13 +51,14 @@ export default function Hero() {
                     md: "48px",
                     lg: "56px",
                   },
+                  textAlign:isRTL?"right":'left',
                   fontFamily: "poppins",
                   color: "#503217",
                   fontWeight: 700,
                 }}
                 gutterBottom
               >
-                Your trusted care now and always
+                {t("hero.title")}
               </Typography>
               <Typography
                 variant="span"
@@ -55,8 +67,7 @@ export default function Hero() {
                 color="#8F7D6A"
                 marginBottom={"60px"}
               >
-                For the best results, align your health needs with your
-                medication plan.
+                {t("hero.subtitle")}
               </Typography>
               <Box
                 sx={{
@@ -71,16 +82,17 @@ export default function Hero() {
                   sx={{
                     fontFamily: "sans-serif",
                     textTransform: "none",
-                    color:isDark?"#fff":"#fff",
+                    color: isDark ? "#fff" : "#fff",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
+                    gap:"5px",
                     bgcolor: "#503217",
                     ":hover": { bgcolor: "#72451e" },
                   }}
-                  startIcon={<img src={button_image} alt="shop" />}
+                  
                 >
-                  Shop now
+                 <img src={button_image} alt="shop" /> {t("hero.shopNow")}
                 </Button>
               </Box>
             </Grid>

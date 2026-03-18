@@ -18,6 +18,7 @@ import Loader from "../../ui/Loader";
 import { Link } from "react-router-dom";
 import ProductUi from "../UI/ProductUi";
 import useProducts2 from "../../hooks/useProducts2";
+import { useTranslation } from "react-i18next";
 
 export default function Products({
   MainColor,
@@ -35,6 +36,7 @@ export default function Products({
     sortBy: "",
     ascending: true,
   });
+  const {t}= useTranslation();
 
   const [appliedFilters, setAppliedFilters] = useState({ ...filters });
   const { data } = useProducts2({ ...appliedFilters });
@@ -56,6 +58,8 @@ export default function Products({
       </Box>
     );
 
+    
+
   return (
     <Box py={"70px"} sx={{ textAlign: "center" }}>
       <Typography
@@ -71,7 +75,7 @@ export default function Products({
         }}
         marginBottom={"20px"}
       >
-        {title || "Latest Products"}
+        {title || t("products.title")}
       </Typography>
 
       {showFilters && (

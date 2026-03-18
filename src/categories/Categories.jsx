@@ -12,11 +12,13 @@ import image5 from "./shop-by-categ-imgs/frame5.svg";
 import image6 from "./shop-by-categ-imgs/frame6.svg";
 import Loader from "../ui/Loader";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Categories() {
   const navigate = useNavigate();
   
   const images = [image1, image2, image3, image4, image5, image6];
+  const {t}= useTranslation();
 
   const { data, isLoading, isError, error } = useCategs(6);
   //data, isLoading, isError, error takes the values from the query that we returned in useCategs
@@ -66,7 +68,7 @@ export default function Categories() {
           fontWeight: 700,
         }}
       >
-        Shop By Category
+        {t("category.shopByCategory")}
       </Typography>
       <Box
         sx={{
