@@ -19,7 +19,7 @@ import PorfileLayout from "./layout/PorfileLayout";
 import ProfileInfo from "./pages/profile/ProfileInfo";
 import ProfileSettings from "./pages/profile/ProfileSettings";
 import PrivacyPolicy from "./pages/privacy-policy/PrivacyPolicy";
-import ForgotPassword from "./pages/forgotpassword/forgotPassword";
+import ForgotPassword from "./pages/forgotpassword/ForgotPassword";
 import ResetPassword from "./pages/ResetPass/ResetPassword";
 import ProductsPage from "./pages/products/ProductsPage";
 
