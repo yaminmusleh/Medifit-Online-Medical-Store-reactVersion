@@ -146,6 +146,7 @@ export default function Register() {
                 backgroundColor: "#503217",
                 borderRadius: "5px",
                 fontSize: "15px",
+                color:'#fff'
               }}
             >
               {t("register.button")}

@@ -276,7 +276,7 @@ export default function Navbar() {
               onClick={handleOpenProfileMenu}
               sx={{ p: 0, marginRight: "7px" }}
             >
-              <Avatar sx={{ width: 30, height: 30, bgcolor: "#503217" }} />
+              <Avatar sx={{ width: 30, height: 30, bgcolor: "#503217", color:'#fff' }} />
             </IconButton>
 
             <Menu
