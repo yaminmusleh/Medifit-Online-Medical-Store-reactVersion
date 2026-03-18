@@ -11,6 +11,7 @@ export default function Shop() {
         MainColor={color1}
         MainFont={font}
         title={"Ready to fill your cart?"}
+        showFilters={true}
       />
     </Box>
   );

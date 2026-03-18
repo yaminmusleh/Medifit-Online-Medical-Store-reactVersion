@@ -13,14 +13,13 @@ import useProducts from "../products/useProducts";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 export default function ProductUi({ MainColor, MainFont, Product, limit }) {
-  const { data } = useProducts(limit);
   return (
     <Grid
       container
       spacing={4}
       sx={{ justifyContent: "center", alignItems: "center" }}
     >
-      {data?.map((cardInfo) => (
+      {Product?.slice(0, limit)?.map((cardInfo) => (
         <Grid
           sx={{
             width: {

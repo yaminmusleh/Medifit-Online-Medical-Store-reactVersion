@@ -80,8 +80,8 @@ export default function Navbar() {
             ? "rgba(33, 37, 41, 0.7)"
             : "rgba(238, 237, 231, 0.7)"
           : theme.palette.mode === "dark"
-          ? "#212529"
-          : "#EEEDE7",
+            ? "#212529"
+            : "#EEEDE7",
         color: theme.palette.mode === "dark" ? "#f2f2f2" : "#503217",
         boxShadow: scrolled ? 5 : "none",
         paddingY: "20px",
@@ -276,7 +276,14 @@ export default function Navbar() {
               onClick={handleOpenProfileMenu}
               sx={{ p: 0, marginRight: "7px" }}
             >
-              <Avatar sx={{ width: 30, height: 30, bgcolor: "#503217", color:'#fff' }} />
+              <Avatar
+                sx={{
+                  width: 30,
+                  height: 30,
+                  bgcolor: "#503217",
+                  color: "#fff",
+                }}
+              />
             </IconButton>
 
             <Menu
@@ -286,67 +293,69 @@ export default function Navbar() {
               anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
               transformOrigin={{ vertical: "top", horizontal: "right" }}
             >
-              {token ? (
-                <>
-                  <MenuItem
-                    onClick={() => {
-                      navigate("/profile");
-                      handleCloseProfileMenu();
-                    }}
-                  >
-                    {t("profileMenu.profile")}
-                  </MenuItem>
+              {token
+                ? [
+                    <MenuItem
+                      key="profile"
+                      onClick={() => {
+                        navigate("/profile");
+                        handleCloseProfileMenu();
+                      }}
+                    >
+                      {t("profileMenu.profile")}
+                    </MenuItem>,
 
-                  <MenuItem>
-                    {t("profileMenu.darkMode")}
-                    <Switch
-                      checked={mode === "dark"}
-                      onChange={toggleTheme}
-                      sx={{ marginLeft: 1 }}
-                    />
-                  </MenuItem>
+                    <MenuItem key="darkmode">
+                      {t("profileMenu.darkMode")}
+                      <Switch
+                        checked={mode === "dark"}
+                        onChange={toggleTheme}
+                        sx={{ marginLeft: 1 }}
+                      />
+                    </MenuItem>,
 
-                  <MenuItem
-                    sx={{ color: "#FF2400", fontWeight: 600 }}
-                    onClick={() => {
-                      logout();
-                      navigate("/login");
-                      handleCloseProfileMenu();
-                    }}
-                  >
-                    Logout
-                  </MenuItem>
-                </>
-              ) : (
-                <>
-                  <MenuItem
-                    onClick={() => {
-                      navigate("/login");
-                      handleCloseProfileMenu();
-                    }}
-                  >
-                    Login
-                  </MenuItem>
+                    <MenuItem
+                      key="logout"
+                      sx={{ color: "#FF2400", fontWeight: 600 }}
+                      onClick={() => {
+                        logout();
+                        navigate("/login");
+                        handleCloseProfileMenu();
+                      }}
+                    >
+                      Logout
+                    </MenuItem>,
+                  ]
+                : [
+                    <MenuItem
+                      key="login"
+                      onClick={() => {
+                        navigate("/login");
+                        handleCloseProfileMenu();
+                      }}
+                    >
+                      Login
+                    </MenuItem>,
 
-                  <MenuItem
-                    onClick={() => {
-                      navigate("/register");
-                      handleCloseProfileMenu();
-                    }}
-                  >
-                    Register
-                  </MenuItem>
+                    <MenuItem
+                      key="register"
+                      onClick={() => {
+                        navigate("/register");
+                        handleCloseProfileMenu();
+                      }}
+                    >
+                      Register
+                    </MenuItem>,
 
-                  <MenuItem>
-                    {t("profileMenu.darkMode")}
-                    <Switch
-                      checked={mode === "dark"}
-                      onChange={toggleTheme}
-                      sx={{ marginLeft: 1 }}
-                    />
-                  </MenuItem>
-                </>
-              )}
+                    <MenuItem key="darkmode">
+                      {t("profileMenu.darkMode")}
+                      <Switch
+                        checked={mode === "dark"}
+                        onChange={toggleTheme}
+                        sx={{ marginLeft: 1 }}
+                      />
+                    </MenuItem>,
+                  ]}
             </Menu>
           </Box>
 
