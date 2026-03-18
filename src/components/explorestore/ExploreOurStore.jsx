@@ -9,11 +9,12 @@ import Button from "@mui/material/Button";
 import Loader from "../../ui/Loader";
 import { Link } from "react-router-dom";
 import ProductUi from "../UI/ProductUi";
+import useProducts2 from "../../hooks/useProducts2";
 
 export default function ExplpreOurStore({ MainColor, MainFont, Product }) {
-   const limit = Product?.limit || 6;
+  const limit = Product?.limit || 6;
   const { isLoading, isError, error } = useProducts(limit);
-  
+  const { data } = useProducts2({});
 
   if (isLoading) return <Loader />;
   if (isError)
@@ -24,7 +25,6 @@ export default function ExplpreOurStore({ MainColor, MainFont, Product }) {
           justifyContent: "center",
           alignItems: "center",
           color: "red",
-         
         }}
       >
         <Typography component={"h1"} variant="h1">
@@ -32,28 +32,31 @@ export default function ExplpreOurStore({ MainColor, MainFont, Product }) {
         </Typography>
       </Box>
     );
-    
 
   return (
     <Box className="explore-store" py={"70px"} sx={{ textAlign: "center" }}>
       <Container>
-      <Typography
-        sx={{
-          fontFamily: MainFont,
-          color: MainColor,
-          fontSize: {
-            md: "48px",
-            xs: "27px",
-            sm: "35px", 
-          },
-          fontWeight: 600,
-        
-        }}
-        marginBottom={"60px"}
-      >
-        Explore Our store Collection
-      </Typography>
-      <ProductUi MainColor={MainColor} MainFont={MainFont} Product={Product} limit={limit}/>
+        <Typography
+          sx={{
+            fontFamily: MainFont,
+            color: MainColor,
+            fontSize: {
+              md: "48px",
+              xs: "27px",
+              sm: "35px",
+            },
+            fontWeight: 600,
+          }}
+          marginBottom={"40px"}
+        >
+          Explore Our store Collection
+        </Typography>
+        <ProductUi
+          MainColor={MainColor}
+          MainFont={MainFont}
+          Product={data}
+          limit={limit}
+        />
       </Container>
     </Box>
   );

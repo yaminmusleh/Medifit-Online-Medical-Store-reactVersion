@@ -18,7 +18,7 @@ export default function NewsLetter() {
   const isDark = theme.palette.mode ==="dark"
   const navigate = useNavigate();
   return (
-    <Box className="explore-store" sx={{ py: "60px" }}>
+    <Box className="explore-store" sx={{ paddingBottom: "60px" }}>
       <Container>
       <Grid
         container
@@ -97,7 +97,9 @@ export default function NewsLetter() {
               </Typography>
               <Typography
                 sx={{
-                  fontSize: 40,
+                  fontSize: {
+                    xs:25, sm:30, md:40
+                  },
                   fontWeight: 700,
                   mb: 4,
                   fontFamily: "poppins",
