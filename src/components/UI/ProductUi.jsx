@@ -14,7 +14,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useTranslation } from "react-i18next";
 
 export default function ProductUi({ MainColor, MainFont, Product, limit }) {
-  const {t}= useTranslation();
+  const { t } = useTranslation();
   return (
     <Grid
       container
@@ -117,6 +117,24 @@ export default function ProductUi({ MainColor, MainFont, Product, limit }) {
                 />{" "}
                 {t("products.button")}
               </Button>
+              <Typography
+                
+                sx={{
+                  position: "absolute",
+                  top:14, left:16,
+                  backgroundColor:'#D3744A',
+                  color:'#fff',
+                 fontFamily:"sans-serif",
+                 fontSize:'13px',
+                 width:'50px',
+                 display:'flex', alignItems:'center', justifyContent:'center',
+                 height:'30px',
+                 
+                  transition: "all 0.3s ease",
+                  borderRadius: "12px",
+                  
+                }}
+              >New</Typography>
             </Box>
             <CardContent sx={{ flexGrow: 1, p: 0, marginTop: "20px" }}>
               <Typography
