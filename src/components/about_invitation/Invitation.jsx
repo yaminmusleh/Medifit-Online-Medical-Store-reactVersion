@@ -9,9 +9,8 @@ export default function Invitation() {
   const color1 = "#503217";
   const color2 = "#8F7D6A";
   const hover_color = "#794c24";
-  const token = useAuthStore((state)=>state.token);
+  const token = useAuthStore((state) => state.token);
   return (
-    
     <Box py="80px" sx={{ textAlign: { xs: "center", lg: "start" } }}>
       <Grid
         container
@@ -68,38 +67,38 @@ export default function Invitation() {
           </Box>
           <Box marginTop={5}>
             {token ? (
-    <Button
-      variant="contained"
-      disabled
-      sx={{
-        textTransform: "none",
-        fontFamily: "poppins",
-        fontSize: { xs: "12px", md: "14px" },
-        backgroundColor: "#503217",
-        color: "#fff",
-        cursor: "default",
-      }}
-    >
-      Thank you for joining us •ᴗ•
-    </Button>
-  ) : (
-    <Button
-      component={Link}
-      to="/register"
-      variant="contained"
-      sx={{
-        textTransform: "none",
-        fontFamily: "poppins",
-        fontSize: { xs: "12px", md: "14px" },
-        backgroundColor: color1,
-        "&:hover": { backgroundColor: hover_color },
-        color: "#fff",
-      }}
-    >
-      Get started
-      <img src={imag2} style={{ marginLeft: "12px" }} />
-    </Button>
-  )}
+              <Button
+                variant="contained"
+                disabled
+                sx={{
+                  textTransform: "none",
+                  fontFamily: "poppins",
+                  fontSize: { xs: "12px", md: "14px" },
+                  backgroundColor: "#503217",
+                  color: "#fff",
+                  cursor: "default",
+                }}
+              >
+                Thank you for joining us •ᴗ•
+              </Button>
+            ) : (
+              <Button
+                component={Link}
+                to="/register"
+                variant="contained"
+                sx={{
+                  textTransform: "none",
+                  fontFamily: "poppins",
+                  fontSize: { xs: "12px", md: "14px" },
+                  backgroundColor: color1,
+                  "&:hover": { backgroundColor: hover_color },
+                  color: "#fff",
+                }}
+              >
+                Get started
+                <img src={imag2} style={{ marginLeft: "12px" }} />
+              </Button>
+            )}
           </Box>
         </Grid>
         <Grid item xs={12} sm={8} md={6}>

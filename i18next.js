@@ -142,11 +142,76 @@ i18n
           },
           products: {
             title: "Latest Products",
-            button:"Shop now",
+            title2: "Ready to fill your cart?",
+            button: "Shop now",
+            button2: "Apply Filters",
+            New: "New",
           },
-         
+          newsletter: {
+            thankYou: "Thank you for joining us, have a nice shopping •ᴗ•",
+            join: "Join our newsletter",
+            discount: "Sign Up for an Instant 15% Discount",
+            emailPlaceholder: "Enter Email",
+            signup: "Sign up",
+          },
+          ExploreOurStore: {
+            ExploreTitle: "Explore Our Store Collection",
+          },
+          features: {
+            warrantyTitle: "30 Days Warranty",
+            warrantyDetails: "Enjoy peace of mind with warranty",
+
+            shippingTitle: "Free Shipping",
+            shippingDetails: "Be satisfied with your purchase",
+
+            paymentTitle: "Secure Payment",
+            paymentDetails: "Shop with confidence every time",
+          },
+          footer: {
+            pages: "Pages",
+            blog: "Blog",
+            privacy: "Privacy Policy",
+            utility: "Utility",
+            description:
+              "We provide the ultimate solution for your online store and all the healthcare needs.",
+            address: "Address",
+            addressDetails: "1640 Parker Rd. Allentown, New Mexico 31134",
+            contact: "Contact",
+
+            pagesList: {
+              home: "Home",
+              shop: "Shop",
+              about: "About",
+              contact: "Contact",
+            },
+
+            utilities: {
+              styleGuide: "Style guide",
+              instruction: "Instruction",
+              changelog: "Changelog",
+              licenses: "Licenses",
+              linkInBio: "Link in bio",
+              passwordProtection: "Password protection",
+            },
+          },
+          cards: {
+            sanitizer: {
+              title: "Hand sanitizer collection",
+              subtitle: "Shop now",
+            },
+            facewash: {
+              title: "Face wash sale collection",
+              subtitle: "Discover now",
+            },
+            maskDeals: {
+              title: "Facial mask deals save up to 50%",
+              subtitle: "Discover now",
+            },
+          },
         },
       },
+      //********************************************************************************************//
+      //********************************************************************************************//
       ar: {
         translation: {
           Home: "الرئيسية",
@@ -281,9 +346,72 @@ i18n
           },
           products: {
             title: "أحدث المنتجات",
-            button:'اشتري الان'
+            button: "اشتري الان",
+            title2: "جاهز لملء سلة التسوق؟",
+            button2: "تطبيق",
+            New: "جديد",
           },
-           
+          newsletter: {
+            thankYou: "شكرًا لانضمامك إلينا، نتمنى لك تسوقًا ممتعًا •ᴗ•",
+            join: "اشترك في النشرة البريدية",
+            discount: "سجّل واحصل على خصم 15٪ فورًا",
+            emailPlaceholder: "أدخل بريدك الإلكتروني",
+            signup: "إنشاء حساب",
+          },
+          ExploreOurStore: {
+            ExploreTitle: "استكشف مجموعة متجرنا",
+          },
+          features: {
+            warrantyTitle: "ضمان 30 يوم",
+            warrantyDetails: "استمتع براحة البال مع الضمان",
+
+            shippingTitle: "شحن مجاني",
+            shippingDetails: "استمتع بتجربة شراء مرضية",
+
+            paymentTitle: "دفع آمن",
+            paymentDetails: "تسوّق بثقة في كل مرة",
+          },
+          footer: {
+            pages: "الصفحات",
+            blog: "المدونة",
+            privacy: "سياسة الخصوصية",
+            utility: "أدوات",
+            description:
+              "نوفّر الحل الأمثل لمتجرك الإلكتروني وجميع احتياجات الرعاية الصحية.",
+            address: "العنوان",
+            addressDetails: "1640 Parker Rd. Allentown, New Mexico 31134",
+            contact: "تواصل معنا",
+
+            pagesList: {
+              home: "الرئيسية",
+              shop: "المتجر",
+              about: "من نحن",
+              contact: "اتصل بنا",
+            },
+
+            utilities: {
+              styleGuide: "دليل التصميم",
+              instruction: "التعليمات",
+              changelog: "سجل التغييرات",
+              licenses: "التراخيص",
+              linkInBio: "الرابط في البايو",
+              passwordProtection: "حماية بكلمة مرور",
+            },
+          },
+          cards: {
+            sanitizer: {
+              title: "مجموعة معقم اليدين",
+              subtitle: "تسوق الآن",
+            },
+            facewash: {
+              title: "مجموعة عروض غسول الوجه",
+              subtitle: "اكتشف الآن",
+            },
+            maskDeals: {
+              title: "عروض أقنعة الوجه بخصم يصل إلى %50",
+              subtitle: "اكتشف الآن",
+            },
+          },
         },
       },
     },

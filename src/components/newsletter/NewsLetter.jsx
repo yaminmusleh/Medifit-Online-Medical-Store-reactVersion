@@ -14,10 +14,12 @@ import email_icon from "./newsletter-imgs/email-icon-for-letter.svg";
 import link_image from "./newsletter-imgs/link-external.svg";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../../store/useAuthStore";
+import { useTranslation } from "react-i18next";
 export default function NewsLetter() {
   const theme = useTheme();
   const isDark = theme.palette.mode === "dark";
   const navigate = useNavigate();
+  const {t}=useTranslation();
   const token = useAuthStore((state) => state.token);
   return (
     <Box className="explore-store" sx={{ paddingBottom: "60px" }}>
@@ -109,7 +111,7 @@ export default function NewsLetter() {
                       color: "#503217",
                     }}
                   >
-                    Thank you for joining us, have a nice shopping •ᴗ•
+                    {t("newsletter.thankYou")}
                   </Typography>
                 </Box>
               ) : (
@@ -122,7 +124,7 @@ export default function NewsLetter() {
                       fontWeight: 500,
                     }}
                   >
-                    Join our newsletter
+                    {t("newsletter.join")}
                   </Typography>
                   <Typography
                     sx={{
@@ -137,7 +139,7 @@ export default function NewsLetter() {
                       color: "#503217",
                     }}
                   >
-                    Sign Up for an Instant 15% Discount
+                    {t("newsletter.discount")}
                   </Typography>
                 </Box>
               )}
@@ -153,7 +155,7 @@ export default function NewsLetter() {
                   }}
                 >
                   <TextField
-                    placeholder="Enter Email"
+                    placeholder={t("newsletter.emailPlaceholder")}
                     size="small"
                     sx={{
                       width: "70%",
@@ -202,7 +204,7 @@ export default function NewsLetter() {
                       width={"25%"}
                       style={{ marginRight: "5px" }}
                     />{" "}
-                    Sign up
+                    {t("newsletter.signup")}
                   </Button>
                 </Box>
               )}

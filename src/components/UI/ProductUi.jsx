@@ -134,7 +134,7 @@ export default function ProductUi({ MainColor, MainFont, Product, limit }) {
                   borderRadius: "12px",
                   
                 }}
-              >New</Typography>
+              >{t("products.New")}</Typography>
             </Box>
             <CardContent sx={{ flexGrow: 1, p: 0, marginTop: "20px" }}>
               <Typography

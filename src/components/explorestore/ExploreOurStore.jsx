@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useTransition } from "react";
 import useProducts from "../products/useProducts";
 import { Box, Container, Grid } from "@mui/material";
 import Card from "@mui/material/Card";
@@ -10,11 +10,13 @@ import Loader from "../../ui/Loader";
 import { Link } from "react-router-dom";
 import ProductUi from "../UI/ProductUi";
 import useProducts2 from "../../hooks/useProducts2";
+import { useTranslation } from "react-i18next";
 
 export default function ExplpreOurStore({ MainColor, MainFont, Product }) {
   const limit = Product?.limit || 6;
   const { isLoading, isError, error } = useProducts(limit);
   const { data } = useProducts2({});
+  const { t }=useTranslation();
 
   if (isLoading) return <Loader />;
   if (isError)
@@ -49,7 +51,7 @@ export default function ExplpreOurStore({ MainColor, MainFont, Product }) {
           }}
           marginBottom={"40px"}
         >
-          Explore Our store Collection
+          {t("ExploreOurStore.ExploreTitle")}
         </Typography>
         <ProductUi
           MainColor={MainColor}

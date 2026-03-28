@@ -3,24 +3,27 @@ import React from "react";
 import image1 from "./cta_imgs/img1.svg";
 import image2 from "./cta_imgs/img2.svg";
 import image3 from "./cta_imgs/img3.svg";
+import { useTranslation } from "react-i18next";
 
 export default function CTA() {
   const theme = useTheme();
+  const { t } = useTranslation();
+
   const items = [
     {
       img: image1,
-      title: "30 Days warranty",
-      details: "Enjoy peace of mind with warranty",
+      title: t("features.warrantyTitle"),
+      details: t("features.warrantyDetails"),
     },
     {
       img: image2,
-      title: "Free Shipping",
-      details: "You’re satisfied with your purchase",
+      title: t("features.shippingTitle"),
+      details: t("features.shippingDetails"),
     },
     {
       img: image3,
-      title: "Secure Payment",
-      details: "Shop with confidence every time",
+      title: t("features.paymentTitle"),
+      details: t("features.paymentDetails"),
     },
   ];
 
@@ -34,13 +37,12 @@ export default function CTA() {
       alignItems={"center"}
     >
       <Grid
-      className = 'cta-grid'
+        className="cta-grid"
         borderRadius={"10px"}
         container
         justifyContent="center"
         alignItems="center"
         spacing={2}
-        
         width={"100%"}
       >
         {items.map((item, index) => (
@@ -108,4 +110,3 @@ export default function CTA() {
     </Box>
   );
 }
-

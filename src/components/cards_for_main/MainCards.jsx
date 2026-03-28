@@ -10,24 +10,28 @@ import img3 from "./medical-cards/aloevera1.svg";
 import { Link } from "react-router-dom";
 import icon1 from "./medical-cards/eye.svg";
 import icon2 from "./medical-cards/bag-shopping.svg";
+import { useTranslation } from "react-i18next";
 
 export default function MainCards() {
+  const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  const isRTL = i18n.language === "ar";
   const cards = [
     {
-      title: "Hand sanitizer collection",
-      subtitle: "Shop now",
+      title: t("cards.sanitizer.title"),
+      subtitle: t("cards.sanitizer.subtitle"),
       image: img1,
       icon: icon2,
     },
     {
-      title: "Face wash sale collection",
-      subtitle: "Discover now",
+      title: t("cards.facewash.title"),
+      subtitle: t("cards.facewash.subtitle"),
       image: img3,
       icon: icon1,
     },
     {
-      title: "Facial mask deals save up to 50%",
-      subtitle: "Discover now",
+      title: t("cards.maskDeals.title"),
+      subtitle: t("cards.maskDeals.subtitle"),
       image: img2,
       icon: icon1,
     },
@@ -35,7 +39,7 @@ export default function MainCards() {
   const [selectedCard, setSelectedCard] = React.useState(0);
   return (
     <>
-      <Box py="80px">
+      <Box py="80px" dir={isRTL ? "rtl" : "ltr"}>
         <Grid container spacing={2} justifyContent="center">
           {cards.map((card, index) => (
             <Grid

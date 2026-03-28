@@ -36,7 +36,7 @@ export default function Products({
     sortBy: "",
     ascending: true,
   });
-  const {t}= useTranslation();
+  const { t } = useTranslation();
 
   const [appliedFilters, setAppliedFilters] = useState({ ...filters });
   const { data } = useProducts2({ ...appliedFilters });
@@ -57,8 +57,6 @@ export default function Products({
         </Typography>
       </Box>
     );
-
-    
 
   return (
     <Box py={"70px"} sx={{ textAlign: "center" }}>
@@ -127,69 +125,71 @@ export default function Products({
             />
           </Box>
           <Box
-  sx={{
-    display: "flex",
-    gap: 2,
-    flexWrap: "wrap",
-    justifyContent: "center",
-    textAlign:'start',
-  }}
->
-  <FormControl
-    size="small"
-    sx={{
-      
-      flex: { xs: "1 1 100%", sm: "1 1 150px", md: "1 1 200px" },
-    }}
-  >
-    <InputLabel>Sort By</InputLabel>
-    <Select
-      value={filters.sortBy}
-      onChange={(e) =>
-        setFilters({ ...filters, sortBy: e.target.value })
-      }
-    >
-      <MenuItem value="">None</MenuItem>
-      <MenuItem value="price">Price</MenuItem>
-      <MenuItem value="rating">Rating</MenuItem>
-    </Select>
-  </FormControl>
+            sx={{
+              display: "flex",
+              gap: 2,
+              flexWrap: "wrap",
+              justifyContent: "center",
+              textAlign: "start",
+            }}
+          >
+            <FormControl
+              size="small"
+              sx={{
+                flex: { xs: "1 1 100%", sm: "1 1 150px", md: "1 1 200px" },
+              }}
+            >
+              <InputLabel>Sort By</InputLabel>
+              <Select
+                value={filters.sortBy}
+                onChange={(e) =>
+                  setFilters({ ...filters, sortBy: e.target.value })
+                }
+              >
+                <MenuItem value="">None</MenuItem>
+                <MenuItem value="price">Price</MenuItem>
+                <MenuItem value="rating">Rating</MenuItem>
+              </Select>
+            </FormControl>
 
-  <FormControl
-    size="small"
-    sx={{
-      flex: { xs: "1 1 100%", sm: "1 1 150px", md: "1 1 200px" },
-    }}
-  >
-    <InputLabel>Order</InputLabel>
-    <Select 
-      value={filters.ascending ? "true" : "false"}
-      onChange={(e) =>
-        setFilters({ ...filters, ascending: e.target.value === "true" })
-      }
-    >
-      
-      <MenuItem value="true">Ascending</MenuItem>
-      <MenuItem value="false">Descending</MenuItem>
-    </Select>
-  </FormControl>
-</Box>
+            <FormControl
+              size="small"
+              sx={{
+                flex: { xs: "1 1 100%", sm: "1 1 150px", md: "1 1 200px" },
+              }}
+            >
+              <InputLabel>Order</InputLabel>
+              <Select
+                value={filters.ascending ? "true" : "false"}
+                onChange={(e) =>
+                  setFilters({
+                    ...filters,
+                    ascending: e.target.value === "true",
+                  })
+                }
+              >
+                <MenuItem value="true">Ascending</MenuItem>
+                <MenuItem value="false">Descending</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
 
           <Button
             variant="contained"
             onClick={() => setAppliedFilters({ ...filters })}
             sx={{
               width: {
-                xs:130, md:200
+                xs: 130,
+                md: 200,
               },
               mx: "auto",
               textTransform: "none",
               color: "#fff",
               backgroundColor: MainColor,
-              fontFamily:MainFont
+              fontFamily: MainFont,
             }}
           >
-            Apply Filters
+            {t("products.button2")}
           </Button>
         </Box>
       )}

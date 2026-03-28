@@ -1,4 +1,11 @@
-import { Box, Container, List, MenuItem, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  Container,
+  List,
+  MenuItem,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import image1 from "./footer-imgs/Group 189.svg";
 import pin_image from "./footer-imgs/pin-for-address.svg";
 import email_icon from "./footer-imgs/email-icon.svg";
@@ -10,27 +17,34 @@ import icon4 from "./footer-imgs/youtube-icon.svg";
 import Grid from "@mui/material/Grid";
 
 import { Link, Link as RouterLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
   const theme = useTheme();
-  
+  const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  const isRTL = i18n.language === "ar";
+
   const icons = [
-    { img: icon1, link: "https://www.instagram.com/yamin_musleh/" },
+    { img: icon1, link: "https://www.instagram.com/yamin_.m0/" },
     { img: icon2, link: "https://www.facebook.com/yamin.musleh.75" },
     { img: icon3, link: "#" },
     { img: icon4, link: "https://www.youtube.com/@my.miserable_coding.life1" },
   ];
-  const Pages = ["Home", "Shop", "About", "Contact"];
+
+  const Pages = ["home", "shop", "about", "contact"];
+
   const Utilities = [
-    "Style guide",
-    "Instruction",
-    "Changelog",
-    "Licenses",
-    "Link in bio",
-    "Password protection",
+    "styleGuide",
+    "instruction",
+    "changelog",
+    "licenses",
+    "linkInBio",
+    "passwordProtection",
   ];
+
   return (
-    <Box py={"80px"} className="explore-store">
+    <Box py={"80px"} className="explore-store" dir={isRTL ? "rtl" : "ltr"}>
       <Container maxWidth="xl" sx={{ flexWrap: "nowrap" }}>
         <Grid
           container
@@ -56,8 +70,9 @@ export default function Footer() {
                   fontWeight: 600,
                 }}
               >
-                Pages
+                {t("footer.pages")}
               </Typography>
+
               <Box
                 sx={{
                   display: "flex",
@@ -70,7 +85,7 @@ export default function Footer() {
                   <MenuItem
                     key={page}
                     component={RouterLink}
-                    to={`/${page.toLowerCase()}`}
+                    to={`/${page}`}
                     sx={{
                       p: 0,
                       "&:hover": {
@@ -92,60 +107,36 @@ export default function Footer() {
                         fontWeight: 600,
                       }}
                     >
-                      {page}
+                      {t(`footer.pagesList.${page}`)}
                     </Typography>
                   </MenuItem>
                 ))}
-                <MenuItem
-                  component={RouterLink}
-                  to="#"
-                  sx={{
-                    p: 0,
-                    "&:hover": {
-                      backgroundColor: "transparent",
-                    },
-                  }}
-                >
+
+                <MenuItem component={RouterLink} to="#" sx={{ p: 0 }}>
                   <Typography
                     sx={{
                       fontFamily: "poppins",
-                      fontSize: {
-                        xs: "14px",
-                        md: "18px",
-                      },
+                      fontSize: { xs: "14px", md: "18px" },
                       color: "#8F7D6A",
                       "&:hover": { color: "#503217" },
-                      transition: "all 0.3s ease",
                       fontWeight: 600,
                     }}
                   >
-                    Blog
+                    {t("footer.blog")}
                   </Typography>
                 </MenuItem>
-                <MenuItem
-                  component={RouterLink}
-                  to="#"
-                  sx={{
-                    p: 0,
-                    "&:hover": {
-                      backgroundColor: "transparent",
-                    },
-                  }}
-                >
+
+                <MenuItem component={RouterLink} to="#" sx={{ p: 0 }}>
                   <Typography
                     sx={{
                       fontFamily: "poppins",
-                      fontSize: {
-                        xs: "14px",
-                        md: "18px",
-                      },
+                      fontSize: { xs: "14px", md: "18px" },
                       color: "#8F7D6A",
                       "&:hover": { color: "#503217" },
-                      transition: "all 0.3s ease",
                       fontWeight: 600,
                     }}
                   >
-                    Privacy Policy
+                    {t("footer.privacy")}
                   </Typography>
                 </MenuItem>
               </Box>
@@ -170,8 +161,9 @@ export default function Footer() {
                   fontWeight: 600,
                 }}
               >
-                Utility
+                {t("footer.utility")}
               </Typography>
+
               <Box
                 sx={{
                   display: "flex",
@@ -184,29 +176,20 @@ export default function Footer() {
                   <MenuItem
                     key={util}
                     component={RouterLink}
-                    to={`#`}
-                    sx={{
-                      p: 0,
-                      "&:hover": {
-                        backgroundColor: "transparent",
-                      },
-                    }}
+                    to="#"
+                    sx={{ p: 0 }}
                   >
                     <Typography
                       textAlign="center"
                       sx={{
                         fontFamily: "poppins",
-                        fontSize: {
-                          xs: "14px",
-                          md: "18px",
-                        },
+                        fontSize: { xs: "14px", md: "18px" },
                         color: "#8F7D6A",
                         "&:hover": { color: "#503217" },
-                        transition: "all 0.3s ease",
                         fontWeight: 600,
                       }}
                     >
-                      {util}
+                      {t(`footer.utilities.${util}`)}
                     </Typography>
                   </MenuItem>
                 ))}
@@ -214,6 +197,7 @@ export default function Footer() {
             </Box>
           </Grid>
 
+          {/* third column */}
           <Grid
             item
             xs={12}
@@ -221,11 +205,8 @@ export default function Footer() {
             md={3}
             sx={{
               display: "flex",
-              justifyContent: "center", // simplified, same for all breakpoints
-              width: {
-                md: "25%",
-                xs: "100%",
-              },
+              justifyContent: "center",
+              width: { md: "25%", xs: "100%" },
               py: 6,
             }}
           >
@@ -240,11 +221,9 @@ export default function Footer() {
                 component="img"
                 src={image1}
                 alt="logo-image"
-                sx={{
-                  width: "100%",
-                  maxWidth: "300px",
-                }}
+                sx={{ width: "100%", maxWidth: "300px" }}
               />
+
               <Typography
                 sx={{
                   fontSize: { md: "18px", xs: "15px" },
@@ -252,9 +231,9 @@ export default function Footer() {
                   color: "#8F7D6A",
                 }}
               >
-                We provide the ultimate solution for your online store and all
-                the healthcare needs.
+                {t("footer.description")}
               </Typography>
+
               <Box sx={{ display: "flex", columnGap: 2, width: "60%" }}>
                 {icons.map((icon, index) => (
                   <Box
@@ -269,10 +248,7 @@ export default function Footer() {
                     onClick={() => window.open(icon.link, "_blank")}
                   >
                     <img
-                      style={{
-                        display: "block",
-                        width: "80%",
-                      }}
+                      style={{ display: "block", width: "80%" }}
                       src={icon.img}
                       alt="icon"
                     />
@@ -282,19 +258,14 @@ export default function Footer() {
             </Box>
           </Grid>
 
+          {/* fourth column */}
           <Grid item xs={12} sm={6} md={3}>
-            {/* Address section */}
             <Box
               display="flex"
               flexDirection="column"
               alignItems={{ xs: "center", sm: "flex-start" }}
               textAlign={{ xs: "center", sm: "flex-start" }}
               gap={2}
-              sx={{
-                width: {
-                  md: "70%",
-                },
-              }}
             >
               <Typography
                 sx={{
@@ -304,33 +275,27 @@ export default function Footer() {
                   color: "#503217",
                 }}
               >
-                Address
+                {t("footer.address")}
               </Typography>
+
               <Typography
+              dir="ltr"
                 sx={{
                   fontFamily: "poppins",
                   color: "#8F7D6A",
                   fontSize: { md: "18px", xs: "13px" },
-                  textAlign: { xs: "center", sm: "left" },
                 }}
               >
-                <img src={pin_image} alt="" /> 1640 Parker Rd. Allentown, New
-                Mexico 31134
+                <img src={pin_image} alt="" /> {t("footer.addressDetails")}
               </Typography>
             </Box>
 
-            {/* Contact section */}
             <Box
               display="flex"
               flexDirection="column"
               alignItems={{ xs: "center", sm: "flex-start" }}
               gap={2}
-              sx={{
-                width: {
-                  md: "70%",
-                  marginTop: "100px",
-                },
-              }}
+              sx={{ marginTop: "100px" }}
             >
               <Typography
                 sx={{
@@ -340,9 +305,11 @@ export default function Footer() {
                   color: "#503217",
                 }}
               >
-                Contact
+                {t("footer.contact")}
               </Typography>
+
               <Typography
+              dir="ltr"
                 component="a"
                 href="mailto:medifit_support@gmail.com"
                 sx={{
@@ -353,15 +320,14 @@ export default function Footer() {
                   gap: "8px",
                   color: "#8F7D6A",
                   textDecoration: "none",
-                  "&:hover": {
-                    color: "#503217",
-                  },
                 }}
               >
                 <img src={email_icon} alt="" />
                 medifit_support@gmail.com
               </Typography>
+
               <Typography
+              dir="ltr"
                 component="a"
                 href="tel:(209) 555-0104"
                 sx={{
@@ -372,13 +338,10 @@ export default function Footer() {
                   gap: "8px",
                   color: "#8F7D6A",
                   textDecoration: "none",
-                  "&:hover": {
-                    color: "#503217",
-                  },
                 }}
               >
-                <img src={phone_icon} alt="" />
-                (209) 555-0104
+                <img src={phone_icon} alt="phone" />
+                <span dir="ltr">(209) 555-0104</span>
               </Typography>
             </Box>
           </Grid>
