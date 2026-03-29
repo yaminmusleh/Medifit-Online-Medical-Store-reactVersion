@@ -3,11 +3,13 @@ import Invitation from "../../components/about_invitation/Invitation";
 import { Box, Grid, Typography } from "@mui/material";
 import video from "./assets_about/IMG_5209.MP4";
 import poster from "./assets_about/ChatGPT Image Oct 25, 2025, 02_10_06 PM.webp";
+import { useTranslation } from "react-i18next";
 
 
 export default function About() {
   const color1 = "#503217";
   const font = 'poppins';
+  const { t } = useTranslation();
   return (
     <>
     
@@ -26,7 +28,7 @@ export default function About() {
             color: color1,
           }}
         >
-          Experts Behind Your Care
+          {t("about.videoTitle")}
         </Typography>
         <Grid
           item

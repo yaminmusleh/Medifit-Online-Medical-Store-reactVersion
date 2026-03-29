@@ -323,7 +323,7 @@ export default function Navbar() {
                         handleCloseProfileMenu();
                       }}
                     >
-                      Logout
+                      {t("Logout")}
                     </MenuItem>,
                   ]
                 : [
@@ -334,7 +334,7 @@ export default function Navbar() {
                         handleCloseProfileMenu();
                       }}
                     >
-                      Login
+                      {t("Login")}
                     </MenuItem>,
 
                     <MenuItem
@@ -344,7 +344,7 @@ export default function Navbar() {
                         handleCloseProfileMenu();
                       }}
                     >
-                      Register
+                      {t("Register")}
                     </MenuItem>,
 
                     <MenuItem key="darkmode">

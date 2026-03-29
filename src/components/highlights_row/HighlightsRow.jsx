@@ -4,26 +4,29 @@ import photo4 from "./highlights_imgs/services/credit-card.svg";
 import photo2 from "./highlights_imgs/services/exchange-dollar.svg";
 import photo3 from "./highlights_imgs/services/headphone-mic.svg";
 import photo1 from "./highlights_imgs/services/truck-fast.svg";
+import { useTranslation } from "react-i18next";
 
 export default function HighlightsRow({ MainColor, MainFont }) {
+  const { t } = useTranslation();
   const data = [
     {
       image: photo1,
-      text: "Free shipping",
+      text: t("highlights.freeShipping"),
     },
     {
       image: photo2,
-      text: "Easy refund",
+      text: t("highlights.easyRefund"),
     },
     {
       image: photo3,
-      text: "Online support",
+      text: t("highlights.onlineSupport"),
     },
     {
       image: photo4,
-      text: "Fexible payment",
+      text: t("highlights.flexiblePayment"),
     },
   ];
+
   return (
     <Box paddingBottom={"90px"}>
       <Grid

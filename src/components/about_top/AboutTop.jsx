@@ -3,8 +3,10 @@ import React from "react";
 import img1 from "./health-service/photo1.svg";
 import img2 from "./health-service/photo2.svg";
 import img3 from "./health-service/photo3.svg";
+import { useTranslation } from "react-i18next";
 
 export default function AboutTop({ MainColor }) {
+  const { t } = useTranslation();
   const images = [img1, img2, img3];
   return (
     <Box py={6} sx={{ textAlign: "center" }}>
@@ -16,7 +18,7 @@ export default function AboutTop({ MainColor }) {
             lg:"65px",
         }, fontFamily: "poppins", fontWeight:600, color: MainColor }}
       >
-        Health products you can trust service you deserve
+       {t("about.aboutTopTitle")}
       </Typography>
 
       <Grid

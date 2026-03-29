@@ -208,6 +208,52 @@ i18n
               subtitle: "Discover now",
             },
           },
+          about: {
+            videoTitle: "Experts Behind Your Care",
+            title: "About us",
+            description:
+              "Our focus is on nurturing wellness and empowering health for all ages, improving well-being for people worldwide.",
+            aboutTopTitle: "Health products you can trust service you deserve",
+            invitation: {
+              title: "Join our trustable Medifit product community",
+              description:
+                "Join us as we build a community where wellness is accessible, education is empowering, and health is a shared journey.",
+              joined: "Thank you for joining us •ᴗ•",
+              cta: "Get started",
+            },
+          },
+          shopDetails: {
+            addToCart: "Add to cart",
+            descriptionTitle: "Product Description",
+            currency: "USD",
+            recentProducts: "Recent Products",
+          },
+          highlights: {
+            freeShipping: "Free shipping",
+            easyRefund: "Easy refund",
+            onlineSupport: "Online support",
+            flexiblePayment: "Flexible payment",
+          },
+          reviews: {
+            title: "Customers Review",
+            placeholder: "Add your own opinion!",
+            submit: "Add review",
+            submitting: "Submitting...",
+            default: [
+              {
+                text: "B12 Medicine keeps me energized and focused all day. A true lifesaver for vitality and wellness!",
+                name: "Olivia Garcia",
+              },
+              {
+                text: "I’ve regained my energy and feel amazing thanks to B12 Medicine. Highly recommend for health and stamina!",
+                name: "Sophia Brown",
+              },
+              {
+                text: "As a vegetarian, B12 Medicine keeps my energy up and my health on track. Perfect for natural support!",
+                name: "Ethan Harris",
+              },
+            ],
+          },
         },
       },
       //********************************************************************************************//
@@ -300,10 +346,7 @@ i18n
           followUs: {
             title: "تابعنا على medifit@",
           },
-          profileMenu: {
-            profile: "الملف الشخصي",
-            darkMode: "الوضع الداكن",
-          },
+          
           profileMenu: {
             profile: "الملف الشخصي",
             darkMode: "الوضع الداكن",
@@ -411,6 +454,52 @@ i18n
               title: "عروض أقنعة الوجه بخصم يصل إلى %50",
               subtitle: "اكتشف الآن",
             },
+          },
+          about: {
+            videoTitle: "الخبراء وراء رعايتك",
+            title: "من نحن",
+            description:
+              "نركز على تعزيز الصحة والعافية وتمكين جميع الأعمار من التمتع بحياة أفضل، وتحسين الرفاهية للأشخاص حول العالم.",
+            aboutTopTitle: "منتجات صحية يمكنك الوثوق بها وخدمة تستحقها",
+            invitation: {
+              title: "انضم إلى مجتمع منتجات ميديفيت الموثوق",
+              description:
+                "انضم إلينا ونحن نبني مجتمعًا حيث تكون العافية في متناول الجميع، والتعليم تمكيني، والصحة رحلة مشتركة.",
+              joined: "شكرًا لانضمامك إلينا •ᴗ•",
+              cta: "ابدأ الآن",
+            },
+          },
+          shopDetails: {
+            addToCart: "أضف إلى السلة",
+            descriptionTitle: "وصف المنتج",
+            currency: "دولار",
+            recentProducts: "أحدث المنتجات",
+          },
+          highlights: {
+            freeShipping: "شحن مجاني",
+            easyRefund: "استرجاع سهل",
+            onlineSupport: "دعم عبر الإنترنت",
+            flexiblePayment: "دفع مرن",
+          },
+          reviews: {
+            title: "آراء العملاء",
+            placeholder: "أضف رأيك الخاص",
+            submit: "إضافة تقييم",
+            submitting: "جاري الإرسال...",
+            default: [
+              {
+                text: "يساعدني فيتامين B12 على البقاء نشيطًا ومركزًا طوال اليوم. حل رائع للحيوية والصحة!",
+                name: "أوليفيا غارسيا",
+              },
+              {
+                text: "استعدت طاقتي وأشعر بروعة بفضل فيتامين B12. أنصح به بشدة للصحة والنشاط!",
+                name: "صوفيا براون",
+              },
+              {
+                text: "كوني نباتي، يساعدني فيتامين B12 في الحفاظ على طاقتي وصحتي. مثالي للدعم الطبيعي!",
+                name: "إيثان هاريس",
+              },
+            ],
           },
         },
       },

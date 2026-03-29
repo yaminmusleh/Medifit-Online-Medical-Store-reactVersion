@@ -18,7 +18,9 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import useAddToCart from "../../hooks/useAddToCart";
+import { useTranslation } from "react-i18next";
 export default function ShopDetails() {
+  const { t } = useTranslation();
   const theme = useTheme();
   const isDark = theme.palette.mode === "dark";
   const { id } = useParams();
@@ -43,6 +45,8 @@ export default function ShopDetails() {
         </Typography>
       </Box>
     );
+
+  
 
   const color1 = "#503217";
   const font = "poppins";
@@ -131,7 +135,7 @@ export default function ShopDetails() {
                     fontWeight: 600,
                   }}
                 >
-                  ${data.price} USD
+                  ${data.price} {t("shopDetails.currency")}
                 </Typography>
               </Box>
               <Box
@@ -229,7 +233,7 @@ export default function ShopDetails() {
                     }}
                     endIcon={<AddShoppingCartIcon />}
                   >
-                    Add to cart
+                    {t("shopDetails.addToCart")}
                   </Button>
                 </Box>
               </Box>
@@ -247,7 +251,7 @@ export default function ShopDetails() {
                     fontWeight: 600,
                   }}
                 >
-                  Product Description
+                  {t("shopDetails.descriptionTitle")}
                 </Typography>
                 <Typography
                   sx={{
@@ -271,7 +275,7 @@ export default function ShopDetails() {
         allowAddReview
         productId={data.id}
       />
-      <Products MainColor={color1} MainFont={font} title={"Recent Products"} />
+      <Products MainColor={color1} MainFont={font} title={t("shopDetails.recentProducts")} />
       <Invitation />
     </>
   );

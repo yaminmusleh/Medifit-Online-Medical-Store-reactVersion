@@ -4,14 +4,19 @@ import image from "./about_images/img.webp";
 import imag2 from "./about_images/link-external.svg";
 import { Link } from "react-router-dom";
 import useAuthStore from "../../store/useAuthStore";
+import { useTranslation } from "react-i18next";
 
 export default function Invitation() {
+  const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  const isRTL = i18n.language === "ar";
+
   const color1 = "#503217";
   const color2 = "#8F7D6A";
   const hover_color = "#794c24";
   const token = useAuthStore((state) => state.token);
   return (
-    <Box py="80px" sx={{ textAlign: { xs: "center", lg: "start" } }}>
+    <Box dir={isRTL ? "rtl" : "ltr"} py="80px" sx={{ textAlign: { xs: "center", lg: "start" } }}>
       <Grid
         container
         spacing={2}
@@ -49,7 +54,7 @@ export default function Invitation() {
                 fontFamily: "poppins",
               }}
             >
-              Join our trustable Medifit product community
+              {t("about.invitation.title")}
             </Typography>
             <Typography
               sx={{
@@ -61,8 +66,7 @@ export default function Invitation() {
                 fontFamily: "poppins",
               }}
             >
-              Join us as we build a community where wellness is accessible,
-              education is empowering, and health is a shared journey.
+              {t("about.invitation.description")}
             </Typography>
           </Box>
           <Box marginTop={5}>
@@ -79,7 +83,7 @@ export default function Invitation() {
                   cursor: "default",
                 }}
               >
-                Thank you for joining us •ᴗ•
+                {t("about.invitation.joined")}
               </Button>
             ) : (
               <Button
@@ -95,8 +99,8 @@ export default function Invitation() {
                   color: "#fff",
                 }}
               >
-                Get started
-                <img src={imag2} style={{ marginLeft: "12px" }} />
+                {t("about.invitation.cta")}
+                <img src={imag2} style={{ marginInlineStart: "12px" }} />
               </Button>
             )}
           </Box>

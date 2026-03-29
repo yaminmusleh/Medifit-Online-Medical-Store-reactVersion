@@ -1,9 +1,13 @@
 import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export default function AboutUs({ MainColor, MainFont }) {
+  const { t } = useTranslation();
+  const {i18n}= useTranslation();
+  const isRTL = i18n.language === 'ar';
   return (
-    <Box py={"130px"} display={"flex"} justifyContent={"center"}>
+    <Box dir={isRTL ? "rtl" : "ltr"} py={"130px"} display={"flex"} justifyContent={"center"}>
       <Grid
         container
         sx={{ justifyContent: "center", alignItems: "start" }}
@@ -22,7 +26,7 @@ export default function AboutUs({ MainColor, MainFont }) {
               fontFamily: MainFont,
             }}
           >
-            About us
+            {t("about.title")}
           </Typography> 
         </Grid>
         <Grid item xs={12} md={6} sx={{ width: "70%" }}>
@@ -41,8 +45,7 @@ export default function AboutUs({ MainColor, MainFont }) {
               fontFamily: MainFont,
             }}
           >
-            Our focus is on nurturing wellness and empowering health for all
-            ages well being for people worldwide.
+            {t("about.description")}
           </Typography>
         </Grid>
       </Grid>

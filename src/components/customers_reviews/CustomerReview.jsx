@@ -8,6 +8,7 @@ import usePostReview from "../../hooks/usePostReview";
 
 import { useParams } from "react-router-dom";
 import useAuthStore from "../../store/useAuthStore";
+import { useTranslation } from "react-i18next";
 
 export default function CustomerReview({
   MainColor,
@@ -16,24 +17,22 @@ export default function CustomerReview({
   allowAddReview = false,
   productId,
 }) {
+  const { t } = useTranslation();
   const defaultPersons = [
     {
-      review:
-        "B12 Medicine keeps me energized and focused all day. A true lifesaver for vitality and wellness!",
+      review: t("reviews.default.0.text"),
       person: photo1,
-      name: "Olivia Garcia",
+      name: t("reviews.default.0.name"),
     },
     {
-      review:
-        "I’ve regained my energy and feel amazing thanks to B12 Medicine. Highly recommend for health and stamina!",
+      review: t("reviews.default.1.text"),
       person: photo2,
-      name: "Sophia Brown",
+      name: t("reviews.default.1.name"),
     },
     {
-      review:
-        "As a vegetarian, B12 Medicine keeps my energy up and my health on track. Perfect for natural support!",
+      review: t("reviews.default.2.text"),
       person: photo3,
-      name: "Ethan Harris",
+      name: t("reviews.default.2.name"),
     },
   ];
 
@@ -65,7 +64,7 @@ export default function CustomerReview({
       },
     );
   };
-  const token = useAuthStore((state)=>state.token);
+  const token = useAuthStore((state) => state.token);
   return (
     <Box py={"60px"}>
       <Typography
@@ -81,7 +80,7 @@ export default function CustomerReview({
         align="center"
         mb={"30px"}
       >
-        Customers Review
+        {t("reviews.title")}
       </Typography>
 
       {allowAddReview && (
@@ -99,7 +98,7 @@ export default function CustomerReview({
           }}
         >
           <TextField
-            placeholder="Add your own opinion!"
+            placeholder={t("reviews.placeholder")}
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             sx={{
@@ -122,7 +121,7 @@ export default function CustomerReview({
               ":hover": { bgcolor: "#72451e" },
             }}
           >
-            {isPending ? "Submitting..." : "Add review"}
+            {isPending ? t("reviews.submitting") : t("reviews.submit")}
           </Button>
         </Box>
       )}
