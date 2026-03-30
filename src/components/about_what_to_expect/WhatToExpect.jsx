@@ -4,8 +4,12 @@ import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import photo from "./whattoexpectImage/Rectangle 126.svg";
+import { useTranslation } from "react-i18next";
 
 export default function WhatToExpect({ MainColor, MainFont }) {
+  const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  const isRTL = i18n.language === "ar";
   const MenuItem = ({ icon, text, active }) => (
     <Box
       sx={{
@@ -35,7 +39,11 @@ export default function WhatToExpect({ MainColor, MainFont }) {
     </Box>
   );
   return (
-    <Box className="explore-store" sx={{ py: "100px", marginBottom: "90px" }}>
+    <Box
+      dir={isRTL ? "rtl" : "ltr"}
+      className="explore-store"
+      sx={{ py: "100px", marginBottom: "90px" }}
+    >
       <Container>
         <Typography
           sx={{
@@ -55,14 +63,18 @@ export default function WhatToExpect({ MainColor, MainFont }) {
             },
             color: MainColor,
             fontFamily: MainFont,
-            marginBottom: "130px",
+            marginBottom: {
+              xs: "40px",
+              sm: "80px",
+              lg: "130px",
+            },
           }}
         >
-          What to Expect When You Join Our Team
+          {t("whatToExpect.title")}
         </Typography>
         <Grid
           container
-          spacing={4}
+          spacing={isRTL ? 9 : 4}
           alignItems="stretch"
           sx={{
             display: "flex",
@@ -79,18 +91,18 @@ export default function WhatToExpect({ MainColor, MainFont }) {
             >
               <MenuItem
                 icon={<TrendingUpIcon fontSize="large" />}
-                text="Mission"
+                text={t("whatToExpect.mission")}
               />
 
               <MenuItem
                 icon={<ThumbUpAltOutlinedIcon fontSize="large" />}
-                text="Commitments"
+                text={t("whatToExpect.commitments")}
                 active
               />
 
               <MenuItem
                 icon={<VisibilityOutlinedIcon fontSize="large" />}
-                text="Vision"
+                text={t("whatToExpect.vision")}
                 active
               />
             </Box>
@@ -130,9 +142,7 @@ export default function WhatToExpect({ MainColor, MainFont }) {
                 transition: "0.4s all ease",
               }}
             >
-              We're committed to supporting your health journey by offering
-              valuable educational resources, wellness insights, and expert
-              advice to help you make informed decisions.
+              {t("whatToExpect.desc")}
             </Typography>
           </Grid>
         </Grid>

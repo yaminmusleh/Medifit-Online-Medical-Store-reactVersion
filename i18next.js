@@ -254,6 +254,48 @@ i18n
               },
             ],
           },
+          whatToExpect: {
+            title: "What to Expect When You Join Our Team",
+            desc: "We're committed to supporting your health journey by offering valuable educational resources, wellness insights, and expert advice to help you make informed decisions.",
+            mission: "Mission",
+            commitments: "Commitments",
+            vision: "Vision",
+          },
+          contact: {
+            title: "Contact us",
+            subtitle:
+              "Have questions or need support? Get in touch with our team – we're here to help!",
+            fields: {
+              name: "Full name",
+              email: "Email address",
+              phone: "Phone number",
+              schedule: "Schedule to receive call",
+              message: "Message",
+            },
+            submit: "Submit",
+            success: "Form got submitted to our team!",
+          },
+          faq: {
+            title: "Frequently Asked Questions",
+            items: [
+              {
+                q: "What products do you offer?",
+                a: "We offer a wide range of medical supplies, including prescription medications, over-the-counter products, supplements, and personal care items.",
+              },
+              {
+                q: "How can I place an order?",
+                a: "You can place an order directly through our website by adding the products to your cart and proceeding to checkout. If you need help, our support team is here to assist you.",
+              },
+              {
+                q: "Do you provide home delivery?",
+                a: "Yes, we provide home delivery across West Bank. Orders are usually delivered within 7 days.",
+              },
+              {
+                q: "Can I return or exchange products?",
+                a: "Yes, returns or exchanges are accepted within 3 days, provided the products are unopened and in original condition. Please contact our support team to start the process.",
+              },
+            ],
+          },
         },
       },
       //********************************************************************************************//
@@ -346,7 +388,7 @@ i18n
           followUs: {
             title: "تابعنا على medifit@",
           },
-          
+
           profileMenu: {
             profile: "الملف الشخصي",
             darkMode: "الوضع الداكن",
@@ -498,6 +540,48 @@ i18n
               {
                 text: "كوني نباتي، يساعدني فيتامين B12 في الحفاظ على طاقتي وصحتي. مثالي للدعم الطبيعي!",
                 name: "إيثان هاريس",
+              },
+            ],
+          },
+          whatToExpect: {
+            title: "ماذا تتوقع عندما تنضم إلى فريقنا",
+            desc: "نحن ملتزمون بدعم رحلتك الصحية من خلال تقديم موارد تعليمية قيمة، ورؤى حول العافية، ونصائح خبراء لمساعدتك في اتخاذ قرارات مستنيرة.",
+            mission: "المهمة",
+            commitments: "الالتزامات",
+            vision: "الرؤية",
+          },
+          contact: {
+            title: "تواصل معنا",
+            subtitle:
+              "هل لديك أسئلة أو تحتاج إلى دعم؟ تواصل مع فريقنا — نحن هنا لمساعدتك!",
+            fields: {
+              name: "الاسم الكامل",
+              email: "البريد الإلكتروني",
+              phone: "رقم الهاتف",
+              schedule: "حدد موعدًا لتلقي مكالمة",
+              message: "الرسالة",
+            },
+            submit: "إرسال",
+            success: "تم إرسال النموذج إلى فريقنا!",
+          },
+          faq: {
+            title: "الأسئلة الشائعة",
+            items: [
+              {
+                q: "ما هي المنتجات التي تقدمونها؟",
+                a: "نقدم مجموعة واسعة من المستلزمات الطبية، بما في ذلك الأدوية الموصوفة، والمنتجات المتاحة دون وصفة، والمكملات، ومنتجات العناية الشخصية.",
+              },
+              {
+                q: "كيف يمكنني تقديم طلب؟",
+                a: "يمكنك تقديم طلب مباشرة عبر موقعنا بإضافة المنتجات إلى سلة التسوق ثم إتمام عملية الشراء. إذا احتجت إلى مساعدة، فريق الدعم لدينا جاهز لخدمتك.",
+              },
+              {
+                q: "هل توفرون خدمة التوصيل إلى المنازل؟",
+                a: "نعم، نوفر خدمة التوصيل إلى المنازل في جميع أنحاء الضفة الغربية. يتم تسليم الطلبات عادة خلال 7 أيام.",
+              },
+              {
+                q: "هل يمكنني إرجاع أو استبدال المنتجات؟",
+                a: "نعم، يمكن إرجاع أو استبدال المنتجات خلال 3 أيام بشرط أن تكون غير مفتوحة وفي حالتها الأصلية. يرجى التواصل مع فريق الدعم لبدء العملية.",
               },
             ],
           },

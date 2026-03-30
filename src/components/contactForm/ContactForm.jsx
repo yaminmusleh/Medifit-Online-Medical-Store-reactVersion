@@ -13,8 +13,13 @@ import user3 from "./imgs/user3.svg";
 import user4 from "./imgs/user4.svg";
 import user5 from "./imgs/user5.svg";
 import { toast } from "react-toastify";
+import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 export default function ContactForm({ MainColor, MainFont }) {
+  const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  const isRTL = i18n.language === "ar";
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -48,11 +53,12 @@ export default function ContactForm({ MainColor, MainFont }) {
       schedule: "",
       message: "",
     });
-    toast.success("Form got submitted to our team!");
+    toast.success(t("contact.success"));
   };
 
   return (
     <Box
+    dir ={isRTL ? "rtl" : "ltr"}
       sx={{
         py: "50px",
         display: "flex",
@@ -86,7 +92,7 @@ export default function ContactForm({ MainColor, MainFont }) {
             fontWeight: 600,
           }}
         >
-          Contact us{" "}
+          {t("contact.title")}
           <Box
             component={"img"}
             src={phone}
@@ -102,8 +108,7 @@ export default function ContactForm({ MainColor, MainFont }) {
             fontSize: { xs: "14px", md: "16px" },
           }}
         >
-          Have questions or need support? Get in touch with our team – we're
-          here to help!
+          {t("contact.subtitle")}
         </Typography>
       </Box>
       <Box
@@ -128,7 +133,7 @@ export default function ContactForm({ MainColor, MainFont }) {
                 color: MainColor,
               }}
             >
-              Full name
+              {t("contact.fields.name")}
             </Typography>
             <TextField
               name="name"
@@ -159,7 +164,7 @@ export default function ContactForm({ MainColor, MainFont }) {
                 color: MainColor,
               }}
             >
-              Email address
+              {t("contact.fields.email")}
             </Typography>
             <TextField
               name="email"
@@ -199,7 +204,7 @@ export default function ContactForm({ MainColor, MainFont }) {
                 color: MainColor,
               }}
             >
-              Phone number
+              {t("contact.fields.phone")}
             </Typography>
             <TextField
               name="phone"
@@ -230,7 +235,7 @@ export default function ContactForm({ MainColor, MainFont }) {
                 color: MainColor,
               }}
             >
-              Schedule to receive call
+              {t("contact.fields.schedule")}
             </Typography>
             <TextField
               type="date"
@@ -262,7 +267,7 @@ export default function ContactForm({ MainColor, MainFont }) {
               color: MainColor,
             }}
           >
-            Message
+            {t("contact.fields.message")}
           </Typography>
           <TextField
             name="message"
@@ -297,7 +302,7 @@ export default function ContactForm({ MainColor, MainFont }) {
             }}
             variant="contained"
           >
-            Submit
+            {t("contact.submit")}
           </Button>
         </Box>
       </Box>

@@ -3,29 +3,17 @@ import React, { useState } from "react";
 import img from "./question-circle.svg";
 import img2 from "./medical-plus.svg";
 import { Collapse } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 export default function FrequentQuestions({ MainColor, MainFont }) {
   const [open, setOpen] = useState(null);
-  const FAQ = [
-    {
-      A: "What products do you offer?",
-      Q: "We offer a wide range of medical supplies, including prescription medications, over-the-counter products, supplements, and personal care items.",
-    },
-    {
-      A: "How can I place an order?",
-      Q: "You can place an order directly through our website by adding the products to your cart and proceeding to checkout. If you need help, our support team is here to assist you.",
-    },
-    {
-      A: "Do you provide home delivery?",
-      Q: "Yes, we provide home delivery across West Bank. Orders are usually delivered within 7 days.",
-    },
-    {
-      A: "Can I return or exchange products?",
-      Q: "Yes, returns or exchanges are accepted within 3 days, provided the products are unopened and in original condition. Please contact our support team to start the process.",
-    },
-  ];
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === "ar";
+
+  const FAQ = t("faq.items", { returnObjects: true });
+
   return (
-    <Box py={"100px"}>
+    <Box dir={isRTL ? "rtl" : "ltr"} py={"100px"}>
       <Grid
         container
         spacing={4}
@@ -54,16 +42,18 @@ export default function FrequentQuestions({ MainColor, MainFont }) {
               fontFamily: MainFont,
             }}
           >
-            Frequently Asked Questions
+            {t("faq.title")}
             <Box
               component={"img"}
               src={img}
               align="center"
               sx={{
                 width: {
-                  xs: "10%",
-                  lg: "12%",
+                  xs: 30,
+                  md: 40,
+                  lg: 50,
                 },
+                marginInlineStart: "10px",
               }}
             />
           </Typography>
@@ -131,9 +121,10 @@ export default function FrequentQuestions({ MainColor, MainFont }) {
                     color: MainColor,
                   }}
                 >
-                  {item.A}
+                  {item.q}
                 </Typography>
               </Box>
+
               <Collapse in={open === i} timeout={400}>
                 <Box className="Answer">
                   <Typography
@@ -146,7 +137,7 @@ export default function FrequentQuestions({ MainColor, MainFont }) {
                       },
                     }}
                   >
-                    {item.Q}
+                    {item.a}
                   </Typography>
                 </Box>
               </Collapse>
