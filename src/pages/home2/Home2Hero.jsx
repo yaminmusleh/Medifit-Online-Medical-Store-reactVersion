@@ -10,20 +10,21 @@ import hero_image from "./hero/Mask group.webp";
 import photo from "./hero/photo1.svg";
 import { useNavigate } from "react-router-dom";
 import button_image from "../../hero/hero-index-html/bag.svg";
+import { useTranslation } from "react-i18next";
 
 export default function Hom2Hero({ MainColor, MainFont }) {
+  const { t, i18n } = useTranslation(); // ✅ cleaner
+  const isRTL = i18n.language === "ar";
+
   const navigate = useNavigate();
   const theme = useTheme();
   const isDark = theme.palette.mode === "dark";
 
   return (
     <Box
-      className="explore-store"
+      dir={isRTL ? "rtl" : "ltr"}
       sx={{
-        paddingTop: {
-          xs: "100px",
-          lg: 0,
-        },
+        paddingTop: { xs: "100px", lg: 0 },
       }}
     >
       <Grid
@@ -37,16 +38,13 @@ export default function Hom2Hero({ MainColor, MainFont }) {
           },
         }}
       >
-        {/* LEFT SIDE */}
         <Grid
-          className="explore-store"
           item
           xs={12}
           md={6}
           sx={{
             display: "flex",
             alignItems: "center",
-
             width: {
               xs: "100%",
               md: "70%",
@@ -56,10 +54,7 @@ export default function Hom2Hero({ MainColor, MainFont }) {
               xs: 0,
               lg: "70px",
             },
-            marginLeft: {
-              xs: "20px",
-              lg: "50px",
-            },
+            marginInlineStart: { xs: "20px", lg: "50px" },
           }}
         >
           <Container
@@ -68,7 +63,7 @@ export default function Hom2Hero({ MainColor, MainFont }) {
               flexDirection: "column",
               alignItems: {
                 xs: "center",
-                lg: "start",
+                lg: "flex-start",
               },
             }}
           >
@@ -86,33 +81,31 @@ export default function Hom2Hero({ MainColor, MainFont }) {
                 },
               }}
             >
-              From wellness to care all in one place
+              {t("hero.title")}
             </Typography>
 
             <Box
-              className="Second_image"
               sx={{
                 display: "flex",
-                flexDirection: { xs: "column", md: "row", lg: "row" },
+                flexDirection: { xs: "column", md: "row" },
                 alignItems: { xs: "center", md: "flex-end" },
                 gap: "31px",
-                textAlign: { xs: "center", md: "left" },
+                textAlign: { xs: "center", md: "start" },
               }}
             >
               <Box
-                component={"img"}
+                component="img"
                 src={photo}
                 sx={{
                   width: {
                     xs: "80%",
                     sm: "50%",
                     md: "100%",
-                    lg: "100%",
                   },
                 }}
               />
+
               <Box
-                className="typo_button_box"
                 sx={{
                   display: "flex",
                   flexDirection: "column",
@@ -122,19 +115,17 @@ export default function Hom2Hero({ MainColor, MainFont }) {
                 <Typography
                   sx={{
                     fontSize: "18px",
-                    color: isDark?"##E2DFCF":MainColor,
+                    color: isDark ? "#E2DFCF" : MainColor,
                     fontFamily: "sans-serif",
                   }}
                 >
-                  Your health is in good hands with Medifit. We’re here to
-                  provide you with a wide range of healthcare essentials,
-                  carefully selected.
+                  {t("hero.description")}
                 </Typography>
+
                 <Box
                   sx={{
                     display: "flex",
-                    justifyContent: { xs: "center", md: "start" },
-                    alignItems: "center",
+                    justifyContent: { xs: "center", md: "flex-start" },
                   }}
                 >
                   <Button
@@ -144,15 +135,20 @@ export default function Hom2Hero({ MainColor, MainFont }) {
                       fontFamily: "sans-serif",
                       textTransform: "none",
                       display: "flex",
-                      justifyContent: "center",
                       alignItems: "center",
-                      color:'#fff',
+                      gap: "8px", // ✅ fixes spacing in both RTL & LTR
+                      color: "#fff",
                       bgcolor: "#503217",
                       ":hover": { bgcolor: "#72451e" },
                     }}
-                    startIcon={<img src={button_image} alt="shop" />}
                   >
-                    Shop now
+                    <Box
+                      component="img"
+                      src={button_image}
+                      alt="shop"
+                      sx={{ width: 18, flexShrink: 0 }}
+                    />
+                    {t("hero.cta")}
                   </Button>
                 </Box>
               </Box>
@@ -160,7 +156,6 @@ export default function Hom2Hero({ MainColor, MainFont }) {
           </Container>
         </Grid>
 
-        {/* RIGHT SIDE */}
         <Grid
           item
           xs={12}
@@ -179,7 +174,6 @@ export default function Hom2Hero({ MainColor, MainFont }) {
             alt="hero"
             sx={{
               width: "100%",
-
               height: "100%",
               objectFit: "cover",
               display: "block",

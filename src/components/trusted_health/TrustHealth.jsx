@@ -3,13 +3,17 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import image from "./bring-trust/bringing-trust.svg";
 import imag2 from "./bring-trust/history.svg";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function TrustHealth() {
+  const {t} = useTranslation();
+  const {i18n} = useTranslation();
+  const isRTL = i18n.language === "ar";
   const color1 = "#503217";
   const color2 = "#8F7D6A";
   const hover_color = "#794c24";
   return (
-    <Box py="80px" sx={{ textAlign: { xs: "center", lg: "start" } }}>
+    <Box dir={isRTL ? "rtl" : "ltr"} py="80px" sx={{ textAlign: { xs: "center", lg: "start" } }}>
       <Grid
         container
         spacing={2}
@@ -46,8 +50,7 @@ export default function TrustHealth() {
                 fontFamily: "poppins",
               }}
             >
-              Bringing trusted health solutions to your doorstep focused on
-              quality care & reliability
+              {t("trust.title")}
             </Typography>
             <Typography
               sx={{
@@ -59,9 +62,7 @@ export default function TrustHealth() {
                 fontFamily: "poppins",
               }}
             >
-              Our store offers a comprehensive range of pharmaceuticals, health
-              and wellness products, and medical supplies to meet the diverse
-              needs of our community.
+              {t("trust.description")}
             </Typography>
           </Box>
           <Box marginTop={5}>
@@ -84,8 +85,8 @@ export default function TrustHealth() {
                 borderRadius: "8px",
               }}
             >
-              Our story
-              <img src={imag2} style={{ marginLeft: "4px" }} />
+              {t("trust.cta")}
+              <img src={imag2} style={{ marginInlineStart: "6px" }} />
             </Button>
           </Box>
         </Grid>

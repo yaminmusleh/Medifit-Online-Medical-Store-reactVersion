@@ -296,6 +296,25 @@ i18n
               },
             ],
           },
+          trust: {
+            title:
+              "Bringing trusted health solutions to your doorstep focused on quality care & reliability",
+            description:
+              "Our store offers a comprehensive range of pharmaceuticals, health and wellness products, and medical supplies to meet the diverse needs of our community.",
+            cta: "Our story",
+          },
+          homeHighlights: {
+            freeShipping: "Free shipping",
+            easyRefund: "Easy refund",
+            onlineSupport: "Online support",
+            flexiblePayment: "Flexible payment",
+          },
+          hero: {
+    title: "From wellness to care all in one place",
+    description:
+      "Your health is in good hands with Medifit. We’re here to provide you with a wide range of healthcare essentials, carefully selected.",
+    cta: "Shop now"
+  }
         },
       },
       //********************************************************************************************//
@@ -585,6 +604,25 @@ i18n
               },
             ],
           },
+          trust: {
+            title:
+              "نقدم حلولًا صحية موثوقة إلى باب منزلك مع التركيز على الجودة والموثوقية",
+            description:
+              "يقدم متجرنا مجموعة شاملة من الأدوية ومنتجات الصحة والعافية والمستلزمات الطبية لتلبية احتياجات مجتمعنا المتنوعة.",
+            cta: "قصتنا",
+          },
+          homeHighlights: {
+            freeShipping: "شحن مجاني",
+            easyRefund: "استرجاع سهل",
+            onlineSupport: "دعم عبر الإنترنت",
+            flexiblePayment: "دفع مرن",
+          },
+          hero: {
+    title: "من العافية إلى الرعاية، كل ما تحتاجه في مكان واحد",
+    description:
+      "صحتك في أيدٍ أمينة مع ميديفيت. نحن هنا لنقدم لك مجموعة واسعة من مستلزمات الرعاية الصحية المختارة بعناية.",
+    cta: "تسوق الآن"
+  }
         },
       },
     },
