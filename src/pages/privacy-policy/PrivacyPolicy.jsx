@@ -114,7 +114,7 @@ export default function PrivacyPolicy() {
       {
         heading: "11. Contact Information",
         paragraphs: [
-          "Email: yaminaktham3@email.com",
+          "Email: yaminaktham3@gmail.com",
           "Company: Medifit Co.",
           "Address: Palestine-Jenin"
         ]
@@ -230,7 +230,7 @@ export default function PrivacyPolicy() {
       {
         heading: "11. معلومات الاتصال",
         paragraphs: [
-          "البريد الإلكتروني: yaminaktham3@email.com",
+          "البريد الإلكتروني: yaminaktham3@gmail.com",
           "الشركة: Medifit Co.",
           "العنوان: فلسطين-جنين"
         ]

@@ -17,11 +17,13 @@ import shape4 from "./shop-by-category/shape4.svg";
 import useCategs from "../../hooks/useCategs";
 import Loader from "../../ui/Loader";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Home2Category() {
   const images = [image1, image2, image3, image4];
   const shapes = [shape1, shape2, shape3, shape4];
   const navigate = useNavigate();
+  const {t}= useTranslation();
 
   const { data, isLoading, isError, error } = useCategs(4);
   //data, isLoading, isError, error takes the values from the query that we returned in useCategs
@@ -74,7 +76,7 @@ export default function Home2Category() {
             fontWeight: 700,
           }}
         >
-          Shop By Category
+          {t("category.shopByCategory")}
         </Typography>
         <Box
           sx={{

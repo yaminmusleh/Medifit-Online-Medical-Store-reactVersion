@@ -58,7 +58,7 @@ export default function Hero() {
                 }}
                 gutterBottom
               >
-                {t("hero.title")}
+                {t("mainHero.title")}
               </Typography>
               <Typography
                 variant="span"
@@ -67,7 +67,7 @@ export default function Hero() {
                 color="#8F7D6A"
                 marginBottom={"60px"}
               >
-                {t("hero.subtitle")}
+                {t("mainHero.subtitle")}
               </Typography>
               <Box
                 sx={{
@@ -92,7 +92,7 @@ export default function Hero() {
                   }}
                   
                 >
-                 <img src={button_image} alt="shop" /> {t("hero.shopNow")}
+                 <img src={button_image} alt="shop" /> {t("mainHero.shopNow")}
                 </Button>
               </Box>
             </Grid>

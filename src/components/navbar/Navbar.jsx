@@ -240,9 +240,7 @@ export default function Navbar() {
             ))}
           </Box>
 
-          <IconButton sx={{ color: "#503217" }}>
-            <SearchIcon />
-          </IconButton>
+          
 
           {token && (
             <Box sx={{ display: { xs: "none", sm: "flex" } }}>

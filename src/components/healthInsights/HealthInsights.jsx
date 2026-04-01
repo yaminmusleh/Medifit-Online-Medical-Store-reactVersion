@@ -6,10 +6,16 @@ import chevron from "./health-care-insights/chevron-right.svg";
 import calenderimg from "./health-care-insights/calendar-week.svg";
 import { Link as RouterLink } from "react-router-dom";
 import { Link } from "@mui/material";
+import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 export default function HealthInsights({ MainColor, MainFont }) {
+  const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  const isRTL = i18n.language === "ar";
   return (
     <Box
+      dir={isRTL ? "rtl" : "ltr"}
       py={"120px"}
       sx={{
         display: "flex",
@@ -33,7 +39,7 @@ export default function HealthInsights({ MainColor, MainFont }) {
           fontWeight: 600,
         }}
       >
-        Healthcare Insights
+        {t("healthInsights.title")}
       </Typography>
       <Grid container spacing={6}>
         {/*left card*/}
@@ -97,7 +103,7 @@ export default function HealthInsights({ MainColor, MainFont }) {
                   alt="calender"
                   style={{ marginRight: "5px" }}
                 />
-                October 25, 2024
+                {t("healthInsights.article1.date")}
               </Typography>
               <Typography
                 sx={{
@@ -106,7 +112,7 @@ export default function HealthInsights({ MainColor, MainFont }) {
                   fontFamily: MainFont,
                 }}
               >
-                Living well with chronic conditions
+                {t("healthInsights.article1.title")}
               </Typography>
             </Box>
 
@@ -140,8 +146,12 @@ export default function HealthInsights({ MainColor, MainFont }) {
                   },
                 }}
               >
-                Read more
-                <img src={chevron} alt="chevron-right" />
+                {t("healthInsights.readMore")}
+                <img
+                  src={chevron}
+                  alt="chevron-right"
+                  style={{ transform: isRTL ? "rotate(180deg)" : "none" }}
+                />
               </Link>
             </Box>
           </Box>
@@ -208,7 +218,7 @@ export default function HealthInsights({ MainColor, MainFont }) {
                   alt="calender"
                   style={{ marginRight: "5px" }}
                 />
-                October 25, 2024
+                {t("healthInsights.article2.date")}
               </Typography>
               <Typography
                 sx={{
@@ -217,7 +227,7 @@ export default function HealthInsights({ MainColor, MainFont }) {
                   fontFamily: MainFont,
                 }}
               >
-                Strength home-Based fitness essential
+                {t("healthInsights.article2.title")}
               </Typography>
             </Box>
 
@@ -251,8 +261,12 @@ export default function HealthInsights({ MainColor, MainFont }) {
                   },
                 }}
               >
-                Read more
-                <img src={chevron} alt="chevron-right" />
+                {t("healthInsights.readMore")}
+                <img
+                  src={chevron}
+                  alt="chevron-right"
+                  style={{ transform: isRTL ? "rotate(180deg)" : "none" }}
+                />
               </Link>
             </Box>
           </Box>

@@ -6,6 +6,7 @@ import useProducts from "../products/useProducts";
 import ProductUiHome2 from "./ProductUiHome2";
 import { Link } from "react-router-dom";
 import image2 from "../../components/idk_what_to_name_it/middle-cta/chevron-right.svg";
+import { useTranslation } from "react-i18next";
 
 export default function HomeProductsUi({
   MainColor,
@@ -13,6 +14,10 @@ export default function HomeProductsUi({
   Product,
   hover,
 }) {
+  const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  const isRTL = i18n.language === "ar";
+
   const limit = Product?.limit || 3;
 
   const { data, isLoading, isError, error } = useProducts(limit);
@@ -35,6 +40,7 @@ export default function HomeProductsUi({
 
   return (
     <Box
+    dir={isRTL ? "rtl" : "ltr"}
       py={8}
       sx={{
         display: "flex",
@@ -69,13 +75,13 @@ export default function HomeProductsUi({
             },
           }}
         >
-          Discover our collection
+          {t("homeProducts.title")}
         </Typography>
         <Typography
           sx={{ color: "#8F7D6A", fontSize: "18px", width: "98%", mb: 3 }}
         >
-          Our medical store offers trusted products easy navigation, and fast
-          shipping
+          {t("homeProducts.description")}
+          
         </Typography>
         <Button
           component={Link}
@@ -96,8 +102,8 @@ export default function HomeProductsUi({
             },
           }}
         >
-          View sale products
-          <img src={image2} alt="chevron" style={{ marginLeft: "3px" }} />
+          {t("homeProducts.cta")}
+          <img src={image2} alt="chevron" style={{ marginInlineStart: "3px",  transform:isRTL?"rotate(180deg)":"none"}} />
         </Button>
       </Box>
 

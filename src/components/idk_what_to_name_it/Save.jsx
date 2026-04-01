@@ -4,13 +4,19 @@ import image from "./middle-cta/CTA.svg";
 import image2 from "./middle-cta/chevron-right.svg";
 
 import { Link } from "react-router-dom";
+import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 export default function Save() {
+  const {t}= useTranslation();
+  const { i18n } = useTranslation();
+  const isRTL = i18n.language === "ar";
   const color1 = "#503217";
   const color2 = "#8F7D6A";
   const hover_color = "#794c24";
   return (
     <Box
+    dir={isRTL ? "rtl" : "ltr"}
     className="explore-store"
       py="80px"
       sx={{
@@ -20,7 +26,7 @@ export default function Save() {
       <Container>
         <Grid
           container
-          spacing={8.75}
+          spacing={9.75}
           alignItems={"center"}
           sx={{
             justifyContent: "center",
@@ -67,7 +73,7 @@ export default function Save() {
                   fontWeight: "700",
                 }}
               >
-                Save up to 10% on select tablets limited time only!
+                {t("saveSection.title")}
               </Typography>
               <Typography
                 sx={{
@@ -79,8 +85,7 @@ export default function Save() {
                   fontFamily: "poppins",
                 }}
               >
-                Don't miss out on our limited-time sale! 10% discount on a wide
-                range of essential health products.
+                {t("saveSection.description")}
               </Typography>
             </Box>
             <Box marginTop={5}>
@@ -103,8 +108,8 @@ export default function Save() {
                   },
                 }}
               >
-                View sale products
-                <img src={image2} alt="chevron" style={{ marginLeft: "3px" }} />
+                {t("saveSection.cta")}
+                <img src={image2} alt="chevron" style={{ marginInlineStart: "3px", transform:isRTL?"rotate(180deg)":"none" }} />
               </Button>
             </Box>
           </Grid>

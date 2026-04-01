@@ -11,8 +11,12 @@ import {
 
 import { Link } from "react-router-dom";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import { useTranslation } from "react-i18next";
 
 export default function ProductUiHome2({ products, MainColor, MainFont, limit }) {
+  const {t} = useTranslation();
+  const { i18n } = useTranslation();
+  const isRTL = i18n.language === "ar";
   return (
     <Grid
       container
@@ -83,6 +87,7 @@ export default function ProductUiHome2({ products, MainColor, MainFont, limit })
               />
 
               <Button
+              
                 component={Link}
                 to={`/product/${product.id}`}
                 variant="contained"
@@ -110,10 +115,11 @@ export default function ProductUiHome2({ products, MainColor, MainFont, limit })
                 }}
               >
                 <ShoppingCartOutlinedIcon
+                
                   fontSize="small"
-                  sx={{ marginRight: "3px" }}
+                  sx={{ marginInlineEnd: "4px" }}
                 />
-                Shop now
+                {t("products.button")}
               </Button>
             </Box>
 

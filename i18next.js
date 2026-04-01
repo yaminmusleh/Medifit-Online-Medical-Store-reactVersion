@@ -131,7 +131,7 @@ i18n
             privacyPolicy: "Privacy Policy",
             newEmail: "New Email",
           },
-          hero: {
+          mainHero: {
             title: "Your trusted care now and always",
             subtitle:
               "For the best results, align your health needs with your medication plan.",
@@ -310,11 +310,35 @@ i18n
             flexiblePayment: "Flexible payment",
           },
           hero: {
-    title: "From wellness to care all in one place",
-    description:
-      "Your health is in good hands with Medifit. We’re here to provide you with a wide range of healthcare essentials, carefully selected.",
-    cta: "Shop now"
-  }
+            title: "From wellness to care all in one place",
+            description:
+              "Your health is in good hands with Medifit. We’re here to provide you with a wide range of healthcare essentials, carefully selected.",
+            cta: "Shop now",
+          },
+          homeProducts: {
+            title: "Discover our collection",
+            description:
+              "Our medical store offers trusted products easy navigation, and fast shipping",
+            cta: "View sale products",
+          },
+          saveSection: {
+            title: "Save up to 10% on select tablets limited time only!",
+            description:
+              "Don't miss out on our limited-time sale! 10% discount on a wide range of essential health products.",
+            cta: "View sale products",
+          },
+          healthInsights: {
+            title: "Healthcare Insights",
+            readMore: "Read more",
+            article1: {
+              date: "October 25, 2024",
+              title: "Living well with chronic conditions",
+            },
+            article2: {
+              date: "October 25, 2024",
+              title: "Strength home-based fitness essentials",
+            },
+          },
         },
       },
       //********************************************************************************************//
@@ -439,7 +463,7 @@ i18n
             privacyPolicy: "سياسة الخصوصية",
             newEmail: "البريد الإلكتروني الجديد",
           },
-          hero: {
+          mainHero: {
             title: "رعايتك الموثوقة الآن ودائمًا",
             subtitle:
               "لأفضل النتائج، قم بمواءمة احتياجاتك الصحية مع خطة أدويتك.",
@@ -618,11 +642,35 @@ i18n
             flexiblePayment: "دفع مرن",
           },
           hero: {
-    title: "من العافية إلى الرعاية، كل ما تحتاجه في مكان واحد",
-    description:
-      "صحتك في أيدٍ أمينة مع ميديفيت. نحن هنا لنقدم لك مجموعة واسعة من مستلزمات الرعاية الصحية المختارة بعناية.",
-    cta: "تسوق الآن"
-  }
+            title: "من العافية إلى الرعاية، كل ما تحتاجه في مكان واحد",
+            description:
+              "صحتك في أيدٍ أمينة مع ميديفيت. نحن هنا لنقدم لك مجموعة واسعة من مستلزمات الرعاية الصحية المختارة بعناية.",
+            cta: "تسوق الآن",
+          },
+          homeProducts: {
+            title: "اكتشف مجموعتنا",
+            description:
+              "يوفر متجرنا الطبي منتجات موثوقة، تصفحًا سهلًا، وشحنًا سريعًا",
+            cta: "عرض المنتجات المخفضة",
+          },
+          saveSection: {
+            title: "وفر حتى 10٪ على أقراص مختارة لفترة محدودة فقط!",
+            description:
+              "لا تفوت عرضنا لفترة محدودة! خصم 10٪ على مجموعة واسعة من المنتجات الصحية الأساسية.",
+            cta: "عرض المنتجات المخفضة",
+          },
+          healthInsights: {
+            title: "رؤى الرعاية الصحية",
+            readMore: "اقرأ المزيد",
+            article1: {
+              date: "25-10-2024",
+              title: "العيش بشكل جيد مع الأمراض المزمنة",
+            },
+            article2: {
+              date: "25-10-2024",
+              title: "أساسيات اللياقة البدنية المنزلية",
+            },
+          },
         },
       },
     },
