@@ -54,6 +54,7 @@ export default function Hero() {
                   textAlign:isRTL?"right":'left',
                   fontFamily: "poppins",
                   color: "#503217",
+                  textAlign: { xs: "center", md: "left" },
                   fontWeight: 700,
                 }}
                 gutterBottom

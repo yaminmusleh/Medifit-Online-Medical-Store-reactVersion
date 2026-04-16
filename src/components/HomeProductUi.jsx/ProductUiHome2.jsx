@@ -112,6 +112,7 @@ export default function ProductUiHome2({ products, MainColor, MainFont, limit })
                   fontFamily: MainFont,
                   whiteSpace: "nowrap",
                   fontWeight: 600,
+                
                 }}
               >
                 <ShoppingCartOutlinedIcon

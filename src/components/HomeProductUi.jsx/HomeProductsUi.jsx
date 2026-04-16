@@ -94,6 +94,7 @@ export default function HomeProductsUi({
               xs: "12px",
               md: "14px",
             },
+            marginBottom:"20px",
             color: "#fff",
             borderRadius: "8px",
             backgroundColor: MainColor,

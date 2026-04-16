@@ -111,6 +111,7 @@ export default function Login() {
 
           <TextField
             {...register("password")}
+            type="password"
             label={t("login.password")}
             variant="outlined"
             error={errors.password}
