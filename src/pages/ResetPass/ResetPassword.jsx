@@ -69,6 +69,7 @@ export default function ResetPassword({ MainColor, MainFont }) {
             sm: "50%",
             md: "30%",
           },
+          
           textAlign: "center",
           display: "flex",
           flexDirection: "column",

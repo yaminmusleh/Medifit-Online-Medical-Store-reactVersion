@@ -68,7 +68,7 @@ export default function ForgotPassword({ MainColor, MainFont }) {
 
       <Box
         className="Text-fd"
-        sx={{ width: "30%", textAlign: "center" }}
+        sx={{ width: {xs:"70%",sm:"50%", md:'30%'}, textAlign: "center" }}
         component={"form"}
         onSubmit={handleSubmit(onSubmit)}
       >
@@ -96,7 +96,7 @@ export default function ForgotPassword({ MainColor, MainFont }) {
             disabled={isPending || isSubmitting}
             type="submit"
             sx={{
-              width: "35%",
+              width: "50%",
               alignSelf: "center",
               fontFamily: "poppins",
               textTransform: "none",
