@@ -51,11 +51,13 @@ export default function Hero() {
                     md: "48px",
                     lg: "56px",
                   },
-                  textAlign:isRTL?"right":'left',
                   fontFamily: "poppins",
                   color: "#503217",
-                  textAlign: { xs: "center", md: "left" },
                   fontWeight: 700,
+                  textAlign: {
+                    xs: "center",
+                    md: isRTL ? "right" : "left",
+                  },
                 }}
                 gutterBottom
               >
@@ -87,13 +89,12 @@ export default function Hero() {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    gap:"5px",
+                    gap: "5px",
                     bgcolor: "#503217",
                     ":hover": { bgcolor: "#72451e" },
                   }}
-                  
                 >
-                 <img src={button_image} alt="shop" /> {t("mainHero.shopNow")}
+                  <img src={button_image} alt="shop" /> {t("mainHero.shopNow")}
                 </Button>
               </Box>
             </Grid>
